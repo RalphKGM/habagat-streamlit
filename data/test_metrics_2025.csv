@@ -1,0 +1,1225 @@
+location,source,model,scope,aggregation,n_hours,mae_mw,rmse_mw,target_month,horizon_hour
+General Santos City,combined,previous_day,all_hours,overall,8760,0.078317,0.122337,,
+General Santos City,solar,previous_day,all_hours,overall,8760,0.043255,0.090108,,
+General Santos City,wind,previous_day,all_hours,overall,8760,0.051885,0.086311,,
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,overall,8760,0.166820,0.245179,,
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,overall,8760,0.039009,0.089395,,
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,overall,8760,0.153823,0.238867,,
+"Mactan, Cebu",combined,previous_day,all_hours,overall,8760,0.115137,0.167028,,
+"Mactan, Cebu",solar,previous_day,all_hours,overall,8760,0.040123,0.083809,,
+"Mactan, Cebu",wind,previous_day,all_hours,overall,8760,0.097425,0.151762,,
+General Santos City,combined,previous_day,all_hours,month,744,0.090572,0.138301,1.000000,
+General Santos City,combined,previous_day,all_hours,month,672,0.106986,0.158482,2.000000,
+General Santos City,combined,previous_day,all_hours,month,744,0.086367,0.133013,3.000000,
+General Santos City,combined,previous_day,all_hours,month,720,0.069567,0.110060,4.000000,
+General Santos City,combined,previous_day,all_hours,month,744,0.055347,0.083714,5.000000,
+General Santos City,combined,previous_day,all_hours,month,720,0.080216,0.120035,6.000000,
+General Santos City,combined,previous_day,all_hours,month,744,0.073349,0.106991,7.000000,
+General Santos City,combined,previous_day,all_hours,month,744,0.079826,0.121665,8.000000,
+General Santos City,combined,previous_day,all_hours,month,720,0.060342,0.090844,9.000000,
+General Santos City,combined,previous_day,all_hours,month,744,0.078086,0.120106,10.000000,
+General Santos City,combined,previous_day,all_hours,month,720,0.111411,0.170488,11.000000,
+General Santos City,combined,previous_day,all_hours,month,744,0.050783,0.085138,12.000000,
+General Santos City,solar,previous_day,all_hours,month,744,0.046031,0.097037,1.000000,
+General Santos City,solar,previous_day,all_hours,month,672,0.055930,0.113845,2.000000,
+General Santos City,solar,previous_day,all_hours,month,744,0.051390,0.105346,3.000000,
+General Santos City,solar,previous_day,all_hours,month,720,0.044585,0.092933,4.000000,
+General Santos City,solar,previous_day,all_hours,month,744,0.041641,0.082733,5.000000,
+General Santos City,solar,previous_day,all_hours,month,720,0.049196,0.092711,6.000000,
+General Santos City,solar,previous_day,all_hours,month,744,0.028992,0.067875,7.000000,
+General Santos City,solar,previous_day,all_hours,month,744,0.041583,0.086245,8.000000,
+General Santos City,solar,previous_day,all_hours,month,720,0.034208,0.071049,9.000000,
+General Santos City,solar,previous_day,all_hours,month,744,0.040307,0.085428,10.000000,
+General Santos City,solar,previous_day,all_hours,month,720,0.048081,0.097636,11.000000,
+General Santos City,solar,previous_day,all_hours,month,744,0.038439,0.080031,12.000000,
+General Santos City,wind,previous_day,all_hours,month,744,0.061683,0.098698,1.000000,
+General Santos City,wind,previous_day,all_hours,month,672,0.076212,0.107126,2.000000,
+General Santos City,wind,previous_day,all_hours,month,744,0.046521,0.063309,3.000000,
+General Santos City,wind,previous_day,all_hours,month,720,0.036965,0.049073,4.000000,
+General Santos City,wind,previous_day,all_hours,month,744,0.029552,0.043772,5.000000,
+General Santos City,wind,previous_day,all_hours,month,720,0.056224,0.080126,6.000000,
+General Santos City,wind,previous_day,all_hours,month,744,0.055902,0.083578,7.000000,
+General Santos City,wind,previous_day,all_hours,month,744,0.051119,0.074517,8.000000,
+General Santos City,wind,previous_day,all_hours,month,720,0.041574,0.067147,9.000000,
+General Santos City,wind,previous_day,all_hours,month,744,0.055975,0.098379,10.000000,
+General Santos City,wind,previous_day,all_hours,month,720,0.090229,0.162123,11.000000,
+General Santos City,wind,previous_day,all_hours,month,744,0.023586,0.033515,12.000000,
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,month,744,0.261756,0.339673,1.000000,
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,month,672,0.236372,0.296553,2.000000,
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,month,744,0.162736,0.247032,3.000000,
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,month,720,0.099928,0.147093,4.000000,
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,month,744,0.066573,0.105340,5.000000,
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,month,720,0.085849,0.147885,6.000000,
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,month,744,0.181625,0.253737,7.000000,
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,month,744,0.144540,0.212557,8.000000,
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,month,720,0.176630,0.279906,9.000000,
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,month,744,0.164098,0.223328,10.000000,
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,month,720,0.233156,0.312323,11.000000,
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,month,744,0.192998,0.262838,12.000000,
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,month,744,0.035100,0.076449,1.000000,
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,month,672,0.030551,0.061453,2.000000,
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,month,744,0.021378,0.047006,3.000000,
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,month,720,0.017026,0.037099,4.000000,
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,month,744,0.037426,0.092404,5.000000,
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,month,720,0.041925,0.087654,6.000000,
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,month,744,0.054490,0.118871,7.000000,
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,month,744,0.062582,0.125008,8.000000,
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,month,720,0.053340,0.109423,9.000000,
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,month,744,0.045719,0.102228,10.000000,
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,month,720,0.044366,0.104390,11.000000,
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,month,744,0.023402,0.054598,12.000000,
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,month,744,0.248653,0.329461,1.000000,
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,month,672,0.231429,0.295539,2.000000,
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,month,744,0.156278,0.244649,3.000000,
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,month,720,0.094911,0.144823,4.000000,
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,month,744,0.038608,0.060583,5.000000,
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,month,720,0.065404,0.128004,6.000000,
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,month,744,0.164257,0.249318,7.000000,
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,month,744,0.107217,0.173873,8.000000,
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,month,720,0.168866,0.291189,9.000000,
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,month,744,0.160439,0.229029,10.000000,
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,month,720,0.226385,0.304936,11.000000,
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,month,744,0.189016,0.260391,12.000000,
+"Mactan, Cebu",combined,previous_day,all_hours,month,744,0.118268,0.158503,1.000000,
+"Mactan, Cebu",combined,previous_day,all_hours,month,672,0.128355,0.165642,2.000000,
+"Mactan, Cebu",combined,previous_day,all_hours,month,744,0.129944,0.181086,3.000000,
+"Mactan, Cebu",combined,previous_day,all_hours,month,720,0.089093,0.116001,4.000000,
+"Mactan, Cebu",combined,previous_day,all_hours,month,744,0.082569,0.112604,5.000000,
+"Mactan, Cebu",combined,previous_day,all_hours,month,720,0.083802,0.125840,6.000000,
+"Mactan, Cebu",combined,previous_day,all_hours,month,744,0.122645,0.171657,7.000000,
+"Mactan, Cebu",combined,previous_day,all_hours,month,744,0.093167,0.139005,8.000000,
+"Mactan, Cebu",combined,previous_day,all_hours,month,720,0.128871,0.198328,9.000000,
+"Mactan, Cebu",combined,previous_day,all_hours,month,744,0.102185,0.155550,10.000000,
+"Mactan, Cebu",combined,previous_day,all_hours,month,720,0.168377,0.252137,11.000000,
+"Mactan, Cebu",combined,previous_day,all_hours,month,744,0.135950,0.179397,12.000000,
+"Mactan, Cebu",solar,previous_day,all_hours,month,744,0.041985,0.084075,1.000000,
+"Mactan, Cebu",solar,previous_day,all_hours,month,672,0.045820,0.089479,2.000000,
+"Mactan, Cebu",solar,previous_day,all_hours,month,744,0.040272,0.082575,3.000000,
+"Mactan, Cebu",solar,previous_day,all_hours,month,720,0.026684,0.060870,4.000000,
+"Mactan, Cebu",solar,previous_day,all_hours,month,744,0.036742,0.077521,5.000000,
+"Mactan, Cebu",solar,previous_day,all_hours,month,720,0.037669,0.073609,6.000000,
+"Mactan, Cebu",solar,previous_day,all_hours,month,744,0.035282,0.070782,7.000000,
+"Mactan, Cebu",solar,previous_day,all_hours,month,744,0.040890,0.083042,8.000000,
+"Mactan, Cebu",solar,previous_day,all_hours,month,720,0.042881,0.085310,9.000000,
+"Mactan, Cebu",solar,previous_day,all_hours,month,744,0.043078,0.095543,10.000000,
+"Mactan, Cebu",solar,previous_day,all_hours,month,720,0.048494,0.105911,11.000000,
+"Mactan, Cebu",solar,previous_day,all_hours,month,744,0.042074,0.088383,12.000000,
+"Mactan, Cebu",wind,previous_day,all_hours,month,744,0.101449,0.138475,1.000000,
+"Mactan, Cebu",wind,previous_day,all_hours,month,672,0.118255,0.154492,2.000000,
+"Mactan, Cebu",wind,previous_day,all_hours,month,744,0.114138,0.158610,3.000000,
+"Mactan, Cebu",wind,previous_day,all_hours,month,720,0.077422,0.102095,4.000000,
+"Mactan, Cebu",wind,previous_day,all_hours,month,744,0.053876,0.076601,5.000000,
+"Mactan, Cebu",wind,previous_day,all_hours,month,720,0.058877,0.092718,6.000000,
+"Mactan, Cebu",wind,previous_day,all_hours,month,744,0.112680,0.164604,7.000000,
+"Mactan, Cebu",wind,previous_day,all_hours,month,744,0.064578,0.100755,8.000000,
+"Mactan, Cebu",wind,previous_day,all_hours,month,720,0.109906,0.194004,9.000000,
+"Mactan, Cebu",wind,previous_day,all_hours,month,744,0.069247,0.109276,10.000000,
+"Mactan, Cebu",wind,previous_day,all_hours,month,720,0.173476,0.264248,11.000000,
+"Mactan, Cebu",wind,previous_day,all_hours,month,744,0.118179,0.166828,12.000000,
+General Santos City,combined,previous_day,all_hours,horizon,365,0.045296,0.078493,,1.000000
+General Santos City,combined,previous_day,all_hours,horizon,365,0.046393,0.079188,,2.000000
+General Santos City,combined,previous_day,all_hours,horizon,365,0.046345,0.077501,,3.000000
+General Santos City,combined,previous_day,all_hours,horizon,365,0.045487,0.075430,,4.000000
+General Santos City,combined,previous_day,all_hours,horizon,365,0.044617,0.073215,,5.000000
+General Santos City,combined,previous_day,all_hours,horizon,365,0.042957,0.069498,,6.000000
+General Santos City,combined,previous_day,all_hours,horizon,365,0.046941,0.066992,,7.000000
+General Santos City,combined,previous_day,all_hours,horizon,365,0.079404,0.103589,,8.000000
+General Santos City,combined,previous_day,all_hours,horizon,365,0.119211,0.154697,,9.000000
+General Santos City,combined,previous_day,all_hours,horizon,365,0.138919,0.179325,,10.000000
+General Santos City,combined,previous_day,all_hours,horizon,365,0.146128,0.189829,,11.000000
+General Santos City,combined,previous_day,all_hours,horizon,365,0.151562,0.195436,,12.000000
+General Santos City,combined,previous_day,all_hours,horizon,365,0.161496,0.210404,,13.000000
+General Santos City,combined,previous_day,all_hours,horizon,365,0.151586,0.196088,,14.000000
+General Santos City,combined,previous_day,all_hours,horizon,365,0.130907,0.172256,,15.000000
+General Santos City,combined,previous_day,all_hours,horizon,365,0.105056,0.143323,,16.000000
+General Santos City,combined,previous_day,all_hours,horizon,365,0.071618,0.106743,,17.000000
+General Santos City,combined,previous_day,all_hours,horizon,365,0.048907,0.079201,,18.000000
+General Santos City,combined,previous_day,all_hours,horizon,365,0.045275,0.072052,,19.000000
+General Santos City,combined,previous_day,all_hours,horizon,365,0.043648,0.067777,,20.000000
+General Santos City,combined,previous_day,all_hours,horizon,365,0.042111,0.066155,,21.000000
+General Santos City,combined,previous_day,all_hours,horizon,365,0.041640,0.066864,,22.000000
+General Santos City,combined,previous_day,all_hours,horizon,365,0.041429,0.068852,,23.000000
+General Santos City,combined,previous_day,all_hours,horizon,365,0.042685,0.073244,,24.000000
+General Santos City,solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,1.000000
+General Santos City,solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,2.000000
+General Santos City,solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,3.000000
+General Santos City,solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,4.000000
+General Santos City,solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,5.000000
+General Santos City,solar,previous_day,all_hours,horizon,365,0.001454,0.002361,,6.000000
+General Santos City,solar,previous_day,all_hours,horizon,365,0.024131,0.032514,,7.000000
+General Santos City,solar,previous_day,all_hours,horizon,365,0.063278,0.085000,,8.000000
+General Santos City,solar,previous_day,all_hours,horizon,365,0.105072,0.139375,,9.000000
+General Santos City,solar,previous_day,all_hours,horizon,365,0.124617,0.163724,,10.000000
+General Santos City,solar,previous_day,all_hours,horizon,365,0.129328,0.170075,,11.000000
+General Santos City,solar,previous_day,all_hours,horizon,365,0.130483,0.169448,,12.000000
+General Santos City,solar,previous_day,all_hours,horizon,365,0.139666,0.182817,,13.000000
+General Santos City,solar,previous_day,all_hours,horizon,365,0.121466,0.155653,,14.000000
+General Santos City,solar,previous_day,all_hours,horizon,365,0.097789,0.125363,,15.000000
+General Santos City,solar,previous_day,all_hours,horizon,365,0.068747,0.088933,,16.000000
+General Santos City,solar,previous_day,all_hours,horizon,365,0.028576,0.037517,,17.000000
+General Santos City,solar,previous_day,all_hours,horizon,365,0.003511,0.005213,,18.000000
+General Santos City,solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,19.000000
+General Santos City,solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,20.000000
+General Santos City,solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,21.000000
+General Santos City,solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,22.000000
+General Santos City,solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,23.000000
+General Santos City,solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,24.000000
+General Santos City,wind,previous_day,all_hours,horizon,365,0.045296,0.078493,,1.000000
+General Santos City,wind,previous_day,all_hours,horizon,365,0.046393,0.079188,,2.000000
+General Santos City,wind,previous_day,all_hours,horizon,365,0.046345,0.077501,,3.000000
+General Santos City,wind,previous_day,all_hours,horizon,365,0.045487,0.075430,,4.000000
+General Santos City,wind,previous_day,all_hours,horizon,365,0.044617,0.073215,,5.000000
+General Santos City,wind,previous_day,all_hours,horizon,365,0.042921,0.069846,,6.000000
+General Santos City,wind,previous_day,all_hours,horizon,365,0.039127,0.063074,,7.000000
+General Santos City,wind,previous_day,all_hours,horizon,365,0.043126,0.068995,,8.000000
+General Santos City,wind,previous_day,all_hours,horizon,365,0.051351,0.081694,,9.000000
+General Santos City,wind,previous_day,all_hours,horizon,365,0.057647,0.090807,,10.000000
+General Santos City,wind,previous_day,all_hours,horizon,365,0.063290,0.098822,,11.000000
+General Santos City,wind,previous_day,all_hours,horizon,365,0.067411,0.105249,,12.000000
+General Santos City,wind,previous_day,all_hours,horizon,365,0.070395,0.113008,,13.000000
+General Santos City,wind,previous_day,all_hours,horizon,365,0.072785,0.119682,,14.000000
+General Santos City,wind,previous_day,all_hours,horizon,365,0.072707,0.120134,,15.000000
+General Santos City,wind,previous_day,all_hours,horizon,365,0.069679,0.115223,,16.000000
+General Santos City,wind,previous_day,all_hours,horizon,365,0.060922,0.100418,,17.000000
+General Santos City,wind,previous_day,all_hours,horizon,365,0.048963,0.079351,,18.000000
+General Santos City,wind,previous_day,all_hours,horizon,365,0.045275,0.072052,,19.000000
+General Santos City,wind,previous_day,all_hours,horizon,365,0.043648,0.067777,,20.000000
+General Santos City,wind,previous_day,all_hours,horizon,365,0.042111,0.066155,,21.000000
+General Santos City,wind,previous_day,all_hours,horizon,365,0.041640,0.066864,,22.000000
+General Santos City,wind,previous_day,all_hours,horizon,365,0.041429,0.068852,,23.000000
+General Santos City,wind,previous_day,all_hours,horizon,365,0.042685,0.073244,,24.000000
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,horizon,365,0.154544,0.230464,,1.000000
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,horizon,365,0.154009,0.229889,,2.000000
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,horizon,365,0.154485,0.229007,,3.000000
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,horizon,365,0.154608,0.228759,,4.000000
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,horizon,365,0.153013,0.229245,,5.000000
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,horizon,365,0.151483,0.228976,,6.000000
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,horizon,365,0.149497,0.226665,,7.000000
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,horizon,365,0.157585,0.227343,,8.000000
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,horizon,365,0.180448,0.252253,,9.000000
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,horizon,365,0.185985,0.265121,,10.000000
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,horizon,365,0.195534,0.282532,,11.000000
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,horizon,365,0.198783,0.281496,,12.000000
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,horizon,365,0.210739,0.290984,,13.000000
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,horizon,365,0.211578,0.289905,,14.000000
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,horizon,365,0.198378,0.275326,,15.000000
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,horizon,365,0.185426,0.258584,,16.000000
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,horizon,365,0.163533,0.239272,,17.000000
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,horizon,365,0.147245,0.228572,,18.000000
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,horizon,365,0.145208,0.230317,,19.000000
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,horizon,365,0.146686,0.228999,,20.000000
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,horizon,365,0.149631,0.228820,,21.000000
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,horizon,365,0.148213,0.221218,,22.000000
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,horizon,365,0.153600,0.227429,,23.000000
+"Laoag, Ilocos Norte",combined,previous_day,all_hours,horizon,365,0.153474,0.227031,,24.000000
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,1.000000
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,2.000000
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,3.000000
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,4.000000
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,5.000000
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,horizon,365,0.000457,0.001142,,6.000000
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,horizon,365,0.010884,0.017436,,7.000000
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,horizon,365,0.044995,0.064031,,8.000000
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,horizon,365,0.080962,0.118730,,9.000000
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,horizon,365,0.098712,0.147447,,10.000000
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,horizon,365,0.115245,0.174898,,11.000000
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,horizon,365,0.117083,0.172997,,12.000000
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,horizon,365,0.127349,0.181634,,13.000000
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,horizon,365,0.119778,0.168018,,14.000000
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,horizon,365,0.099107,0.132142,,15.000000
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,horizon,365,0.073155,0.097247,,16.000000
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,horizon,365,0.038143,0.051373,,17.000000
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,horizon,365,0.009793,0.015951,,18.000000
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,horizon,365,0.000545,0.001319,,19.000000
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,20.000000
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,21.000000
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,22.000000
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,23.000000
+"Laoag, Ilocos Norte",solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,24.000000
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,horizon,365,0.154544,0.230464,,1.000000
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,horizon,365,0.154009,0.229889,,2.000000
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,horizon,365,0.154485,0.229007,,3.000000
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,horizon,365,0.154608,0.228759,,4.000000
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,horizon,365,0.153013,0.229245,,5.000000
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,horizon,365,0.151536,0.229062,,6.000000
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,horizon,365,0.149629,0.229154,,7.000000
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,horizon,365,0.149835,0.229787,,8.000000
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,horizon,365,0.155733,0.242161,,9.000000
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,horizon,365,0.157310,0.249265,,10.000000
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,horizon,365,0.156696,0.253633,,11.000000
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,horizon,365,0.158366,0.260655,,12.000000
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,horizon,365,0.161390,0.265011,,13.000000
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,horizon,365,0.161434,0.266133,,14.000000
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,horizon,365,0.161988,0.263324,,15.000000
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,horizon,365,0.160395,0.253617,,16.000000
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,horizon,365,0.153447,0.240194,,17.000000
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,horizon,365,0.146536,0.229649,,18.000000
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,horizon,365,0.145199,0.230432,,19.000000
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,horizon,365,0.146686,0.228999,,20.000000
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,horizon,365,0.149631,0.228820,,21.000000
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,horizon,365,0.148213,0.221218,,22.000000
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,horizon,365,0.153600,0.227429,,23.000000
+"Laoag, Ilocos Norte",wind,previous_day,all_hours,horizon,365,0.153474,0.227031,,24.000000
+"Mactan, Cebu",combined,previous_day,all_hours,horizon,365,0.103715,0.154836,,1.000000
+"Mactan, Cebu",combined,previous_day,all_hours,horizon,365,0.103940,0.157388,,2.000000
+"Mactan, Cebu",combined,previous_day,all_hours,horizon,365,0.102208,0.155683,,3.000000
+"Mactan, Cebu",combined,previous_day,all_hours,horizon,365,0.100432,0.150770,,4.000000
+"Mactan, Cebu",combined,previous_day,all_hours,horizon,365,0.099049,0.145238,,5.000000
+"Mactan, Cebu",combined,previous_day,all_hours,horizon,365,0.098347,0.143540,,6.000000
+"Mactan, Cebu",combined,previous_day,all_hours,horizon,365,0.099269,0.142923,,7.000000
+"Mactan, Cebu",combined,previous_day,all_hours,horizon,365,0.111144,0.155756,,8.000000
+"Mactan, Cebu",combined,previous_day,all_hours,horizon,365,0.127137,0.178066,,9.000000
+"Mactan, Cebu",combined,previous_day,all_hours,horizon,365,0.142806,0.193919,,10.000000
+"Mactan, Cebu",combined,previous_day,all_hours,horizon,365,0.151458,0.201532,,11.000000
+"Mactan, Cebu",combined,previous_day,all_hours,horizon,365,0.155755,0.209236,,12.000000
+"Mactan, Cebu",combined,previous_day,all_hours,horizon,365,0.166659,0.220945,,13.000000
+"Mactan, Cebu",combined,previous_day,all_hours,horizon,365,0.165204,0.218765,,14.000000
+"Mactan, Cebu",combined,previous_day,all_hours,horizon,365,0.147238,0.196586,,15.000000
+"Mactan, Cebu",combined,previous_day,all_hours,horizon,365,0.120302,0.166191,,16.000000
+"Mactan, Cebu",combined,previous_day,all_hours,horizon,365,0.091755,0.138393,,17.000000
+"Mactan, Cebu",combined,previous_day,all_hours,horizon,365,0.083284,0.133371,,18.000000
+"Mactan, Cebu",combined,previous_day,all_hours,horizon,365,0.087671,0.137266,,19.000000
+"Mactan, Cebu",combined,previous_day,all_hours,horizon,365,0.093194,0.142846,,20.000000
+"Mactan, Cebu",combined,previous_day,all_hours,horizon,365,0.099869,0.148276,,21.000000
+"Mactan, Cebu",combined,previous_day,all_hours,horizon,365,0.103288,0.153608,,22.000000
+"Mactan, Cebu",combined,previous_day,all_hours,horizon,365,0.104951,0.156556,,23.000000
+"Mactan, Cebu",combined,previous_day,all_hours,horizon,365,0.104602,0.156627,,24.000000
+"Mactan, Cebu",solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,1.000000
+"Mactan, Cebu",solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,2.000000
+"Mactan, Cebu",solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,3.000000
+"Mactan, Cebu",solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,4.000000
+"Mactan, Cebu",solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,5.000000
+"Mactan, Cebu",solar,previous_day,all_hours,horizon,365,0.000907,0.001669,,6.000000
+"Mactan, Cebu",solar,previous_day,all_hours,horizon,365,0.019672,0.026559,,7.000000
+"Mactan, Cebu",solar,previous_day,all_hours,horizon,365,0.056283,0.074075,,8.000000
+"Mactan, Cebu",solar,previous_day,all_hours,horizon,365,0.091581,0.123704,,9.000000
+"Mactan, Cebu",solar,previous_day,all_hours,horizon,365,0.103151,0.139560,,10.000000
+"Mactan, Cebu",solar,previous_day,all_hours,horizon,365,0.105464,0.145403,,11.000000
+"Mactan, Cebu",solar,previous_day,all_hours,horizon,365,0.116116,0.153906,,12.000000
+"Mactan, Cebu",solar,previous_day,all_hours,horizon,365,0.129629,0.171124,,13.000000
+"Mactan, Cebu",solar,previous_day,all_hours,horizon,365,0.124582,0.161316,,14.000000
+"Mactan, Cebu",solar,previous_day,all_hours,horizon,365,0.102883,0.130213,,15.000000
+"Mactan, Cebu",solar,previous_day,all_hours,horizon,365,0.073879,0.092689,,16.000000
+"Mactan, Cebu",solar,previous_day,all_hours,horizon,365,0.033594,0.043157,,17.000000
+"Mactan, Cebu",solar,previous_day,all_hours,horizon,365,0.005207,0.007510,,18.000000
+"Mactan, Cebu",solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,19.000000
+"Mactan, Cebu",solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,20.000000
+"Mactan, Cebu",solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,21.000000
+"Mactan, Cebu",solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,22.000000
+"Mactan, Cebu",solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,23.000000
+"Mactan, Cebu",solar,previous_day,all_hours,horizon,365,0.000000,0.000000,,24.000000
+"Mactan, Cebu",wind,previous_day,all_hours,horizon,365,0.103715,0.154836,,1.000000
+"Mactan, Cebu",wind,previous_day,all_hours,horizon,365,0.103940,0.157388,,2.000000
+"Mactan, Cebu",wind,previous_day,all_hours,horizon,365,0.102208,0.155683,,3.000000
+"Mactan, Cebu",wind,previous_day,all_hours,horizon,365,0.100432,0.150770,,4.000000
+"Mactan, Cebu",wind,previous_day,all_hours,horizon,365,0.099049,0.145238,,5.000000
+"Mactan, Cebu",wind,previous_day,all_hours,horizon,365,0.098243,0.143611,,6.000000
+"Mactan, Cebu",wind,previous_day,all_hours,horizon,365,0.096544,0.143847,,7.000000
+"Mactan, Cebu",wind,previous_day,all_hours,horizon,365,0.097008,0.148880,,8.000000
+"Mactan, Cebu",wind,previous_day,all_hours,horizon,365,0.098853,0.157214,,9.000000
+"Mactan, Cebu",wind,previous_day,all_hours,horizon,365,0.101057,0.162576,,10.000000
+"Mactan, Cebu",wind,previous_day,all_hours,horizon,365,0.101483,0.163678,,11.000000
+"Mactan, Cebu",wind,previous_day,all_hours,horizon,365,0.099209,0.160464,,12.000000
+"Mactan, Cebu",wind,previous_day,all_hours,horizon,365,0.097995,0.159572,,13.000000
+"Mactan, Cebu",wind,previous_day,all_hours,horizon,365,0.095485,0.160933,,14.000000
+"Mactan, Cebu",wind,previous_day,all_hours,horizon,365,0.093022,0.157461,,15.000000
+"Mactan, Cebu",wind,previous_day,all_hours,horizon,365,0.088807,0.148007,,16.000000
+"Mactan, Cebu",wind,previous_day,all_hours,horizon,365,0.084651,0.137628,,17.000000
+"Mactan, Cebu",wind,previous_day,all_hours,horizon,365,0.082924,0.133844,,18.000000
+"Mactan, Cebu",wind,previous_day,all_hours,horizon,365,0.087671,0.137266,,19.000000
+"Mactan, Cebu",wind,previous_day,all_hours,horizon,365,0.093194,0.142846,,20.000000
+"Mactan, Cebu",wind,previous_day,all_hours,horizon,365,0.099869,0.148276,,21.000000
+"Mactan, Cebu",wind,previous_day,all_hours,horizon,365,0.103288,0.153608,,22.000000
+"Mactan, Cebu",wind,previous_day,all_hours,horizon,365,0.104951,0.156556,,23.000000
+"Mactan, Cebu",wind,previous_day,all_hours,horizon,365,0.104602,0.156627,,24.000000
+General Santos City,solar,previous_day,daylight_only,overall,4144,0.091095,0.130996,,
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,overall,4146,0.082021,0.129887,,
+"Mactan, Cebu",solar,previous_day,daylight_only,overall,4205,0.083221,0.120887,,
+General Santos City,solar,previous_day,daylight_only,month,342,0.099744,0.143113,1.000000,
+General Santos City,solar,previous_day,daylight_only,month,320,0.116990,0.164952,2.000000,
+General Santos City,solar,previous_day,daylight_only,month,360,0.105937,0.151435,3.000000,
+General Santos City,solar,previous_day,daylight_only,month,346,0.092441,0.134054,4.000000,
+General Santos City,solar,previous_day,daylight_only,month,357,0.086357,0.119425,5.000000,
+General Santos City,solar,previous_day,daylight_only,month,347,0.101375,0.133468,6.000000,
+General Santos City,solar,previous_day,daylight_only,month,370,0.058132,0.096246,7.000000,
+General Santos City,solar,previous_day,daylight_only,month,359,0.085828,0.124147,8.000000,
+General Santos City,solar,previous_day,daylight_only,month,331,0.074049,0.104782,9.000000,
+General Santos City,solar,previous_day,daylight_only,month,341,0.087664,0.126181,10.000000,
+General Santos City,solar,previous_day,daylight_only,month,330,0.104675,0.144214,11.000000,
+General Santos City,solar,previous_day,daylight_only,month,341,0.083731,0.118213,12.000000,
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,month,321,0.081008,0.116381,1.000000,
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,month,307,0.066626,0.090911,2.000000,
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,month,370,0.042978,0.066656,3.000000,
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,month,360,0.034015,0.052465,4.000000,
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,month,371,0.074692,0.130809,5.000000,
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,month,360,0.083592,0.123959,6.000000,
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,month,361,0.110793,0.170365,7.000000,
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,month,369,0.125634,0.177442,8.000000,
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,month,347,0.110015,0.157542,9.000000,
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,month,345,0.098329,0.150116,10.000000,
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,month,321,0.099260,0.156333,11.000000,
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,month,314,0.055207,0.084038,12.000000,
+"Mactan, Cebu",solar,previous_day,daylight_only,month,345,0.090169,0.123454,1.000000,
+"Mactan, Cebu",solar,previous_day,daylight_only,month,326,0.094080,0.128447,2.000000,
+"Mactan, Cebu",solar,previous_day,daylight_only,month,367,0.081582,0.117568,3.000000,
+"Mactan, Cebu",solar,previous_day,daylight_only,month,360,0.053326,0.086083,4.000000,
+"Mactan, Cebu",solar,previous_day,daylight_only,month,370,0.073604,0.109914,5.000000,
+"Mactan, Cebu",solar,previous_day,daylight_only,month,358,0.075478,0.104382,6.000000,
+"Mactan, Cebu",solar,previous_day,daylight_only,month,371,0.070593,0.100228,7.000000,
+"Mactan, Cebu",solar,previous_day,daylight_only,month,366,0.082834,0.118380,8.000000,
+"Mactan, Cebu",solar,previous_day,daylight_only,month,336,0.091335,0.124853,9.000000,
+"Mactan, Cebu",solar,previous_day,daylight_only,month,340,0.093823,0.141296,10.000000,
+"Mactan, Cebu",solar,previous_day,daylight_only,month,325,0.105889,0.156981,11.000000,
+"Mactan, Cebu",solar,previous_day,daylight_only,month,341,0.091684,0.130549,12.000000,
+General Santos City,solar,previous_day,daylight_only,horizon,363,0.024117,0.032532,,7.000000
+General Santos City,solar,previous_day,daylight_only,horizon,365,0.063278,0.085000,,8.000000
+General Santos City,solar,previous_day,daylight_only,horizon,365,0.105072,0.139375,,9.000000
+General Santos City,solar,previous_day,daylight_only,horizon,365,0.124617,0.163724,,10.000000
+General Santos City,solar,previous_day,daylight_only,horizon,365,0.129328,0.170075,,11.000000
+General Santos City,solar,previous_day,daylight_only,horizon,365,0.130483,0.169448,,12.000000
+General Santos City,solar,previous_day,daylight_only,horizon,365,0.139666,0.182817,,13.000000
+General Santos City,solar,previous_day,daylight_only,horizon,365,0.121466,0.155653,,14.000000
+General Santos City,solar,previous_day,daylight_only,horizon,365,0.097789,0.125363,,15.000000
+General Santos City,solar,previous_day,daylight_only,horizon,365,0.068747,0.088933,,16.000000
+General Santos City,solar,previous_day,daylight_only,horizon,364,0.028441,0.037345,,17.000000
+General Santos City,solar,previous_day,daylight_only,horizon,132,0.004003,0.005489,,18.000000
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,horizon,260,0.013022,0.018609,,7.000000
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,horizon,364,0.044686,0.063585,,8.000000
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,horizon,365,0.080962,0.118730,,9.000000
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,horizon,365,0.098712,0.147447,,10.000000
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,horizon,365,0.115245,0.174898,,11.000000
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,horizon,365,0.117083,0.172997,,12.000000
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,horizon,365,0.127349,0.181634,,13.000000
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,horizon,365,0.119778,0.168018,,14.000000
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,horizon,365,0.099107,0.132142,,15.000000
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,horizon,365,0.073155,0.097247,,16.000000
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,horizon,364,0.038110,0.051376,,17.000000
+"Laoag, Ilocos Norte",solar,previous_day,daylight_only,horizon,238,0.012936,0.018652,,18.000000
+"Mactan, Cebu",solar,previous_day,daylight_only,horizon,355,0.019483,0.026275,,7.000000
+"Mactan, Cebu",solar,previous_day,daylight_only,horizon,364,0.055822,0.073241,,8.000000
+"Mactan, Cebu",solar,previous_day,daylight_only,horizon,365,0.091581,0.123704,,9.000000
+"Mactan, Cebu",solar,previous_day,daylight_only,horizon,365,0.103151,0.139560,,10.000000
+"Mactan, Cebu",solar,previous_day,daylight_only,horizon,365,0.105464,0.145403,,11.000000
+"Mactan, Cebu",solar,previous_day,daylight_only,horizon,365,0.116116,0.153906,,12.000000
+"Mactan, Cebu",solar,previous_day,daylight_only,horizon,365,0.129629,0.171124,,13.000000
+"Mactan, Cebu",solar,previous_day,daylight_only,horizon,365,0.124582,0.161316,,14.000000
+"Mactan, Cebu",solar,previous_day,daylight_only,horizon,365,0.102883,0.130213,,15.000000
+"Mactan, Cebu",solar,previous_day,daylight_only,horizon,365,0.073879,0.092689,,16.000000
+"Mactan, Cebu",solar,previous_day,daylight_only,horizon,363,0.033388,0.042944,,17.000000
+"Mactan, Cebu",solar,previous_day,daylight_only,horizon,203,0.006554,0.008429,,18.000000
+General Santos City,combined,training_climatology,all_hours,overall,8760,0.072513,0.109856,,
+General Santos City,solar,training_climatology,all_hours,overall,8760,0.036408,0.072360,,
+General Santos City,wind,training_climatology,all_hours,overall,8760,0.057049,0.086904,,
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,overall,8760,0.195150,0.254850,,
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,overall,8760,0.039499,0.084098,,
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,overall,8760,0.200821,0.265045,,
+"Mactan, Cebu",combined,training_climatology,all_hours,overall,8760,0.118163,0.161702,,
+"Mactan, Cebu",solar,training_climatology,all_hours,overall,8760,0.035639,0.069927,,
+"Mactan, Cebu",wind,training_climatology,all_hours,overall,8760,0.115368,0.160039,,
+General Santos City,combined,training_climatology,all_hours,month,744,0.088139,0.120442,1.000000,
+General Santos City,combined,training_climatology,all_hours,month,672,0.108878,0.150706,2.000000,
+General Santos City,combined,training_climatology,all_hours,month,744,0.087604,0.122599,3.000000,
+General Santos City,combined,training_climatology,all_hours,month,720,0.068835,0.103158,4.000000,
+General Santos City,combined,training_climatology,all_hours,month,744,0.046246,0.065025,5.000000,
+General Santos City,combined,training_climatology,all_hours,month,720,0.058712,0.085721,6.000000,
+General Santos City,combined,training_climatology,all_hours,month,744,0.072549,0.109883,7.000000,
+General Santos City,combined,training_climatology,all_hours,month,744,0.068199,0.101991,8.000000,
+General Santos City,combined,training_climatology,all_hours,month,720,0.050408,0.071028,9.000000,
+General Santos City,combined,training_climatology,all_hours,month,744,0.073535,0.105415,10.000000,
+General Santos City,combined,training_climatology,all_hours,month,720,0.102912,0.168625,11.000000,
+General Santos City,combined,training_climatology,all_hours,month,744,0.047358,0.066473,12.000000,
+General Santos City,solar,training_climatology,all_hours,month,744,0.036650,0.070356,1.000000,
+General Santos City,solar,training_climatology,all_hours,month,672,0.045774,0.094287,2.000000,
+General Santos City,solar,training_climatology,all_hours,month,744,0.038342,0.081370,3.000000,
+General Santos City,solar,training_climatology,all_hours,month,720,0.036479,0.076678,4.000000,
+General Santos City,solar,training_climatology,all_hours,month,744,0.036275,0.066509,5.000000,
+General Santos City,solar,training_climatology,all_hours,month,720,0.034846,0.070211,6.000000,
+General Santos City,solar,training_climatology,all_hours,month,744,0.031782,0.059613,7.000000,
+General Santos City,solar,training_climatology,all_hours,month,744,0.037422,0.073963,8.000000,
+General Santos City,solar,training_climatology,all_hours,month,720,0.026617,0.052571,9.000000,
+General Santos City,solar,training_climatology,all_hours,month,744,0.037675,0.074633,10.000000,
+General Santos City,solar,training_climatology,all_hours,month,720,0.038614,0.072637,11.000000,
+General Santos City,solar,training_climatology,all_hours,month,744,0.037038,0.069212,12.000000,
+General Santos City,wind,training_climatology,all_hours,month,744,0.080268,0.099483,1.000000,
+General Santos City,wind,training_climatology,all_hours,month,672,0.085264,0.106256,2.000000,
+General Santos City,wind,training_climatology,all_hours,month,744,0.060561,0.071182,3.000000,
+General Santos City,wind,training_climatology,all_hours,month,720,0.048843,0.055838,4.000000,
+General Santos City,wind,training_climatology,all_hours,month,744,0.030495,0.037568,5.000000,
+General Santos City,wind,training_climatology,all_hours,month,720,0.043096,0.069499,6.000000,
+General Santos City,wind,training_climatology,all_hours,month,744,0.059041,0.101686,7.000000,
+General Santos City,wind,training_climatology,all_hours,month,744,0.047834,0.076943,8.000000,
+General Santos City,wind,training_climatology,all_hours,month,720,0.043714,0.055679,9.000000,
+General Santos City,wind,training_climatology,all_hours,month,744,0.071759,0.095270,10.000000,
+General Santos City,wind,training_climatology,all_hours,month,720,0.083941,0.160381,11.000000,
+General Santos City,wind,training_climatology,all_hours,month,744,0.032223,0.037798,12.000000,
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,month,744,0.260809,0.299252,1.000000,
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,month,672,0.284983,0.321255,2.000000,
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,month,744,0.219269,0.279510,3.000000,
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,month,720,0.116491,0.137332,4.000000,
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,month,744,0.071513,0.098506,5.000000,
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,month,720,0.107574,0.162896,6.000000,
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,month,744,0.290250,0.378112,7.000000,
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,month,744,0.164225,0.217394,8.000000,
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,month,720,0.153076,0.221538,9.000000,
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,month,744,0.179355,0.213187,10.000000,
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,month,720,0.280258,0.317544,11.000000,
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,month,744,0.218718,0.263499,12.000000,
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,month,744,0.033323,0.072956,1.000000,
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,month,672,0.038006,0.075251,2.000000,
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,month,744,0.022535,0.051210,3.000000,
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,month,720,0.016753,0.031880,4.000000,
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,month,744,0.038426,0.083436,5.000000,
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,month,720,0.034577,0.073182,6.000000,
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,month,744,0.079241,0.148210,7.000000,
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,month,744,0.044889,0.086624,8.000000,
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,month,720,0.047830,0.092911,9.000000,
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,month,744,0.044100,0.084174,10.000000,
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,month,720,0.046384,0.098247,11.000000,
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,month,744,0.027377,0.053237,12.000000,
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,month,744,0.263231,0.302848,1.000000,
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,month,672,0.288347,0.328694,2.000000,
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,month,744,0.229086,0.296778,3.000000,
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,month,720,0.116762,0.136246,4.000000,
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,month,744,0.071214,0.086381,5.000000,
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,month,720,0.110595,0.168156,6.000000,
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,month,744,0.327727,0.423653,7.000000,
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,month,744,0.155515,0.198864,8.000000,
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,month,720,0.154060,0.232438,9.000000,
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,month,744,0.190929,0.224055,10.000000,
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,month,720,0.287154,0.329366,11.000000,
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,month,744,0.219353,0.265439,12.000000,
+"Mactan, Cebu",combined,training_climatology,all_hours,month,744,0.150123,0.179634,1.000000,
+"Mactan, Cebu",combined,training_climatology,all_hours,month,672,0.156642,0.192161,2.000000,
+"Mactan, Cebu",combined,training_climatology,all_hours,month,744,0.137046,0.173133,3.000000,
+"Mactan, Cebu",combined,training_climatology,all_hours,month,720,0.073730,0.088898,4.000000,
+"Mactan, Cebu",combined,training_climatology,all_hours,month,744,0.084103,0.106165,5.000000,
+"Mactan, Cebu",combined,training_climatology,all_hours,month,720,0.069563,0.099746,6.000000,
+"Mactan, Cebu",combined,training_climatology,all_hours,month,744,0.162125,0.232127,7.000000,
+"Mactan, Cebu",combined,training_climatology,all_hours,month,744,0.093024,0.126131,8.000000,
+"Mactan, Cebu",combined,training_climatology,all_hours,month,720,0.116989,0.159067,9.000000,
+"Mactan, Cebu",combined,training_climatology,all_hours,month,744,0.089703,0.116783,10.000000,
+"Mactan, Cebu",combined,training_climatology,all_hours,month,720,0.152998,0.222231,11.000000,
+"Mactan, Cebu",combined,training_climatology,all_hours,month,744,0.133717,0.167365,12.000000,
+"Mactan, Cebu",solar,training_climatology,all_hours,month,744,0.033056,0.062940,1.000000,
+"Mactan, Cebu",solar,training_climatology,all_hours,month,672,0.039261,0.074077,2.000000,
+"Mactan, Cebu",solar,training_climatology,all_hours,month,744,0.038561,0.078401,3.000000,
+"Mactan, Cebu",solar,training_climatology,all_hours,month,720,0.025359,0.049289,4.000000,
+"Mactan, Cebu",solar,training_climatology,all_hours,month,744,0.034056,0.061907,5.000000,
+"Mactan, Cebu",solar,training_climatology,all_hours,month,720,0.033338,0.061332,6.000000,
+"Mactan, Cebu",solar,training_climatology,all_hours,month,744,0.038036,0.071593,7.000000,
+"Mactan, Cebu",solar,training_climatology,all_hours,month,744,0.036512,0.068800,8.000000,
+"Mactan, Cebu",solar,training_climatology,all_hours,month,720,0.032493,0.064902,9.000000,
+"Mactan, Cebu",solar,training_climatology,all_hours,month,744,0.035308,0.069891,10.000000,
+"Mactan, Cebu",solar,training_climatology,all_hours,month,720,0.044285,0.094969,11.000000,
+"Mactan, Cebu",solar,training_climatology,all_hours,month,744,0.037529,0.071672,12.000000,
+"Mactan, Cebu",wind,training_climatology,all_hours,month,744,0.152252,0.182607,1.000000,
+"Mactan, Cebu",wind,training_climatology,all_hours,month,672,0.163212,0.196897,2.000000,
+"Mactan, Cebu",wind,training_climatology,all_hours,month,744,0.131037,0.166237,3.000000,
+"Mactan, Cebu",wind,training_climatology,all_hours,month,720,0.078635,0.091160,4.000000,
+"Mactan, Cebu",wind,training_climatology,all_hours,month,744,0.068436,0.079829,5.000000,
+"Mactan, Cebu",wind,training_climatology,all_hours,month,720,0.057081,0.083474,6.000000,
+"Mactan, Cebu",wind,training_climatology,all_hours,month,744,0.156910,0.229849,7.000000,
+"Mactan, Cebu",wind,training_climatology,all_hours,month,744,0.081223,0.108165,8.000000,
+"Mactan, Cebu",wind,training_climatology,all_hours,month,720,0.112956,0.159476,9.000000,
+"Mactan, Cebu",wind,training_climatology,all_hours,month,744,0.085191,0.098125,10.000000,
+"Mactan, Cebu",wind,training_climatology,all_hours,month,720,0.160918,0.239056,11.000000,
+"Mactan, Cebu",wind,training_climatology,all_hours,month,744,0.139515,0.174170,12.000000,
+General Santos City,combined,training_climatology,all_hours,horizon,365,0.046282,0.072519,,1.000000
+General Santos City,combined,training_climatology,all_hours,horizon,365,0.048081,0.074440,,2.000000
+General Santos City,combined,training_climatology,all_hours,horizon,365,0.049031,0.075060,,3.000000
+General Santos City,combined,training_climatology,all_hours,horizon,365,0.049399,0.074898,,4.000000
+General Santos City,combined,training_climatology,all_hours,horizon,365,0.049516,0.074025,,5.000000
+General Santos City,combined,training_climatology,all_hours,horizon,365,0.047378,0.069730,,6.000000
+General Santos City,combined,training_climatology,all_hours,horizon,365,0.046519,0.066311,,7.000000
+General Santos City,combined,training_climatology,all_hours,horizon,365,0.072876,0.098108,,8.000000
+General Santos City,combined,training_climatology,all_hours,horizon,365,0.101289,0.135399,,9.000000
+General Santos City,combined,training_climatology,all_hours,horizon,365,0.118111,0.158035,,10.000000
+General Santos City,combined,training_climatology,all_hours,horizon,365,0.120158,0.165539,,11.000000
+General Santos City,combined,training_climatology,all_hours,horizon,365,0.124896,0.169453,,12.000000
+General Santos City,combined,training_climatology,all_hours,horizon,365,0.136686,0.178951,,13.000000
+General Santos City,combined,training_climatology,all_hours,horizon,365,0.132002,0.172937,,14.000000
+General Santos City,combined,training_climatology,all_hours,horizon,365,0.117502,0.153141,,15.000000
+General Santos City,combined,training_climatology,all_hours,horizon,365,0.096182,0.129980,,16.000000
+General Santos City,combined,training_climatology,all_hours,horizon,365,0.070846,0.103074,,17.000000
+General Santos City,combined,training_climatology,all_hours,horizon,365,0.051828,0.078114,,18.000000
+General Santos City,combined,training_climatology,all_hours,horizon,365,0.045860,0.068296,,19.000000
+General Santos City,combined,training_climatology,all_hours,horizon,365,0.043306,0.063280,,20.000000
+General Santos City,combined,training_climatology,all_hours,horizon,365,0.042568,0.061448,,21.000000
+General Santos City,combined,training_climatology,all_hours,horizon,365,0.042722,0.061596,,22.000000
+General Santos City,combined,training_climatology,all_hours,horizon,365,0.043035,0.063211,,23.000000
+General Santos City,combined,training_climatology,all_hours,horizon,365,0.044231,0.067604,,24.000000
+General Santos City,solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,1.000000
+General Santos City,solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,2.000000
+General Santos City,solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,3.000000
+General Santos City,solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,4.000000
+General Santos City,solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,5.000000
+General Santos City,solar,training_climatology,all_hours,horizon,365,0.001510,0.002097,,6.000000
+General Santos City,solar,training_climatology,all_hours,horizon,365,0.020487,0.026414,,7.000000
+General Santos City,solar,training_climatology,all_hours,horizon,365,0.054859,0.069392,,8.000000
+General Santos City,solar,training_climatology,all_hours,horizon,365,0.088391,0.109746,,9.000000
+General Santos City,solar,training_climatology,all_hours,horizon,365,0.105289,0.131624,,10.000000
+General Santos City,solar,training_climatology,all_hours,horizon,365,0.104243,0.135481,,11.000000
+General Santos City,solar,training_climatology,all_hours,horizon,365,0.104503,0.135142,,12.000000
+General Santos City,solar,training_climatology,all_hours,horizon,365,0.116073,0.145226,,13.000000
+General Santos City,solar,training_climatology,all_hours,horizon,365,0.103993,0.127453,,14.000000
+General Santos City,solar,training_climatology,all_hours,horizon,365,0.085230,0.102705,,15.000000
+General Santos City,solar,training_climatology,all_hours,horizon,365,0.060334,0.072321,,16.000000
+General Santos City,solar,training_climatology,all_hours,horizon,365,0.025456,0.032013,,17.000000
+General Santos City,solar,training_climatology,all_hours,horizon,365,0.003434,0.004570,,18.000000
+General Santos City,solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,19.000000
+General Santos City,solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,20.000000
+General Santos City,solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,21.000000
+General Santos City,solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,22.000000
+General Santos City,solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,23.000000
+General Santos City,solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,24.000000
+General Santos City,wind,training_climatology,all_hours,horizon,365,0.046282,0.072519,,1.000000
+General Santos City,wind,training_climatology,all_hours,horizon,365,0.048081,0.074440,,2.000000
+General Santos City,wind,training_climatology,all_hours,horizon,365,0.049031,0.075060,,3.000000
+General Santos City,wind,training_climatology,all_hours,horizon,365,0.049399,0.074898,,4.000000
+General Santos City,wind,training_climatology,all_hours,horizon,365,0.049516,0.074025,,5.000000
+General Santos City,wind,training_climatology,all_hours,horizon,365,0.047628,0.070042,,6.000000
+General Santos City,wind,training_climatology,all_hours,horizon,365,0.044268,0.064340,,7.000000
+General Santos City,wind,training_climatology,all_hours,horizon,365,0.053572,0.075200,,8.000000
+General Santos City,wind,training_climatology,all_hours,horizon,365,0.063150,0.089427,,9.000000
+General Santos City,wind,training_climatology,all_hours,horizon,365,0.067826,0.096536,,10.000000
+General Santos City,wind,training_climatology,all_hours,horizon,365,0.070818,0.101608,,11.000000
+General Santos City,wind,training_climatology,all_hours,horizon,365,0.074451,0.108098,,12.000000
+General Santos City,wind,training_climatology,all_hours,horizon,365,0.079784,0.117102,,13.000000
+General Santos City,wind,training_climatology,all_hours,horizon,365,0.083726,0.124557,,14.000000
+General Santos City,wind,training_climatology,all_hours,horizon,365,0.083290,0.124915,,15.000000
+General Santos City,wind,training_climatology,all_hours,horizon,365,0.078128,0.117608,,16.000000
+General Santos City,wind,training_climatology,all_hours,horizon,365,0.066588,0.100528,,17.000000
+General Santos City,wind,training_climatology,all_hours,horizon,365,0.051913,0.078309,,18.000000
+General Santos City,wind,training_climatology,all_hours,horizon,365,0.045860,0.068296,,19.000000
+General Santos City,wind,training_climatology,all_hours,horizon,365,0.043306,0.063280,,20.000000
+General Santos City,wind,training_climatology,all_hours,horizon,365,0.042568,0.061448,,21.000000
+General Santos City,wind,training_climatology,all_hours,horizon,365,0.042722,0.061596,,22.000000
+General Santos City,wind,training_climatology,all_hours,horizon,365,0.043035,0.063211,,23.000000
+General Santos City,wind,training_climatology,all_hours,horizon,365,0.044231,0.067604,,24.000000
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,horizon,365,0.183528,0.245009,,1.000000
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,horizon,365,0.184249,0.244609,,2.000000
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,horizon,365,0.185983,0.244764,,3.000000
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,horizon,365,0.187466,0.246121,,4.000000
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,horizon,365,0.188512,0.248147,,5.000000
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,horizon,365,0.185012,0.246748,,6.000000
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,horizon,365,0.177175,0.238620,,7.000000
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,horizon,365,0.179556,0.234528,,8.000000
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,horizon,365,0.189426,0.245376,,9.000000
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,horizon,365,0.196026,0.252669,,10.000000
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,horizon,365,0.197407,0.260574,,11.000000
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,horizon,365,0.198478,0.268728,,12.000000
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,horizon,365,0.209780,0.271850,,13.000000
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,horizon,365,0.216055,0.276835,,14.000000
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,horizon,365,0.217193,0.274476,,15.000000
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,horizon,365,0.218590,0.276467,,16.000000
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,horizon,365,0.212870,0.269294,,17.000000
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,horizon,365,0.205722,0.263858,,18.000000
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,horizon,365,0.202315,0.261371,,19.000000
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,horizon,365,0.199198,0.257269,,20.000000
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,horizon,365,0.194971,0.253447,,21.000000
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,horizon,365,0.188921,0.245645,,22.000000
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,horizon,365,0.183434,0.241442,,23.000000
+"Laoag, Ilocos Norte",combined,training_climatology,all_hours,horizon,365,0.181735,0.240877,,24.000000
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,1.000000
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,2.000000
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,3.000000
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,4.000000
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,5.000000
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,horizon,365,0.000919,0.001687,,6.000000
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,horizon,365,0.013254,0.019123,,7.000000
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,horizon,365,0.046846,0.063070,,8.000000
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,horizon,365,0.082479,0.108958,,9.000000
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,horizon,365,0.102754,0.138550,,10.000000
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,horizon,365,0.113937,0.156950,,11.000000
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,horizon,365,0.119296,0.165125,,12.000000
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,horizon,365,0.127487,0.171089,,13.000000
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,horizon,365,0.115774,0.157133,,14.000000
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,horizon,365,0.100032,0.128183,,15.000000
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,horizon,365,0.073417,0.094656,,16.000000
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,horizon,365,0.040210,0.052909,,17.000000
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,horizon,365,0.010750,0.016422,,18.000000
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,horizon,365,0.000820,0.001744,,19.000000
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,20.000000
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,21.000000
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,22.000000
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,23.000000
+"Laoag, Ilocos Norte",solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,24.000000
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,horizon,365,0.183528,0.245009,,1.000000
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,horizon,365,0.184249,0.244609,,2.000000
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,horizon,365,0.185983,0.244764,,3.000000
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,horizon,365,0.187466,0.246121,,4.000000
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,horizon,365,0.188512,0.248147,,5.000000
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,horizon,365,0.185205,0.247073,,6.000000
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,horizon,365,0.181030,0.244793,,7.000000
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,horizon,365,0.188565,0.254095,,8.000000
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,horizon,365,0.202382,0.271499,,9.000000
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,horizon,365,0.210399,0.283083,,10.000000
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,horizon,365,0.213712,0.288200,,11.000000
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,horizon,365,0.219826,0.293273,,12.000000
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,horizon,365,0.225927,0.296783,,13.000000
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,horizon,365,0.227747,0.295625,,14.000000
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,horizon,365,0.229407,0.295431,,15.000000
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,horizon,365,0.226781,0.291549,,16.000000
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,horizon,365,0.220192,0.283180,,17.000000
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,horizon,365,0.207965,0.268401,,18.000000
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,horizon,365,0.202561,0.261788,,19.000000
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,horizon,365,0.199198,0.257269,,20.000000
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,horizon,365,0.194971,0.253447,,21.000000
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,horizon,365,0.188921,0.245645,,22.000000
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,horizon,365,0.183434,0.241442,,23.000000
+"Laoag, Ilocos Norte",wind,training_climatology,all_hours,horizon,365,0.181735,0.240877,,24.000000
+"Mactan, Cebu",combined,training_climatology,all_hours,horizon,365,0.113737,0.155071,,1.000000
+"Mactan, Cebu",combined,training_climatology,all_hours,horizon,365,0.114065,0.158019,,2.000000
+"Mactan, Cebu",combined,training_climatology,all_hours,horizon,365,0.112998,0.158006,,3.000000
+"Mactan, Cebu",combined,training_climatology,all_hours,horizon,365,0.112544,0.155441,,4.000000
+"Mactan, Cebu",combined,training_climatology,all_hours,horizon,365,0.112208,0.153044,,5.000000
+"Mactan, Cebu",combined,training_climatology,all_hours,horizon,365,0.112145,0.151026,,6.000000
+"Mactan, Cebu",combined,training_climatology,all_hours,horizon,365,0.106641,0.144529,,7.000000
+"Mactan, Cebu",combined,training_climatology,all_hours,horizon,365,0.108836,0.147089,,8.000000
+"Mactan, Cebu",combined,training_climatology,all_hours,horizon,365,0.114167,0.158181,,9.000000
+"Mactan, Cebu",combined,training_climatology,all_hours,horizon,365,0.123789,0.171212,,10.000000
+"Mactan, Cebu",combined,training_climatology,all_hours,horizon,365,0.128683,0.178233,,11.000000
+"Mactan, Cebu",combined,training_climatology,all_hours,horizon,365,0.139646,0.188081,,12.000000
+"Mactan, Cebu",combined,training_climatology,all_hours,horizon,365,0.149179,0.195399,,13.000000
+"Mactan, Cebu",combined,training_climatology,all_hours,horizon,365,0.151254,0.196525,,14.000000
+"Mactan, Cebu",combined,training_climatology,all_hours,horizon,365,0.141173,0.186995,,15.000000
+"Mactan, Cebu",combined,training_climatology,all_hours,horizon,365,0.126314,0.169090,,16.000000
+"Mactan, Cebu",combined,training_climatology,all_hours,horizon,365,0.109575,0.149714,,17.000000
+"Mactan, Cebu",combined,training_climatology,all_hours,horizon,365,0.103797,0.143345,,18.000000
+"Mactan, Cebu",combined,training_climatology,all_hours,horizon,365,0.103835,0.145143,,19.000000
+"Mactan, Cebu",combined,training_climatology,all_hours,horizon,365,0.106027,0.147348,,20.000000
+"Mactan, Cebu",combined,training_climatology,all_hours,horizon,365,0.109061,0.150330,,21.000000
+"Mactan, Cebu",combined,training_climatology,all_hours,horizon,365,0.111160,0.152721,,22.000000
+"Mactan, Cebu",combined,training_climatology,all_hours,horizon,365,0.112282,0.153490,,23.000000
+"Mactan, Cebu",combined,training_climatology,all_hours,horizon,365,0.112791,0.153551,,24.000000
+"Mactan, Cebu",solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,1.000000
+"Mactan, Cebu",solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,2.000000
+"Mactan, Cebu",solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,3.000000
+"Mactan, Cebu",solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,4.000000
+"Mactan, Cebu",solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,5.000000
+"Mactan, Cebu",solar,training_climatology,all_hours,horizon,365,0.001051,0.001614,,6.000000
+"Mactan, Cebu",solar,training_climatology,all_hours,horizon,365,0.015927,0.021647,,7.000000
+"Mactan, Cebu",solar,training_climatology,all_hours,horizon,365,0.048135,0.061844,,8.000000
+"Mactan, Cebu",solar,training_climatology,all_hours,horizon,365,0.080272,0.100471,,9.000000
+"Mactan, Cebu",solar,training_climatology,all_hours,horizon,365,0.090831,0.116200,,10.000000
+"Mactan, Cebu",solar,training_climatology,all_hours,horizon,365,0.098192,0.122394,,11.000000
+"Mactan, Cebu",solar,training_climatology,all_hours,horizon,365,0.102724,0.126651,,12.000000
+"Mactan, Cebu",solar,training_climatology,all_hours,horizon,365,0.117506,0.144442,,13.000000
+"Mactan, Cebu",solar,training_climatology,all_hours,horizon,365,0.109842,0.134038,,14.000000
+"Mactan, Cebu",solar,training_climatology,all_hours,horizon,365,0.090574,0.109159,,15.000000
+"Mactan, Cebu",solar,training_climatology,all_hours,horizon,365,0.064435,0.078520,,16.000000
+"Mactan, Cebu",solar,training_climatology,all_hours,horizon,365,0.030360,0.038408,,17.000000
+"Mactan, Cebu",solar,training_climatology,all_hours,horizon,365,0.005497,0.007486,,18.000000
+"Mactan, Cebu",solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,19.000000
+"Mactan, Cebu",solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,20.000000
+"Mactan, Cebu",solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,21.000000
+"Mactan, Cebu",solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,22.000000
+"Mactan, Cebu",solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,23.000000
+"Mactan, Cebu",solar,training_climatology,all_hours,horizon,365,0.000000,0.000000,,24.000000
+"Mactan, Cebu",wind,training_climatology,all_hours,horizon,365,0.113737,0.155071,,1.000000
+"Mactan, Cebu",wind,training_climatology,all_hours,horizon,365,0.114065,0.158019,,2.000000
+"Mactan, Cebu",wind,training_climatology,all_hours,horizon,365,0.112998,0.158006,,3.000000
+"Mactan, Cebu",wind,training_climatology,all_hours,horizon,365,0.112544,0.155441,,4.000000
+"Mactan, Cebu",wind,training_climatology,all_hours,horizon,365,0.112208,0.153044,,5.000000
+"Mactan, Cebu",wind,training_climatology,all_hours,horizon,365,0.112176,0.151184,,6.000000
+"Mactan, Cebu",wind,training_climatology,all_hours,horizon,365,0.108478,0.148292,,7.000000
+"Mactan, Cebu",wind,training_climatology,all_hours,horizon,365,0.109013,0.153054,,8.000000
+"Mactan, Cebu",wind,training_climatology,all_hours,horizon,365,0.114528,0.163963,,9.000000
+"Mactan, Cebu",wind,training_climatology,all_hours,horizon,365,0.121767,0.173061,,10.000000
+"Mactan, Cebu",wind,training_climatology,all_hours,horizon,365,0.126447,0.177321,,11.000000
+"Mactan, Cebu",wind,training_climatology,all_hours,horizon,365,0.128980,0.179056,,12.000000
+"Mactan, Cebu",wind,training_climatology,all_hours,horizon,365,0.130680,0.180733,,13.000000
+"Mactan, Cebu",wind,training_climatology,all_hours,horizon,365,0.130971,0.181712,,14.000000
+"Mactan, Cebu",wind,training_climatology,all_hours,horizon,365,0.128768,0.177097,,15.000000
+"Mactan, Cebu",wind,training_climatology,all_hours,horizon,365,0.121113,0.165834,,16.000000
+"Mactan, Cebu",wind,training_climatology,all_hours,horizon,365,0.110917,0.152372,,17.000000
+"Mactan, Cebu",wind,training_climatology,all_hours,horizon,365,0.104279,0.144625,,18.000000
+"Mactan, Cebu",wind,training_climatology,all_hours,horizon,365,0.103835,0.145143,,19.000000
+"Mactan, Cebu",wind,training_climatology,all_hours,horizon,365,0.106027,0.147348,,20.000000
+"Mactan, Cebu",wind,training_climatology,all_hours,horizon,365,0.109061,0.150330,,21.000000
+"Mactan, Cebu",wind,training_climatology,all_hours,horizon,365,0.111160,0.152721,,22.000000
+"Mactan, Cebu",wind,training_climatology,all_hours,horizon,365,0.112282,0.153490,,23.000000
+"Mactan, Cebu",wind,training_climatology,all_hours,horizon,365,0.112791,0.153551,,24.000000
+General Santos City,solar,training_climatology,daylight_only,overall,4144,0.076584,0.105184,,
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,overall,4146,0.082744,0.122121,,
+"Mactan, Cebu",solar,training_climatology,daylight_only,overall,4205,0.073801,0.100822,,
+General Santos City,solar,training_climatology,daylight_only,month,342,0.079330,0.103758,1.000000,
+General Santos City,solar,training_climatology,daylight_only,month,320,0.095558,0.136585,2.000000,
+General Santos City,solar,training_climatology,daylight_only,month,360,0.078875,0.116967,3.000000,
+General Santos City,solar,training_climatology,daylight_only,month,346,0.075623,0.110605,4.000000,
+General Santos City,solar,training_climatology,daylight_only,month,357,0.075305,0.096006,5.000000,
+General Santos City,solar,training_climatology,daylight_only,month,347,0.071544,0.100991,6.000000,
+General Santos City,solar,training_climatology,daylight_only,month,370,0.063716,0.084526,7.000000,
+General Santos City,solar,training_climatology,daylight_only,month,359,0.077218,0.106468,8.000000,
+General Santos City,solar,training_climatology,daylight_only,month,331,0.057494,0.077525,9.000000,
+General Santos City,solar,training_climatology,daylight_only,month,341,0.081813,0.110235,10.000000,
+General Santos City,solar,training_climatology,daylight_only,month,330,0.084035,0.107289,11.000000,
+General Santos City,solar,training_climatology,daylight_only,month,341,0.080439,0.102228,12.000000,
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,month,321,0.076740,0.111053,1.000000,
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,month,307,0.082656,0.111304,2.000000,
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,month,370,0.045234,0.072610,3.000000,
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,month,360,0.033275,0.045077,4.000000,
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,month,371,0.076576,0.118116,5.000000,
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,month,360,0.068867,0.103492,6.000000,
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,month,361,0.160491,0.212268,7.000000,
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,month,369,0.089761,0.122920,8.000000,
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,month,347,0.098018,0.133561,9.000000,
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,month,345,0.094811,0.123604,10.000000,
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,month,321,0.103323,0.147100,11.000000,
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,month,314,0.064277,0.081932,12.000000,
+"Mactan, Cebu",solar,training_climatology,daylight_only,month,345,0.070952,0.092417,1.000000,
+"Mactan, Cebu",solar,training_climatology,daylight_only,month,326,0.080510,0.106327,2.000000,
+"Mactan, Cebu",solar,training_climatology,daylight_only,month,367,0.077901,0.111605,3.000000,
+"Mactan, Cebu",solar,training_climatology,daylight_only,month,360,0.050518,0.069701,4.000000,
+"Mactan, Cebu",solar,training_climatology,daylight_only,month,370,0.068212,0.087771,5.000000,
+"Mactan, Cebu",solar,training_climatology,daylight_only,month,358,0.066742,0.086959,6.000000,
+"Mactan, Cebu",solar,training_climatology,daylight_only,month,371,0.076098,0.101374,7.000000,
+"Mactan, Cebu",solar,training_climatology,daylight_only,month,366,0.073830,0.098061,8.000000,
+"Mactan, Cebu",solar,training_climatology,daylight_only,month,336,0.068973,0.094906,9.000000,
+"Mactan, Cebu",solar,training_climatology,daylight_only,month,340,0.076840,0.103342,10.000000,
+"Mactan, Cebu",solar,training_climatology,daylight_only,month,325,0.096266,0.140582,11.000000,
+"Mactan, Cebu",solar,training_climatology,daylight_only,month,341,0.081705,0.105864,12.000000,
+General Santos City,solar,training_climatology,daylight_only,horizon,363,0.020369,0.026299,,7.000000
+General Santos City,solar,training_climatology,daylight_only,horizon,365,0.054859,0.069392,,8.000000
+General Santos City,solar,training_climatology,daylight_only,horizon,365,0.088391,0.109746,,9.000000
+General Santos City,solar,training_climatology,daylight_only,horizon,365,0.105289,0.131624,,10.000000
+General Santos City,solar,training_climatology,daylight_only,horizon,365,0.104243,0.135481,,11.000000
+General Santos City,solar,training_climatology,daylight_only,horizon,365,0.104503,0.135142,,12.000000
+General Santos City,solar,training_climatology,daylight_only,horizon,365,0.116073,0.145226,,13.000000
+General Santos City,solar,training_climatology,daylight_only,horizon,365,0.103993,0.127453,,14.000000
+General Santos City,solar,training_climatology,daylight_only,horizon,365,0.085230,0.102705,,15.000000
+General Santos City,solar,training_climatology,daylight_only,horizon,365,0.060334,0.072321,,16.000000
+General Santos City,solar,training_climatology,daylight_only,horizon,364,0.025265,0.031668,,17.000000
+General Santos City,solar,training_climatology,daylight_only,horizon,132,0.003120,0.003892,,18.000000
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,horizon,260,0.014724,0.019093,,7.000000
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,horizon,364,0.046456,0.062376,,8.000000
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,horizon,365,0.082479,0.108958,,9.000000
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,horizon,365,0.102754,0.138550,,10.000000
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,horizon,365,0.113937,0.156950,,11.000000
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,horizon,365,0.119296,0.165125,,12.000000
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,horizon,365,0.127487,0.171089,,13.000000
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,horizon,365,0.115774,0.157133,,14.000000
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,horizon,365,0.100032,0.128183,,15.000000
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,horizon,365,0.073417,0.094656,,16.000000
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,horizon,364,0.039976,0.052573,,17.000000
+"Laoag, Ilocos Norte",solar,training_climatology,daylight_only,horizon,238,0.012301,0.016905,,18.000000
+"Mactan, Cebu",solar,training_climatology,daylight_only,horizon,355,0.015314,0.020353,,7.000000
+"Mactan, Cebu",solar,training_climatology,daylight_only,horizon,364,0.047655,0.060818,,8.000000
+"Mactan, Cebu",solar,training_climatology,daylight_only,horizon,365,0.080272,0.100471,,9.000000
+"Mactan, Cebu",solar,training_climatology,daylight_only,horizon,365,0.090831,0.116200,,10.000000
+"Mactan, Cebu",solar,training_climatology,daylight_only,horizon,365,0.098192,0.122394,,11.000000
+"Mactan, Cebu",solar,training_climatology,daylight_only,horizon,365,0.102724,0.126651,,12.000000
+"Mactan, Cebu",solar,training_climatology,daylight_only,horizon,365,0.117506,0.144442,,13.000000
+"Mactan, Cebu",solar,training_climatology,daylight_only,horizon,365,0.109842,0.134038,,14.000000
+"Mactan, Cebu",solar,training_climatology,daylight_only,horizon,365,0.090574,0.109159,,15.000000
+"Mactan, Cebu",solar,training_climatology,daylight_only,horizon,365,0.064435,0.078520,,16.000000
+"Mactan, Cebu",solar,training_climatology,daylight_only,horizon,363,0.030212,0.038277,,17.000000
+"Mactan, Cebu",solar,training_climatology,daylight_only,horizon,203,0.006098,0.007359,,18.000000
+General Santos City,combined,xgboost,all_hours,overall,8760,0.060047,0.094755,,
+General Santos City,solar,xgboost,all_hours,overall,8760,0.036724,0.072480,,
+General Santos City,wind,xgboost,all_hours,overall,8760,0.038461,0.063712,,
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,overall,8760,0.121952,0.182263,,
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,overall,8760,0.035043,0.075938,,
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,overall,8760,0.112977,0.176878,,
+"Mactan, Cebu",combined,xgboost,all_hours,overall,8760,0.085498,0.125411,,
+"Mactan, Cebu",solar,xgboost,all_hours,overall,8760,0.035619,0.069396,,
+"Mactan, Cebu",wind,xgboost,all_hours,overall,8760,0.072572,0.111681,,
+General Santos City,combined,xgboost,all_hours,month,744,0.066485,0.102867,1.000000,
+General Santos City,combined,xgboost,all_hours,month,672,0.086698,0.129480,2.000000,
+General Santos City,combined,xgboost,all_hours,month,744,0.065983,0.108985,3.000000,
+General Santos City,combined,xgboost,all_hours,month,720,0.054932,0.085460,4.000000,
+General Santos City,combined,xgboost,all_hours,month,744,0.043708,0.067936,5.000000,
+General Santos City,combined,xgboost,all_hours,month,720,0.058787,0.091536,6.000000,
+General Santos City,combined,xgboost,all_hours,month,744,0.058069,0.092973,7.000000,
+General Santos City,combined,xgboost,all_hours,month,744,0.059465,0.093172,8.000000,
+General Santos City,combined,xgboost,all_hours,month,720,0.042945,0.068314,9.000000,
+General Santos City,combined,xgboost,all_hours,month,744,0.068633,0.103964,10.000000,
+General Santos City,combined,xgboost,all_hours,month,720,0.071629,0.105721,11.000000,
+General Santos City,combined,xgboost,all_hours,month,744,0.045427,0.069679,12.000000,
+General Santos City,solar,xgboost,all_hours,month,744,0.039856,0.079159,1.000000,
+General Santos City,solar,xgboost,all_hours,month,672,0.046888,0.090356,2.000000,
+General Santos City,solar,xgboost,all_hours,month,744,0.040444,0.085597,3.000000,
+General Santos City,solar,xgboost,all_hours,month,720,0.035589,0.072286,4.000000,
+General Santos City,solar,xgboost,all_hours,month,744,0.035443,0.065067,5.000000,
+General Santos City,solar,xgboost,all_hours,month,720,0.036018,0.069978,6.000000,
+General Santos City,solar,xgboost,all_hours,month,744,0.024828,0.049101,7.000000,
+General Santos City,solar,xgboost,all_hours,month,744,0.038196,0.076243,8.000000,
+General Santos City,solar,xgboost,all_hours,month,720,0.027910,0.053815,9.000000,
+General Santos City,solar,xgboost,all_hours,month,744,0.038273,0.073170,10.000000,
+General Santos City,solar,xgboost,all_hours,month,720,0.043703,0.079149,11.000000,
+General Santos City,solar,xgboost,all_hours,month,744,0.034408,0.066437,12.000000,
+General Santos City,wind,xgboost,all_hours,month,744,0.044218,0.066730,1.000000,
+General Santos City,wind,xgboost,all_hours,month,672,0.058084,0.092326,2.000000,
+General Santos City,wind,xgboost,all_hours,month,744,0.037338,0.049711,3.000000,
+General Santos City,wind,xgboost,all_hours,month,720,0.034291,0.044365,4.000000,
+General Santos City,wind,xgboost,all_hours,month,744,0.022318,0.031219,5.000000,
+General Santos City,wind,xgboost,all_hours,month,720,0.037865,0.059385,6.000000,
+General Santos City,wind,xgboost,all_hours,month,744,0.042261,0.074996,7.000000,
+General Santos City,wind,xgboost,all_hours,month,744,0.034478,0.057777,8.000000,
+General Santos City,wind,xgboost,all_hours,month,720,0.025385,0.038200,9.000000,
+General Santos City,wind,xgboost,all_hours,month,744,0.053960,0.090778,10.000000,
+General Santos City,wind,xgboost,all_hours,month,720,0.049961,0.087391,11.000000,
+General Santos City,wind,xgboost,all_hours,month,744,0.023065,0.029549,12.000000,
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,month,744,0.166316,0.226242,1.000000,
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,month,672,0.143660,0.181891,2.000000,
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,month,744,0.124263,0.172004,3.000000,
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,month,720,0.078467,0.118081,4.000000,
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,month,744,0.058038,0.088750,5.000000,
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,month,720,0.072924,0.130117,6.000000,
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,month,744,0.123163,0.174248,7.000000,
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,month,744,0.114773,0.182372,8.000000,
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,month,720,0.151126,0.247958,9.000000,
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,month,744,0.116364,0.156553,10.000000,
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,month,720,0.171183,0.244332,11.000000,
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,month,744,0.144791,0.193199,12.000000,
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,month,744,0.029673,0.063109,1.000000,
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,month,672,0.030170,0.058893,2.000000,
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,month,744,0.019271,0.041486,3.000000,
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,month,720,0.014420,0.029732,4.000000,
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,month,744,0.033938,0.078232,5.000000,
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,month,720,0.033145,0.070713,6.000000,
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,month,744,0.058846,0.115785,7.000000,
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,month,744,0.050094,0.098757,8.000000,
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,month,720,0.045761,0.091060,9.000000,
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,month,744,0.042087,0.087107,10.000000,
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,month,720,0.040503,0.081567,11.000000,
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,month,744,0.021929,0.045116,12.000000,
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,month,744,0.164282,0.223984,1.000000,
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,month,672,0.138592,0.181743,2.000000,
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,month,744,0.125752,0.174700,3.000000,
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,month,720,0.076642,0.116257,4.000000,
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,month,744,0.041233,0.057260,5.000000,
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,month,720,0.058646,0.111165,6.000000,
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,month,744,0.105537,0.169267,7.000000,
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,month,744,0.085479,0.150326,8.000000,
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,month,720,0.140948,0.249063,9.000000,
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,month,744,0.111245,0.154309,10.000000,
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,month,720,0.167128,0.245375,11.000000,
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,month,744,0.142446,0.190172,12.000000,
+"Mactan, Cebu",combined,xgboost,all_hours,month,744,0.087363,0.117731,1.000000,
+"Mactan, Cebu",combined,xgboost,all_hours,month,672,0.097901,0.130053,2.000000,
+"Mactan, Cebu",combined,xgboost,all_hours,month,744,0.101487,0.141491,3.000000,
+"Mactan, Cebu",combined,xgboost,all_hours,month,720,0.070576,0.093060,4.000000,
+"Mactan, Cebu",combined,xgboost,all_hours,month,744,0.064176,0.084496,5.000000,
+"Mactan, Cebu",combined,xgboost,all_hours,month,720,0.066245,0.096560,6.000000,
+"Mactan, Cebu",combined,xgboost,all_hours,month,744,0.094032,0.134284,7.000000,
+"Mactan, Cebu",combined,xgboost,all_hours,month,744,0.074021,0.108389,8.000000,
+"Mactan, Cebu",combined,xgboost,all_hours,month,720,0.074664,0.113018,9.000000,
+"Mactan, Cebu",combined,xgboost,all_hours,month,744,0.072202,0.108508,10.000000,
+"Mactan, Cebu",combined,xgboost,all_hours,month,720,0.120408,0.195568,11.000000,
+"Mactan, Cebu",combined,xgboost,all_hours,month,744,0.103775,0.143364,12.000000,
+"Mactan, Cebu",solar,xgboost,all_hours,month,744,0.039545,0.072395,1.000000,
+"Mactan, Cebu",solar,xgboost,all_hours,month,672,0.040132,0.074756,2.000000,
+"Mactan, Cebu",solar,xgboost,all_hours,month,744,0.036958,0.073442,3.000000,
+"Mactan, Cebu",solar,xgboost,all_hours,month,720,0.023387,0.049055,4.000000,
+"Mactan, Cebu",solar,xgboost,all_hours,month,744,0.033749,0.064188,5.000000,
+"Mactan, Cebu",solar,xgboost,all_hours,month,720,0.034142,0.061724,6.000000,
+"Mactan, Cebu",solar,xgboost,all_hours,month,744,0.032615,0.062262,7.000000,
+"Mactan, Cebu",solar,xgboost,all_hours,month,744,0.036717,0.069638,8.000000,
+"Mactan, Cebu",solar,xgboost,all_hours,month,720,0.033759,0.064100,9.000000,
+"Mactan, Cebu",solar,xgboost,all_hours,month,744,0.035673,0.072082,10.000000,
+"Mactan, Cebu",solar,xgboost,all_hours,month,720,0.044280,0.090572,11.000000,
+"Mactan, Cebu",solar,xgboost,all_hours,month,744,0.036688,0.071044,12.000000,
+"Mactan, Cebu",wind,xgboost,all_hours,month,744,0.075752,0.105696,1.000000,
+"Mactan, Cebu",wind,xgboost,all_hours,month,672,0.097646,0.132528,2.000000,
+"Mactan, Cebu",wind,xgboost,all_hours,month,744,0.084189,0.115791,3.000000,
+"Mactan, Cebu",wind,xgboost,all_hours,month,720,0.065359,0.086605,4.000000,
+"Mactan, Cebu",wind,xgboost,all_hours,month,744,0.043545,0.056712,5.000000,
+"Mactan, Cebu",wind,xgboost,all_hours,month,720,0.043906,0.068373,6.000000,
+"Mactan, Cebu",wind,xgboost,all_hours,month,744,0.080552,0.125719,7.000000,
+"Mactan, Cebu",wind,xgboost,all_hours,month,744,0.051467,0.078561,8.000000,
+"Mactan, Cebu",wind,xgboost,all_hours,month,720,0.063502,0.103970,9.000000,
+"Mactan, Cebu",wind,xgboost,all_hours,month,744,0.057292,0.082548,10.000000,
+"Mactan, Cebu",wind,xgboost,all_hours,month,720,0.117283,0.192094,11.000000,
+"Mactan, Cebu",wind,xgboost,all_hours,month,744,0.092787,0.128262,12.000000,
+General Santos City,combined,xgboost,all_hours,horizon,365,0.013226,0.021740,,1.000000
+General Santos City,combined,xgboost,all_hours,horizon,365,0.016589,0.026534,,2.000000
+General Santos City,combined,xgboost,all_hours,horizon,365,0.019243,0.030498,,3.000000
+General Santos City,combined,xgboost,all_hours,horizon,365,0.021328,0.032612,,4.000000
+General Santos City,combined,xgboost,all_hours,horizon,365,0.023518,0.034750,,5.000000
+General Santos City,combined,xgboost,all_hours,horizon,365,0.024813,0.036405,,6.000000
+General Santos City,combined,xgboost,all_hours,horizon,365,0.033727,0.046143,,7.000000
+General Santos City,combined,xgboost,all_hours,horizon,365,0.064471,0.086734,,8.000000
+General Santos City,combined,xgboost,all_hours,horizon,365,0.096590,0.125983,,9.000000
+General Santos City,combined,xgboost,all_hours,horizon,365,0.114223,0.147294,,10.000000
+General Santos City,combined,xgboost,all_hours,horizon,365,0.116877,0.151481,,11.000000
+General Santos City,combined,xgboost,all_hours,horizon,365,0.120100,0.155402,,12.000000
+General Santos City,combined,xgboost,all_hours,horizon,365,0.128775,0.165378,,13.000000
+General Santos City,combined,xgboost,all_hours,horizon,365,0.120867,0.155276,,14.000000
+General Santos City,combined,xgboost,all_hours,horizon,365,0.104650,0.135537,,15.000000
+General Santos City,combined,xgboost,all_hours,horizon,365,0.083549,0.111784,,16.000000
+General Santos City,combined,xgboost,all_hours,horizon,365,0.060038,0.085272,,17.000000
+General Santos City,combined,xgboost,all_hours,horizon,365,0.042762,0.065603,,18.000000
+General Santos City,combined,xgboost,all_hours,horizon,365,0.039925,0.060012,,19.000000
+General Santos City,combined,xgboost,all_hours,horizon,365,0.038006,0.057307,,20.000000
+General Santos City,combined,xgboost,all_hours,horizon,365,0.038025,0.057046,,21.000000
+General Santos City,combined,xgboost,all_hours,horizon,365,0.038972,0.058388,,22.000000
+General Santos City,combined,xgboost,all_hours,horizon,365,0.039979,0.061338,,23.000000
+General Santos City,combined,xgboost,all_hours,horizon,365,0.040876,0.065216,,24.000000
+General Santos City,solar,xgboost,all_hours,horizon,365,0.001339,0.002547,,1.000000
+General Santos City,solar,xgboost,all_hours,horizon,365,0.001635,0.002840,,2.000000
+General Santos City,solar,xgboost,all_hours,horizon,365,0.001722,0.002920,,3.000000
+General Santos City,solar,xgboost,all_hours,horizon,365,0.001631,0.002850,,4.000000
+General Santos City,solar,xgboost,all_hours,horizon,365,0.001745,0.003001,,5.000000
+General Santos City,solar,xgboost,all_hours,horizon,365,0.003507,0.004764,,6.000000
+General Santos City,solar,xgboost,all_hours,horizon,365,0.020925,0.026928,,7.000000
+General Santos City,solar,xgboost,all_hours,horizon,365,0.053838,0.068587,,8.000000
+General Santos City,solar,xgboost,all_hours,horizon,365,0.087032,0.108996,,9.000000
+General Santos City,solar,xgboost,all_hours,horizon,365,0.104411,0.131234,,10.000000
+General Santos City,solar,xgboost,all_hours,horizon,365,0.104196,0.135881,,11.000000
+General Santos City,solar,xgboost,all_hours,horizon,365,0.105825,0.135616,,12.000000
+General Santos City,solar,xgboost,all_hours,horizon,365,0.114885,0.145324,,13.000000
+General Santos City,solar,xgboost,all_hours,horizon,365,0.100396,0.127475,,14.000000
+General Santos City,solar,xgboost,all_hours,horizon,365,0.081987,0.103757,,15.000000
+General Santos City,solar,xgboost,all_hours,horizon,365,0.057910,0.072827,,16.000000
+General Santos City,solar,xgboost,all_hours,horizon,365,0.025660,0.033347,,17.000000
+General Santos City,solar,xgboost,all_hours,horizon,365,0.005078,0.006687,,18.000000
+General Santos City,solar,xgboost,all_hours,horizon,365,0.001258,0.002359,,19.000000
+General Santos City,solar,xgboost,all_hours,horizon,365,0.001225,0.002301,,20.000000
+General Santos City,solar,xgboost,all_hours,horizon,365,0.001248,0.002337,,21.000000
+General Santos City,solar,xgboost,all_hours,horizon,365,0.001313,0.002432,,22.000000
+General Santos City,solar,xgboost,all_hours,horizon,365,0.001305,0.002418,,23.000000
+General Santos City,solar,xgboost,all_hours,horizon,365,0.001315,0.002440,,24.000000
+General Santos City,wind,xgboost,all_hours,horizon,365,0.012746,0.021488,,1.000000
+General Santos City,wind,xgboost,all_hours,horizon,365,0.016170,0.026418,,2.000000
+General Santos City,wind,xgboost,all_hours,horizon,365,0.018860,0.030407,,3.000000
+General Santos City,wind,xgboost,all_hours,horizon,365,0.020881,0.032483,,4.000000
+General Santos City,wind,xgboost,all_hours,horizon,365,0.023013,0.034607,,5.000000
+General Santos City,wind,xgboost,all_hours,horizon,365,0.024176,0.036189,,6.000000
+General Santos City,wind,xgboost,all_hours,horizon,365,0.025723,0.039044,,7.000000
+General Santos City,wind,xgboost,all_hours,horizon,365,0.033240,0.051671,,8.000000
+General Santos City,wind,xgboost,all_hours,horizon,365,0.041756,0.064790,,9.000000
+General Santos City,wind,xgboost,all_hours,horizon,365,0.046272,0.071259,,10.000000
+General Santos City,wind,xgboost,all_hours,horizon,365,0.049757,0.077003,,11.000000
+General Santos City,wind,xgboost,all_hours,horizon,365,0.053033,0.083014,,12.000000
+General Santos City,wind,xgboost,all_hours,horizon,365,0.055315,0.088385,,13.000000
+General Santos City,wind,xgboost,all_hours,horizon,365,0.057836,0.093337,,14.000000
+General Santos City,wind,xgboost,all_hours,horizon,365,0.058754,0.094095,,15.000000
+General Santos City,wind,xgboost,all_hours,horizon,365,0.057800,0.089759,,16.000000
+General Santos City,wind,xgboost,all_hours,horizon,365,0.051691,0.079261,,17.000000
+General Santos City,wind,xgboost,all_hours,horizon,365,0.042230,0.065483,,18.000000
+General Santos City,wind,xgboost,all_hours,horizon,365,0.039547,0.059935,,19.000000
+General Santos City,wind,xgboost,all_hours,horizon,365,0.037759,0.057277,,20.000000
+General Santos City,wind,xgboost,all_hours,horizon,365,0.037752,0.056986,,21.000000
+General Santos City,wind,xgboost,all_hours,horizon,365,0.038652,0.058267,,22.000000
+General Santos City,wind,xgboost,all_hours,horizon,365,0.039616,0.061147,,23.000000
+General Santos City,wind,xgboost,all_hours,horizon,365,0.040480,0.065012,,24.000000
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,horizon,365,0.039013,0.072123,,1.000000
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,horizon,365,0.045189,0.079164,,2.000000
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,horizon,365,0.052941,0.088597,,3.000000
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,horizon,365,0.060463,0.100348,,4.000000
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,horizon,365,0.066593,0.112249,,5.000000
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,horizon,365,0.069256,0.119163,,6.000000
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,horizon,365,0.075721,0.123334,,7.000000
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,horizon,365,0.095081,0.142291,,8.000000
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,horizon,365,0.121616,0.171135,,9.000000
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,horizon,365,0.135427,0.188999,,10.000000
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,horizon,365,0.150932,0.209061,,11.000000
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,horizon,365,0.163521,0.224941,,12.000000
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,horizon,365,0.172192,0.231714,,13.000000
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,horizon,365,0.173792,0.231832,,14.000000
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,horizon,365,0.169911,0.224007,,15.000000
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,horizon,365,0.164229,0.216938,,16.000000
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,horizon,365,0.152660,0.210993,,17.000000
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,horizon,365,0.143085,0.205909,,18.000000
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,horizon,365,0.144204,0.207815,,19.000000
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,horizon,365,0.147023,0.208309,,20.000000
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,horizon,365,0.147367,0.207981,,21.000000
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,horizon,365,0.144409,0.202302,,22.000000
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,horizon,365,0.145488,0.203966,,23.000000
+"Laoag, Ilocos Norte",combined,xgboost,all_hours,horizon,365,0.146731,0.205813,,24.000000
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,horizon,365,0.001230,0.002385,,1.000000
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,horizon,365,0.001476,0.002718,,2.000000
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,horizon,365,0.001499,0.002739,,3.000000
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,horizon,365,0.001516,0.002761,,4.000000
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,horizon,365,0.001384,0.002651,,5.000000
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,horizon,365,0.002627,0.003742,,6.000000
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,horizon,365,0.010601,0.015600,,7.000000
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,horizon,365,0.038840,0.054529,,8.000000
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,horizon,365,0.070399,0.098639,,9.000000
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,horizon,365,0.086243,0.123797,,10.000000
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,horizon,365,0.099896,0.143515,,11.000000
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,horizon,365,0.104505,0.148170,,12.000000
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,horizon,365,0.110153,0.154521,,13.000000
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,horizon,365,0.101241,0.140939,,14.000000
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,horizon,365,0.088143,0.116030,,15.000000
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,horizon,365,0.066317,0.087706,,16.000000
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,horizon,365,0.035827,0.048290,,17.000000
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,horizon,365,0.010551,0.015959,,18.000000
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,horizon,365,0.002337,0.003492,,19.000000
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,horizon,365,0.001214,0.002475,,20.000000
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,horizon,365,0.001150,0.002334,,21.000000
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,horizon,365,0.001142,0.002298,,22.000000
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,horizon,365,0.001367,0.002572,,23.000000
+"Laoag, Ilocos Norte",solar,xgboost,all_hours,horizon,365,0.001370,0.002580,,24.000000
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,horizon,365,0.038715,0.072063,,1.000000
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,horizon,365,0.044823,0.078965,,2.000000
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,horizon,365,0.052692,0.088374,,3.000000
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,horizon,365,0.060192,0.100144,,4.000000
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,horizon,365,0.066323,0.112098,,5.000000
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,horizon,365,0.069230,0.119032,,6.000000
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,horizon,365,0.074980,0.125390,,7.000000
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,horizon,365,0.087685,0.143774,,8.000000
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,horizon,365,0.102390,0.161102,,9.000000
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,horizon,365,0.112414,0.174031,,10.000000
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,horizon,365,0.121344,0.187291,,11.000000
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,horizon,365,0.130650,0.201202,,12.000000
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,horizon,365,0.138887,0.210101,,13.000000
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,horizon,365,0.143272,0.212165,,14.000000
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,horizon,365,0.149592,0.216660,,15.000000
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,horizon,365,0.151372,0.216501,,16.000000
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,horizon,365,0.149941,0.214344,,17.000000
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,horizon,365,0.143179,0.207278,,18.000000
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,horizon,365,0.144277,0.208039,,19.000000
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,horizon,365,0.146711,0.208281,,20.000000
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,horizon,365,0.147046,0.207939,,21.000000
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,horizon,365,0.144122,0.202280,,22.000000
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,horizon,365,0.145184,0.203968,,23.000000
+"Laoag, Ilocos Norte",wind,xgboost,all_hours,horizon,365,0.146430,0.205824,,24.000000
+"Mactan, Cebu",combined,xgboost,all_hours,horizon,365,0.033758,0.045899,,1.000000
+"Mactan, Cebu",combined,xgboost,all_hours,horizon,365,0.040073,0.059833,,2.000000
+"Mactan, Cebu",combined,xgboost,all_hours,horizon,365,0.046257,0.070926,,3.000000
+"Mactan, Cebu",combined,xgboost,all_hours,horizon,365,0.052471,0.080332,,4.000000
+"Mactan, Cebu",combined,xgboost,all_hours,horizon,365,0.058788,0.088933,,5.000000
+"Mactan, Cebu",combined,xgboost,all_hours,horizon,365,0.063250,0.098052,,6.000000
+"Mactan, Cebu",combined,xgboost,all_hours,horizon,365,0.066558,0.106250,,7.000000
+"Mactan, Cebu",combined,xgboost,all_hours,horizon,365,0.081493,0.121620,,8.000000
+"Mactan, Cebu",combined,xgboost,all_hours,horizon,365,0.099183,0.142239,,9.000000
+"Mactan, Cebu",combined,xgboost,all_hours,horizon,365,0.109056,0.150671,,10.000000
+"Mactan, Cebu",combined,xgboost,all_hours,horizon,365,0.117840,0.157695,,11.000000
+"Mactan, Cebu",combined,xgboost,all_hours,horizon,365,0.122598,0.161387,,12.000000
+"Mactan, Cebu",combined,xgboost,all_hours,horizon,365,0.130612,0.170054,,13.000000
+"Mactan, Cebu",combined,xgboost,all_hours,horizon,365,0.128067,0.165731,,14.000000
+"Mactan, Cebu",combined,xgboost,all_hours,horizon,365,0.117819,0.153138,,15.000000
+"Mactan, Cebu",combined,xgboost,all_hours,horizon,365,0.099299,0.133275,,16.000000
+"Mactan, Cebu",combined,xgboost,all_hours,horizon,365,0.080935,0.114804,,17.000000
+"Mactan, Cebu",combined,xgboost,all_hours,horizon,365,0.076676,0.111522,,18.000000
+"Mactan, Cebu",combined,xgboost,all_hours,horizon,365,0.078334,0.115279,,19.000000
+"Mactan, Cebu",combined,xgboost,all_hours,horizon,365,0.082050,0.119527,,20.000000
+"Mactan, Cebu",combined,xgboost,all_hours,horizon,365,0.086844,0.125552,,21.000000
+"Mactan, Cebu",combined,xgboost,all_hours,horizon,365,0.090594,0.132603,,22.000000
+"Mactan, Cebu",combined,xgboost,all_hours,horizon,365,0.093618,0.137849,,23.000000
+"Mactan, Cebu",combined,xgboost,all_hours,horizon,365,0.095777,0.140376,,24.000000
+"Mactan, Cebu",solar,xgboost,all_hours,horizon,365,0.001065,0.002111,,1.000000
+"Mactan, Cebu",solar,xgboost,all_hours,horizon,365,0.001404,0.002497,,2.000000
+"Mactan, Cebu",solar,xgboost,all_hours,horizon,365,0.001469,0.002558,,3.000000
+"Mactan, Cebu",solar,xgboost,all_hours,horizon,365,0.001306,0.002377,,4.000000
+"Mactan, Cebu",solar,xgboost,all_hours,horizon,365,0.001362,0.002467,,5.000000
+"Mactan, Cebu",solar,xgboost,all_hours,horizon,365,0.002878,0.004015,,6.000000
+"Mactan, Cebu",solar,xgboost,all_hours,horizon,365,0.016496,0.022131,,7.000000
+"Mactan, Cebu",solar,xgboost,all_hours,horizon,365,0.046146,0.059928,,8.000000
+"Mactan, Cebu",solar,xgboost,all_hours,horizon,365,0.078083,0.098985,,9.000000
+"Mactan, Cebu",solar,xgboost,all_hours,horizon,365,0.087538,0.112387,,10.000000
+"Mactan, Cebu",solar,xgboost,all_hours,horizon,365,0.094669,0.120115,,11.000000
+"Mactan, Cebu",solar,xgboost,all_hours,horizon,365,0.100322,0.126084,,12.000000
+"Mactan, Cebu",solar,xgboost,all_hours,horizon,365,0.112663,0.141752,,13.000000
+"Mactan, Cebu",solar,xgboost,all_hours,horizon,365,0.108214,0.134200,,14.000000
+"Mactan, Cebu",solar,xgboost,all_hours,horizon,365,0.091471,0.111262,,15.000000
+"Mactan, Cebu",solar,xgboost,all_hours,horizon,365,0.065038,0.080397,,16.000000
+"Mactan, Cebu",solar,xgboost,all_hours,horizon,365,0.031922,0.040637,,17.000000
+"Mactan, Cebu",solar,xgboost,all_hours,horizon,365,0.006770,0.008811,,18.000000
+"Mactan, Cebu",solar,xgboost,all_hours,horizon,365,0.001056,0.002047,,19.000000
+"Mactan, Cebu",solar,xgboost,all_hours,horizon,365,0.000952,0.001942,,20.000000
+"Mactan, Cebu",solar,xgboost,all_hours,horizon,365,0.000985,0.001978,,21.000000
+"Mactan, Cebu",solar,xgboost,all_hours,horizon,365,0.000978,0.001966,,22.000000
+"Mactan, Cebu",solar,xgboost,all_hours,horizon,365,0.001038,0.002018,,23.000000
+"Mactan, Cebu",solar,xgboost,all_hours,horizon,365,0.001039,0.002019,,24.000000
+"Mactan, Cebu",wind,xgboost,all_hours,horizon,365,0.033614,0.045926,,1.000000
+"Mactan, Cebu",wind,xgboost,all_hours,horizon,365,0.039936,0.059874,,2.000000
+"Mactan, Cebu",wind,xgboost,all_hours,horizon,365,0.046086,0.070993,,3.000000
+"Mactan, Cebu",wind,xgboost,all_hours,horizon,365,0.052349,0.080392,,4.000000
+"Mactan, Cebu",wind,xgboost,all_hours,horizon,365,0.058662,0.089032,,5.000000
+"Mactan, Cebu",wind,xgboost,all_hours,horizon,365,0.063339,0.098104,,6.000000
+"Mactan, Cebu",wind,xgboost,all_hours,horizon,365,0.064932,0.104563,,7.000000
+"Mactan, Cebu",wind,xgboost,all_hours,horizon,365,0.068429,0.109632,,8.000000
+"Mactan, Cebu",wind,xgboost,all_hours,horizon,365,0.073066,0.115231,,9.000000
+"Mactan, Cebu",wind,xgboost,all_hours,horizon,365,0.076851,0.119458,,10.000000
+"Mactan, Cebu",wind,xgboost,all_hours,horizon,365,0.078792,0.121310,,11.000000
+"Mactan, Cebu",wind,xgboost,all_hours,horizon,365,0.079437,0.120584,,12.000000
+"Mactan, Cebu",wind,xgboost,all_hours,horizon,365,0.080309,0.120637,,13.000000
+"Mactan, Cebu",wind,xgboost,all_hours,horizon,365,0.082903,0.123156,,14.000000
+"Mactan, Cebu",wind,xgboost,all_hours,horizon,365,0.083164,0.123599,,15.000000
+"Mactan, Cebu",wind,xgboost,all_hours,horizon,365,0.080400,0.119495,,16.000000
+"Mactan, Cebu",wind,xgboost,all_hours,horizon,365,0.076343,0.114307,,17.000000
+"Mactan, Cebu",wind,xgboost,all_hours,horizon,365,0.076353,0.112456,,18.000000
+"Mactan, Cebu",wind,xgboost,all_hours,horizon,365,0.078236,0.115412,,19.000000
+"Mactan, Cebu",wind,xgboost,all_hours,horizon,365,0.081954,0.119672,,20.000000
+"Mactan, Cebu",wind,xgboost,all_hours,horizon,365,0.086792,0.125732,,21.000000
+"Mactan, Cebu",wind,xgboost,all_hours,horizon,365,0.090527,0.132754,,22.000000
+"Mactan, Cebu",wind,xgboost,all_hours,horizon,365,0.093542,0.137959,,23.000000
+"Mactan, Cebu",wind,xgboost,all_hours,horizon,365,0.095701,0.140507,,24.000000
+General Santos City,solar,xgboost,daylight_only,overall,4144,0.075597,0.105312,,
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,overall,4146,0.071924,0.110255,,
+"Mactan, Cebu",solar,xgboost,daylight_only,overall,4205,0.072458,0.100033,,
+General Santos City,solar,xgboost,daylight_only,month,342,0.084956,0.116716,1.000000,
+General Santos City,solar,xgboost,daylight_only,month,320,0.096043,0.130833,2.000000,
+General Santos City,solar,xgboost,daylight_only,month,360,0.080961,0.122972,3.000000,
+General Santos City,solar,xgboost,daylight_only,month,346,0.072416,0.104231,4.000000,
+General Santos City,solar,xgboost,daylight_only,month,357,0.072408,0.093899,5.000000,
+General Santos City,solar,xgboost,daylight_only,month,347,0.072581,0.100637,6.000000,
+General Santos City,solar,xgboost,daylight_only,month,370,0.048777,0.069594,7.000000,
+General Santos City,solar,xgboost,daylight_only,month,359,0.077176,0.109703,8.000000,
+General Santos City,solar,xgboost,daylight_only,month,331,0.057852,0.079273,9.000000,
+General Santos City,solar,xgboost,daylight_only,month,341,0.080265,0.107984,10.000000,
+General Santos City,solar,xgboost,daylight_only,month,330,0.093669,0.116874,11.000000,
+General Santos City,solar,xgboost,daylight_only,month,341,0.073502,0.098102,12.000000,
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,month,321,0.067025,0.096040,1.000000,
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,month,307,0.064595,0.087094,2.000000,
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,month,370,0.037374,0.058793,3.000000,
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,month,360,0.027811,0.042023,4.000000,
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,month,371,0.066612,0.110712,5.000000,
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,month,360,0.064325,0.099935,6.000000,
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,month,361,0.116861,0.165771,7.000000,
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,month,369,0.099025,0.140140,8.000000,
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,month,347,0.091934,0.130919,9.000000,
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,month,345,0.088671,0.127868,10.000000,
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,month,321,0.087435,0.122086,11.000000,
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,month,314,0.050486,0.069407,12.000000,
+"Mactan, Cebu",solar,xgboost,daylight_only,month,345,0.083382,0.106255,1.000000,
+"Mactan, Cebu",solar,xgboost,daylight_only,month,326,0.081342,0.107262,2.000000,
+"Mactan, Cebu",solar,xgboost,daylight_only,month,367,0.073649,0.104537,3.000000,
+"Mactan, Cebu",solar,xgboost,daylight_only,month,360,0.045752,0.069355,4.000000,
+"Mactan, Cebu",solar,xgboost,daylight_only,month,370,0.066253,0.090976,5.000000,
+"Mactan, Cebu",solar,xgboost,daylight_only,month,358,0.067101,0.087478,6.000000,
+"Mactan, Cebu",solar,xgboost,daylight_only,month,371,0.064076,0.088123,7.000000,
+"Mactan, Cebu",solar,xgboost,daylight_only,month,366,0.072895,0.099218,8.000000,
+"Mactan, Cebu",solar,xgboost,daylight_only,month,336,0.070483,0.093747,9.000000,
+"Mactan, Cebu",solar,xgboost,daylight_only,month,340,0.075940,0.106509,10.000000,
+"Mactan, Cebu",solar,xgboost,daylight_only,month,325,0.094299,0.134058,11.000000,
+"Mactan, Cebu",solar,xgboost,daylight_only,month,341,0.078488,0.104906,12.000000,
+General Santos City,solar,xgboost,daylight_only,horizon,363,0.020797,0.026801,,7.000000
+General Santos City,solar,xgboost,daylight_only,horizon,365,0.053838,0.068587,,8.000000
+General Santos City,solar,xgboost,daylight_only,horizon,365,0.087032,0.108996,,9.000000
+General Santos City,solar,xgboost,daylight_only,horizon,365,0.104411,0.131234,,10.000000
+General Santos City,solar,xgboost,daylight_only,horizon,365,0.104196,0.135881,,11.000000
+General Santos City,solar,xgboost,daylight_only,horizon,365,0.105825,0.135616,,12.000000
+General Santos City,solar,xgboost,daylight_only,horizon,365,0.114885,0.145324,,13.000000
+General Santos City,solar,xgboost,daylight_only,horizon,365,0.100396,0.127475,,14.000000
+General Santos City,solar,xgboost,daylight_only,horizon,365,0.081987,0.103757,,15.000000
+General Santos City,solar,xgboost,daylight_only,horizon,365,0.057910,0.072827,,16.000000
+General Santos City,solar,xgboost,daylight_only,horizon,364,0.025477,0.033042,,17.000000
+General Santos City,solar,xgboost,daylight_only,horizon,132,0.004743,0.006091,,18.000000
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,horizon,260,0.011923,0.016067,,7.000000
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,horizon,364,0.038513,0.053974,,8.000000
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,horizon,365,0.070399,0.098639,,9.000000
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,horizon,365,0.086243,0.123797,,10.000000
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,horizon,365,0.099896,0.143515,,11.000000
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,horizon,365,0.104505,0.148170,,12.000000
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,horizon,365,0.110153,0.154521,,13.000000
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,horizon,365,0.101241,0.140939,,14.000000
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,horizon,365,0.088143,0.116030,,15.000000
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,horizon,365,0.066317,0.087706,,16.000000
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,horizon,364,0.035635,0.048038,,17.000000
+"Laoag, Ilocos Norte",solar,xgboost,daylight_only,horizon,238,0.011715,0.017019,,18.000000
+"Mactan, Cebu",solar,xgboost,daylight_only,horizon,355,0.016050,0.021399,,7.000000
+"Mactan, Cebu",solar,xgboost,daylight_only,horizon,364,0.045695,0.058988,,8.000000
+"Mactan, Cebu",solar,xgboost,daylight_only,horizon,365,0.078083,0.098985,,9.000000
+"Mactan, Cebu",solar,xgboost,daylight_only,horizon,365,0.087538,0.112387,,10.000000
+"Mactan, Cebu",solar,xgboost,daylight_only,horizon,365,0.094669,0.120115,,11.000000
+"Mactan, Cebu",solar,xgboost,daylight_only,horizon,365,0.100322,0.126084,,12.000000
+"Mactan, Cebu",solar,xgboost,daylight_only,horizon,365,0.112663,0.141752,,13.000000
+"Mactan, Cebu",solar,xgboost,daylight_only,horizon,365,0.108214,0.134200,,14.000000
+"Mactan, Cebu",solar,xgboost,daylight_only,horizon,365,0.091471,0.111262,,15.000000
+"Mactan, Cebu",solar,xgboost,daylight_only,horizon,365,0.065038,0.080397,,16.000000
+"Mactan, Cebu",solar,xgboost,daylight_only,horizon,363,0.031693,0.040382,,17.000000
+"Mactan, Cebu",solar,xgboost,daylight_only,horizon,203,0.007295,0.008867,,18.000000

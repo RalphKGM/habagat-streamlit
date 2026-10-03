@@ -1,0 +1,9 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+.ipynb_checkpoints/
+.streamlit/secrets.toml
+marketing/ad/renders/
