@@ -1,0 +1,49 @@
+fold,location,source,candidate,validation_mae_mw,validation_rmse_mw
+rolling_2024,General Santos City,solar,compact,0.03271463,0.06378416
+rolling_2024,General Santos City,solar,shallow,0.03294613,0.06205056
+rolling_2024,General Santos City,wind,compact,0.03483489,0.05638227
+rolling_2024,General Santos City,wind,shallow,0.03506868,0.05558957
+rolling_2024,"Laoag, Ilocos Norte",solar,compact,0.02821304,0.06312216
+rolling_2024,"Laoag, Ilocos Norte",solar,shallow,0.02929002,0.06243835
+rolling_2024,"Laoag, Ilocos Norte",wind,compact,0.11130363,0.16679839
+rolling_2024,"Laoag, Ilocos Norte",wind,shallow,0.11189920,0.16526554
+rolling_2024,"Mactan, Cebu",solar,compact,0.03304573,0.06525235
+rolling_2024,"Mactan, Cebu",solar,shallow,0.03432856,0.06474222
+rolling_2024,"Mactan, Cebu",wind,compact,0.07563573,0.11310504
+rolling_2024,"Mactan, Cebu",wind,shallow,0.07685519,0.11504259
+rolling_2025,General Santos City,solar,compact,0.03552974,0.06888870
+rolling_2025,General Santos City,solar,shallow,0.03594067,0.06815251
+rolling_2025,General Santos City,wind,compact,0.04493389,0.07825579
+rolling_2025,General Santos City,wind,shallow,0.04585293,0.08029616
+rolling_2025,"Laoag, Ilocos Norte",solar,compact,0.03042507,0.06724191
+rolling_2025,"Laoag, Ilocos Norte",solar,shallow,0.03092289,0.06599965
+rolling_2025,"Laoag, Ilocos Norte",wind,compact,0.10414443,0.16275131
+rolling_2025,"Laoag, Ilocos Norte",wind,shallow,0.10402968,0.16032245
+rolling_2025,"Mactan, Cebu",solar,compact,0.03262488,0.06246684
+rolling_2025,"Mactan, Cebu",solar,shallow,0.03361004,0.06265346
+rolling_2025,"Mactan, Cebu",wind,compact,0.07292545,0.10931871
+rolling_2025,"Mactan, Cebu",wind,shallow,0.07153342,0.10795209
+rolling_2026,General Santos City,solar,compact,0.03672435,0.07247958
+rolling_2026,General Santos City,solar,shallow,0.03700742,0.07152244
+rolling_2026,General Santos City,wind,compact,0.03846072,0.06371247
+rolling_2026,General Santos City,wind,shallow,0.03864390,0.06330667
+rolling_2026,"Laoag, Ilocos Norte",solar,compact,0.03504277,0.07593768
+rolling_2026,"Laoag, Ilocos Norte",solar,shallow,0.03558776,0.07508467
+rolling_2026,"Laoag, Ilocos Norte",wind,compact,0.11133400,0.17506077
+rolling_2026,"Laoag, Ilocos Norte",wind,shallow,0.11297714,0.17687777
+rolling_2026,"Mactan, Cebu",solar,compact,0.03561941,0.06939583
+rolling_2026,"Mactan, Cebu",solar,shallow,0.03568567,0.06761818
+rolling_2026,"Mactan, Cebu",wind,compact,0.07368213,0.11258303
+rolling_2026,"Mactan, Cebu",wind,shallow,0.07257160,0.11168094
+recent_2026,General Santos City,solar,compact,0.03679249,0.07225776
+recent_2026,General Santos City,solar,shallow,0.03705934,0.07109487
+recent_2026,General Santos City,wind,compact,0.03853563,0.06395929
+recent_2026,General Santos City,wind,shallow,0.03921991,0.06453068
+recent_2026,"Laoag, Ilocos Norte",solar,compact,0.03461733,0.07505194
+recent_2026,"Laoag, Ilocos Norte",solar,shallow,0.03577469,0.07469268
+recent_2026,"Laoag, Ilocos Norte",wind,compact,0.11337490,0.17829753
+recent_2026,"Laoag, Ilocos Norte",wind,shallow,0.11439560,0.18012785
+recent_2026,"Mactan, Cebu",solar,compact,0.03635533,0.07039918
+recent_2026,"Mactan, Cebu",solar,shallow,0.03631510,0.06832006
+recent_2026,"Mactan, Cebu",wind,compact,0.07466965,0.11548695
+recent_2026,"Mactan, Cebu",wind,shallow,0.07393508,0.11532712

@@ -11,7 +11,7 @@ Everything you need for the "advertisement" item on the final checklist:
 
 ## 1. The ready-made ad
 
-`ad/habagat_ad.html` is a self-contained 30-second motion ad (1920×1080) in the app's own visual language, using real screenshots from `ad/shots/`.
+`ad/habagat_ad.html` is a self-contained 30-second motion ad (1920×1080) in the app's own visual language. It uses the real Philippine outlines from the app, a monsoon wind-particle field, and real screenshots from `ad/shots/`. Keep `map_data.js` and `shots/` next to the HTML file.
 
 | Key | Action |
 |---|---|
@@ -35,17 +35,17 @@ Trim the start and end in QuickTime or Clipchamp, then add the voice-over and mu
 
 ## 2. Script and storyboard (30 s)
 
-| Time | Picture | On-screen text | Voice-over (calm, confident) |
+| Time | Picture | On-screen text | Voice-over (calm, matter-of-fact) |
 |---|---|---|---|
-| 0.0–4.5 | Night sky, turbines turning, wind streaks | *Every midnight, the grid has to guess.* | "Every night, the people who run our grid have to guess." |
-| 4.5–9.0 | Sunrise, sun climbs | *How much sun? How much wind? Tomorrow. Hour by hour.* | "How much sun tomorrow? How much wind? Hour by hour." |
-| 9.0–13.5 | Logo letters drop in | *Introducing Habagat. Read tomorrow's sky. Then plan the grid.* | "Meet Habagat." |
-| 13.5–18.0 | Live plant screenshot, slow zoom, count-up | *Watch a day unfold · 131,544 hours simulated* | "It replays every hour of five years of NASA weather at three Philippine sites: sun, wind, battery and demand." |
-| 18.0–22.5 | Forecast lab screenshot, count-up | *Forecasts tested on a year they never saw · 27% lower error* | "Its machine-learning forecasts were tested on a year they'd never seen, with up to 27% less error." |
-| 22.5–26.5 | Grid planning screenshot, count-up | *Better forecasts, calmer grid plans · 24% less adjustment* | "Better forecasts mean calmer grid plans." |
-| 26.5–30.5 | Dark end card, URL | *Habagat · Solar-wind forecasting for Philippine microgrids* | "Habagat. Read tomorrow's sky." |
+| 0.0–4.6 | Dark screen, the Philippine coastline draws itself in, monsoon wind particles drift | *Every midnight, the grid has to guess tomorrow.* | "Every night, the people who run our grid have to guess tomorrow." |
+| 4.6–9.2 | Luzon, Visayas and Mindanao fill in one by one, and the three sites light up | *How much sun. How much wind. Hour by hour, at three sites across the Philippines.* | "How much sun, and how much wind, hour by hour?" |
+| 9.2–13.4 | The wind glyph draws in, then the wordmark | *Habagat · Solar-wind forecasting for Philippine microgrids* | "Meet Habagat." |
+| 13.4–17.8 | Map screenshot with a hover card, stat counts up | *Hover any island group · 131,544 hourly weather records* | "It replays five years of NASA weather at Laoag, Mactan and General Santos." |
+| 17.8–22.2 | Forecast accuracy screenshot, stat counts up | *Tested on a year it never saw · −27% error (up to)* | "Its forecasts were tested on a year they'd never seen, with up to 27% less error." |
+| 22.2–26.4 | Grid planning screenshot, stat counts up | *Better forecasts, steadier plans · −24% adjustment (up to)* | "Better forecasts mean steadier grid plans." |
+| 26.4–30.4 | End card over a faded map, with the URL | *Habagat · habagat.streamlit.app* | "Habagat." |
 
-**Music:** warm, minimal piano or marimba with a soft pulse, building at 9 s (logo) and resolving at 26.5 s. Use royalty-free tracks from the YouTube Audio Library, Pixabay Music, or an AI generator such as ElevenLabs Music or Google Lyria. Keep music about 12 dB under the voice.
+**Music:** warm, minimal piano or marimba with a soft pulse, building at 9 s (logo) and resolving at 26.4 s. Use royalty-free tracks from the YouTube Audio Library, Pixabay Music, or an AI generator such as ElevenLabs Music or Google Lyria. Keep music about 12 dB under the voice.
 
 **Claims check:** every number in the ad comes from the app's own result files.
 - **27%:** XGBoost vs. the best baseline at Laoag. The range across sites is 17–27%, so "up to 27%" is accurate.
@@ -111,8 +111,8 @@ Paste this prompt:
 Use the HyperFrames skill to turn marketing/ad/habagat_ad.html into a HyperFrames composition
 and render it to marketing/ad/renders/habagat_30s_16x9.mp4 (1920x1080, 30 fps) and
 habagat_30s_9x16.mp4 (1080x1920).
-Keep the exact scene timings, copy, colours (#F2EDE3 paper, #16232A ink, #E59A2B sun, #2D6A8A sea),
-fonts (Fraunces, Instrument Sans, JetBrains Mono) and the screenshots in marketing/ad/shots/.
+Keep the exact scene timings, copy, colours (#0F1215 background, #E6E9EB text, #F2B544 solar, #5BB5E0 wind, #7FD3A8 accent),
+fonts (IBM Plex Sans, IBM Plex Mono), map_data.js and the screenshots in marketing/ad/shots/.
 Remove the keyboard HUD. Do not invent new numbers; every statistic must come from the HTML.
 Show me a preview before the final render.
 ```

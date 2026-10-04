@@ -1,15 +1,10 @@
 import pandas as pd
 import streamlit as st
 
-from habagat import dispatch, theme
+from habagat import dispatch, literature, theme
 from habagat.physics import ASSUMPTIONS
 
-theme.header(
-    "Methods",
-    "The equations <em>behind every pixel</em>",
-    "Habagat runs the same code as the research paper. The test suite checks that the five-year energy totals and battery "
-    "coverage match the published tables exactly.",
-)
+theme.header('Methodology', 'Equations, fixed assumptions, sources and limits. The app runs the same code as the paper, and the tests check it reproduces the published tables.')
 
 solar, wind, storage, forecast = st.tabs(["Solar PV", "Wind turbine", "Battery", "Forecasting"])
 with solar:
@@ -56,13 +51,28 @@ with forecast:
     st.markdown("**Grid-plan adjustment** for each hour: extra grid energy needed beyond the plan, plus planned energy that "
                 "was not needed. Summed over 8,760 hours.")
 
-theme.header("Assumptions", "Fixed parameters")
+theme.section('Fixed parameters')
 st.dataframe(
     pd.DataFrame({"Parameter": list(ASSUMPTIONS), "Value": [str(v) for v in ASSUMPTIONS.values()]}),
     hide_index=True, width="stretch", height=320,
 )
 
-theme.header("Sources", "Data and references")
+theme.section(
+    "How this compares",
+    "Related IEEE studies reviewed for the paper. Forecasting work abroad uses measured plants but rarely tests years in "
+    "order; Philippine work sizes systems but does not evaluate forecasts.",
+)
+st.dataframe(
+    pd.DataFrame(literature.FORECASTING, columns=["Study", "Venue", "Where", "Data", "Task", "Method", "Test split", "Planning link"]),
+    hide_index=True, width="stretch",
+)
+st.dataframe(
+    pd.DataFrame(literature.PHILIPPINES, columns=["Philippine study", "Venue", "Focus", "Tool", "Relation to this work"]),
+    hide_index=True, width="stretch",
+)
+st.markdown("\n".join(f"- {t}" for t in literature.TAKEAWAYS))
+
+theme.section('Sources')
 st.markdown(
     """
 - NASA POWER hourly API, v2.10 — [power.larc.nasa.gov](https://power.larc.nasa.gov/docs/services/api/temporal/hourly/)
@@ -74,16 +84,17 @@ st.markdown(
 """
 )
 
-theme.header("Limits", "Read the results with these in mind")
-theme.html(
-    """<div class="hb-two">
-<div class="hb-card"><h5>Data</h5><ul>
-<li>NASA POWER is gridded reanalysis, not on-site measurement.</li>
-<li>Generation is <i>reference modeled</i> output, not metered plant data.</li>
-<li>Demand is one standardized scenario at all sites, not measured NGCP or city load.</li></ul></div>
-<div class="hb-card"><h5>Scope</h5><ul>
-<li>Hourly energy balance only: no voltage, frequency, ramping limits or protection.</li>
-<li>No equipment failures, degradation, typhoon damage or repair times.</li>
-<li>Planning replay assumes the grid can always adjust in real time. It does not imply lower real-world cost.</li></ul></div>
-</div>"""
+theme.section("Limitations")
+data_col, scope_col = st.columns(2)
+data_col.markdown(
+    "**Data**\n"
+    "- NASA POWER is gridded reanalysis, not on-site measurement.\n"
+    "- Generation is reference modeled output, not metered plant data.\n"
+    "- Demand is one standardized scenario at all sites, not measured NGCP or city load."
+)
+scope_col.markdown(
+    "**Scope**\n"
+    "- Hourly energy balance only: no voltage, frequency, ramping limits or protection.\n"
+    "- No equipment failures, degradation, typhoon damage or repair times.\n"
+    "- The planning replay assumes the grid can always adjust in real time. It does not imply lower real-world cost."
 )

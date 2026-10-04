@@ -198,3 +198,58 @@ def headline_findings() -> dict:
 
 def monthly_profile(frame: pd.DataFrame, column: str = "combined_mw") -> np.ndarray:
     return frame.groupby(frame["timestamp_pht"].dt.month)[column].mean().to_numpy()
+
+
+# Chronological (rolling-year) evaluation produced by the research team. See scripts/build_rolling.py.
+ROLLING = DATA / "rolling"
+FOLDS = ["rolling_2024", "rolling_2025", "rolling_2026", "recent_2026"]
+FOLD_LABEL = {
+    "rolling_2024": "2024",
+    "rolling_2025": "2025",
+    "rolling_2026": "2026 Jan–Jun",
+    "recent_2026": "2026 Jan–Jun · recent window",
+}
+FOLD_WINDOWS = {  # fit, select, refit, test (years)
+    "rolling_2024": ((2020, 2022), 2023, (2020, 2023), 2024),
+    "rolling_2025": ((2020, 2023), 2024, (2020, 2024), 2025),
+    "rolling_2026": ((2020, 2024), 2025, (2020, 2025), 2026),
+    "recent_2026": ((2021, 2024), 2025, (2021, 2025), 2026),
+}
+
+
+@st.cache_data(show_spinner=False)
+def load_rolling_metrics() -> pd.DataFrame:
+    return pd.read_csv(ROLLING / "rolling_metrics.csv")
+
+
+@st.cache_data(show_spinner=False)
+def load_rolling_plan() -> pd.DataFrame:
+    return pd.read_csv(ROLLING / "rolling_planning_summary.csv")
+
+
+@st.cache_data(show_spinner=False)
+def load_rolling_bootstrap() -> pd.DataFrame:
+    return pd.read_csv(ROLLING / "paired_block_bootstrap.csv")
+
+
+@st.cache_data(show_spinner=False)
+def load_rolling_hourly() -> pd.DataFrame:
+    hourly = pd.read_parquet(ROLLING / "rolling_hourly_combined.parquet")
+    hourly["fold"] = hourly["fold"].astype(str)
+    hourly["location"] = hourly["location"].astype(str)
+    return hourly
+
+
+@st.cache_data(show_spinner=False)
+def rolling_daily() -> pd.DataFrame:
+    """One row per fold, site and day: combined MAE per method and grid-plan adjustment."""
+    hourly = load_rolling_hourly()
+    frame = hourly[["fold", "location"]].copy()
+    frame["day"] = hourly["target_timestamp_pht"].dt.date
+    frame["reference_mwh"] = hourly["reference_output_mw"]
+    for model in MODELS:
+        frame[f"{model}_mae"] = (hourly[f"{model}_prediction_mw"] - hourly["reference_output_mw"]).abs()
+        frame[f"{model}_adjust"] = hourly[f"{model}_adjust_mwh"]
+    agg = {c: "mean" for c in frame.columns if c.endswith("_mae")}
+    agg.update({c: "sum" for c in frame.columns if c.endswith("_adjust") or c == "reference_mwh"})
+    return frame.groupby(["fold", "location", "day"], as_index=False).agg(agg)

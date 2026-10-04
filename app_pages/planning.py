@@ -6,13 +6,7 @@ import streamlit as st
 from habagat import scenes, theme, ui
 from habagat.data import MODEL_LABEL, MODELS, SITE_SHORT, SITES, headline_findings, load_plan_summary, load_replay
 
-theme.header(
-    "Grid planning",
-    "A forecast is only as good as <em>the plan it makes</em>",
-    "At midnight, each method’s forecast sets an hourly grid-purchase plan around the same demand and a 2 MWh battery. "
-    "The day is then replayed with the generation that actually occurred. Any energy that had to be added, "
-    "or was planned but not needed, counts as adjustment.",
-)
+theme.header('Grid planning', "Each forecast sets an hourly grid-purchase plan at midnight. The day is then replayed with actual generation. Adjustment is the extra energy bought plus planned energy that wasn't needed.")
 
 summary = load_plan_summary()
 found = headline_findings()
@@ -40,9 +34,7 @@ with side:
     theme.note("<b>Same outcome, different plans.</b> Battery dispatch and load served are identical for every "
                "method. Only the plan, and how far it had to be corrected, changes.")
 
-theme.header("Replay", "Midnight plan vs <em>the day that came</em>",
-             "The dashed forecast is fixed at 00:00. Reality is revealed as the playhead moves, and the "
-             "needed-grid bars grow next to the plan.")
+theme.section('Day replay', 'The dashed forecast is fixed at 00:00. Actual generation is revealed as the playhead moves.')
 replay = load_replay()
 c = st.columns([1.3, 1.3, 1], vertical_alignment="bottom")
 with c[0]:

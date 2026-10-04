@@ -1,0 +1,196 @@
+{
+  "created_at_utc": "2026-10-03T05:12:55.443930+00:00",
+  "requested_start_pht": "2026-01-01T00:00:00+08:00",
+  "requested_end_pht": "2026-09-30T23:00:00+08:00",
+  "expected_hours_per_site": 6552,
+  "common_complete_prefix_end_pht": "2026-06-30T23:00:00+08:00",
+  "required_physical_parameters": [
+    "ALLSKY_SFC_SW_DWN",
+    "ALLSKY_SFC_SW_DNI",
+    "ALLSKY_SFC_SW_DIFF",
+    "T2M",
+    "WS10M",
+    "WS50M",
+    "PSC"
+  ],
+  "full_requested_period_ready": false,
+  "sites": [
+    {
+      "site_id": "laoag",
+      "location": "Laoag, Ilocos Norte",
+      "requested_hours": 6552,
+      "first_missing_required_timestamp_pht": "2026-07-01T08:00:00+08:00",
+      "complete_prefix_end_pht": "2026-06-30T23:00:00+08:00",
+      "available_values_by_parameter": {
+        "ALLSKY_SFC_SW_DWN": 4352,
+        "ALLSKY_SFC_SW_DNI": 4352,
+        "ALLSKY_SFC_SW_DIFF": 4352,
+        "T2M": 6552,
+        "WS10M": 6552,
+        "WD10M": 6552,
+        "WS50M": 6552,
+        "WD50M": 6552,
+        "PS": 6552,
+        "PSC": 6552,
+        "RH2M": 6552,
+        "PRECTOTCORR": 6552,
+        "CLOUD_AMT": 4352
+      },
+      "missing_values_by_parameter": {
+        "ALLSKY_SFC_SW_DWN": 2200,
+        "ALLSKY_SFC_SW_DNI": 2200,
+        "ALLSKY_SFC_SW_DIFF": 2200,
+        "T2M": 0,
+        "WS10M": 0,
+        "WD10M": 0,
+        "WS50M": 0,
+        "WD50M": 0,
+        "PS": 0,
+        "PSC": 0,
+        "RH2M": 0,
+        "PRECTOTCORR": 0,
+        "CLOUD_AMT": 2200
+      },
+      "monthly_valid_physical_hours": {
+        "1": 744,
+        "2": 672,
+        "3": 744,
+        "4": 720,
+        "5": 744,
+        "6": 720,
+        "7": 8,
+        "8": 0,
+        "9": 0
+      }
+    },
+    {
+      "site_id": "mactan",
+      "location": "Mactan, Cebu",
+      "requested_hours": 6552,
+      "first_missing_required_timestamp_pht": "2026-07-01T08:00:00+08:00",
+      "complete_prefix_end_pht": "2026-06-30T23:00:00+08:00",
+      "available_values_by_parameter": {
+        "ALLSKY_SFC_SW_DWN": 4352,
+        "ALLSKY_SFC_SW_DNI": 4352,
+        "ALLSKY_SFC_SW_DIFF": 4352,
+        "T2M": 6552,
+        "WS10M": 6552,
+        "WD10M": 6552,
+        "WS50M": 6552,
+        "WD50M": 6552,
+        "PS": 6552,
+        "PSC": 6552,
+        "RH2M": 6552,
+        "PRECTOTCORR": 6552,
+        "CLOUD_AMT": 4352
+      },
+      "missing_values_by_parameter": {
+        "ALLSKY_SFC_SW_DWN": 2200,
+        "ALLSKY_SFC_SW_DNI": 2200,
+        "ALLSKY_SFC_SW_DIFF": 2200,
+        "T2M": 0,
+        "WS10M": 0,
+        "WD10M": 0,
+        "WS50M": 0,
+        "WD50M": 0,
+        "PS": 0,
+        "PSC": 0,
+        "RH2M": 0,
+        "PRECTOTCORR": 0,
+        "CLOUD_AMT": 2200
+      },
+      "monthly_valid_physical_hours": {
+        "1": 744,
+        "2": 672,
+        "3": 744,
+        "4": 720,
+        "5": 744,
+        "6": 720,
+        "7": 8,
+        "8": 0,
+        "9": 0
+      }
+    },
+    {
+      "site_id": "general_santos",
+      "location": "General Santos City",
+      "requested_hours": 6552,
+      "first_missing_required_timestamp_pht": "2026-07-01T08:00:00+08:00",
+      "complete_prefix_end_pht": "2026-06-30T23:00:00+08:00",
+      "available_values_by_parameter": {
+        "ALLSKY_SFC_SW_DWN": 4352,
+        "ALLSKY_SFC_SW_DNI": 4352,
+        "ALLSKY_SFC_SW_DIFF": 4352,
+        "T2M": 6552,
+        "WS10M": 6552,
+        "WD10M": 6552,
+        "WS50M": 6552,
+        "WD50M": 6552,
+        "PS": 6552,
+        "PSC": 6552,
+        "RH2M": 6552,
+        "PRECTOTCORR": 6552,
+        "CLOUD_AMT": 4352
+      },
+      "missing_values_by_parameter": {
+        "ALLSKY_SFC_SW_DWN": 2200,
+        "ALLSKY_SFC_SW_DNI": 2200,
+        "ALLSKY_SFC_SW_DIFF": 2200,
+        "T2M": 0,
+        "WS10M": 0,
+        "WD10M": 0,
+        "WS50M": 0,
+        "WD50M": 0,
+        "PS": 0,
+        "PSC": 0,
+        "RH2M": 0,
+        "PRECTOTCORR": 0,
+        "CLOUD_AMT": 2200
+      },
+      "monthly_valid_physical_hours": {
+        "1": 744,
+        "2": 672,
+        "3": 744,
+        "4": 720,
+        "5": 744,
+        "6": 720,
+        "7": 8,
+        "8": 0,
+        "9": 0
+      }
+    }
+  ],
+  "raw_files": [
+    {
+      "file": "data/forecasting/rolling/raw/laoag_base_20251231_20260930_utc.csv",
+      "sha256": "bf86cf04c0b89fe1101572b1e7aeac4539d305edd12432df4777859915629344",
+      "url": "https://power.larc.nasa.gov/api/temporal/hourly/point?parameters=ALLSKY_SFC_SW_DWN%2CT2M%2CWS10M%2CWD10M%2CWS50M%2CWD50M%2CPS%2CRH2M%2CPRECTOTCORR%2CCLOUD_AMT&community=RE&longitude=120.534394&latitude=18.182931&site-elevation=5.0&time-standard=UTC&start=20251231&end=20260930&format=CSV&header=true"
+    },
+    {
+      "file": "data/forecasting/rolling/raw/laoag_solar_20251231_20260930_utc.csv",
+      "sha256": "11187f620041e441bb11a82d5ecfab720923f79aa935c2a3e741e3501fb96e3c",
+      "url": "https://power.larc.nasa.gov/api/temporal/hourly/point?parameters=ALLSKY_SFC_SW_DNI%2CALLSKY_SFC_SW_DIFF&community=RE&longitude=120.534394&latitude=18.182931&site-elevation=5.0&time-standard=UTC&start=20251231&end=20260930&format=CSV&header=true"
+    },
+    {
+      "file": "data/forecasting/rolling/raw/mactan_base_20251231_20260930_utc.csv",
+      "sha256": "38ad46bad7db6eee811ab594ac4fb9f1894e3200e659d47f12b89802621db15a",
+      "url": "https://power.larc.nasa.gov/api/temporal/hourly/point?parameters=ALLSKY_SFC_SW_DWN%2CT2M%2CWS10M%2CWD10M%2CWS50M%2CWD50M%2CPS%2CRH2M%2CPRECTOTCORR%2CCLOUD_AMT&community=RE&longitude=123.980131&latitude=10.322444&site-elevation=25.703&time-standard=UTC&start=20251231&end=20260930&format=CSV&header=true"
+    },
+    {
+      "file": "data/forecasting/rolling/raw/mactan_solar_20251231_20260930_utc.csv",
+      "sha256": "9e28a5bd036000cdef573a1299e2bcb582fe68b87fe2d451516038eb54fa6013",
+      "url": "https://power.larc.nasa.gov/api/temporal/hourly/point?parameters=ALLSKY_SFC_SW_DNI%2CALLSKY_SFC_SW_DIFF&community=RE&longitude=123.980131&latitude=10.322444&site-elevation=25.703&time-standard=UTC&start=20251231&end=20260930&format=CSV&header=true"
+    },
+    {
+      "file": "data/forecasting/rolling/raw/general_santos_base_20251231_20260930_utc.csv",
+      "sha256": "f482df155887f11ea7bf1ef983d35d2ba9c5c62c30538394a359a68b1fc51f43",
+      "url": "https://power.larc.nasa.gov/api/temporal/hourly/point?parameters=ALLSKY_SFC_SW_DWN%2CT2M%2CWS10M%2CWD10M%2CWS50M%2CWD50M%2CPS%2CRH2M%2CPRECTOTCORR%2CCLOUD_AMT&community=RE&longitude=125.103108&latitude=6.057181&site-elevation=132.199&time-standard=UTC&start=20251231&end=20260930&format=CSV&header=true"
+    },
+    {
+      "file": "data/forecasting/rolling/raw/general_santos_solar_20251231_20260930_utc.csv",
+      "sha256": "0446cc1b1ce3d634192eafcb3773767bab89776b51661d3dd8c3a8a3ac8b11fc",
+      "url": "https://power.larc.nasa.gov/api/temporal/hourly/point?parameters=ALLSKY_SFC_SW_DNI%2CALLSKY_SFC_SW_DIFF&community=RE&longitude=125.103108&latitude=6.057181&site-elevation=132.199&time-standard=UTC&start=20251231&end=20260930&format=CSV&header=true"
+    }
+  ],
+  "policy": "No filling, interpolation, substitution or annualization of missing 2026 solar inputs."
+}

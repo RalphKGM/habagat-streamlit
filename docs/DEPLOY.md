@@ -31,12 +31,13 @@ No secrets or API keys are needed.
 - Open the deployed URL once beforehand to wake the app. Free apps sleep after a period of inactivity.
 - Keep the local launcher (`Run Habagat.command`) as an offline fallback.
 - Suggested demo path (about 3 minutes):
-  1. **Overview**: the hero, the four numbers, the pipeline.
-  2. **Live plant**: press *Windiest* at Laoag and point out the rotor, battery and flows.
-  3. **System designer**: drag wind to 0 and watch coverage drop. Then show the fingerprint heatmap.
-  4. **Forecast lab**: the leaderboard. Then *Play day* with the reference hidden, and reveal it.
+  1. **Map**: hover the three regions, click Laoag, then press play on the timeline and watch the colors and wind shift through the day. Switch the legend to *Capacity factor*, then open the *Forecast 2025* tab in the panel.
+  2. **Live plant**: press *Windiest* and point out the rotor, battery and flows.
+  3. **System designer**: drag wind to 0 and watch renewable coverage drop. Then show the surplus heatmap.
+  4. **Forecast accuracy**: the leaderboard, then *Play day* with the reference hidden, then reveal it.
   5. **Grid planning**: the replay on 15 Jul 2025, comparing XGBoost with Previous day.
-  6. **Methods**: mention that the test suite reproduces the paper's tables exactly.
+  6. **Rolling test**: point at the fold grid (fit, select, test), then click a red and a green day in the calendar.
+  7. **Methodology**: the comparison with related studies; mention that the test suite reproduces the paper's tables exactly.
 
 ## Rebuilding the data
 
@@ -44,5 +45,6 @@ If the research outputs change, regenerate `data/` from the full project and rer
 
 ```bash
 python scripts/build_data.py ~/Downloads/Solar_Wind_Classroom_Presentation
+python scripts/build_rolling.py "~/Desktop/final-submission-simulation/[3 - STREAMLIT]/project"
 python -m pytest tests -q
 ```

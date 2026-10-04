@@ -1,0 +1,591 @@
+{
+  "passed": true,
+  "check_count": 116,
+  "checks": [
+    {
+      "name": "raw hash data/forecasting/rolling/raw/laoag_base_20251231_20260930_utc.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "raw hash data/forecasting/rolling/raw/laoag_solar_20251231_20260930_utc.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "raw hash data/forecasting/rolling/raw/mactan_base_20251231_20260930_utc.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "raw hash data/forecasting/rolling/raw/mactan_solar_20251231_20260930_utc.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "raw hash data/forecasting/rolling/raw/general_santos_base_20251231_20260930_utc.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "raw hash data/forecasting/rolling/raw/general_santos_solar_20251231_20260930_utc.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "input hash config/rolling_evaluation.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "input hash data/simulation/processed/hourly_1mw_solar_1mw_wind_2020_2024_pht.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "input hash data/forecasting/processed/reference_modeled_generation_2025.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "input hash data/forecasting/rolling/processed/reference_modeled_generation_2026_available.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "2026 complete local range",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "2026 site hour counts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "2026 physical outputs bounded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2024 issue midnight",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2024 horizon and target ordering",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2024 unique site source target",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2024 test year only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2024 complete days and sources",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2024 previous_day source sum",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2024 previous_day General Santos City serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2024 previous_day Laoag, Ilocos Norte serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2024 previous_day Mactan, Cebu serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2024 training_climatology source sum",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2024 training_climatology General Santos City serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2024 training_climatology Laoag, Ilocos Norte serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2024 training_climatology Mactan, Cebu serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2024 xgboost source sum",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2024 xgboost General Santos City serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2024 xgboost Laoag, Ilocos Norte serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2024 xgboost Mactan, Cebu serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2024 reference SOC bounds",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2024 previous_day stored planning balance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2024 training_climatology stored planning balance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2024 xgboost stored planning balance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2025 issue midnight",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2025 horizon and target ordering",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2025 unique site source target",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2025 test year only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2025 complete days and sources",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2025 previous_day source sum",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2025 previous_day General Santos City serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2025 previous_day Laoag, Ilocos Norte serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2025 previous_day Mactan, Cebu serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2025 training_climatology source sum",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2025 training_climatology General Santos City serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2025 training_climatology Laoag, Ilocos Norte serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2025 training_climatology Mactan, Cebu serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2025 xgboost source sum",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2025 xgboost General Santos City serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2025 xgboost Laoag, Ilocos Norte serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2025 xgboost Mactan, Cebu serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2025 reference SOC bounds",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2025 previous_day stored planning balance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2025 training_climatology stored planning balance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2025 xgboost stored planning balance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2026 issue midnight",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2026 horizon and target ordering",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2026 unique site source target",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2026 test year only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2026 complete days and sources",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2026 previous_day source sum",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2026 previous_day General Santos City serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2026 previous_day Laoag, Ilocos Norte serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2026 previous_day Mactan, Cebu serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2026 training_climatology source sum",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2026 training_climatology General Santos City serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2026 training_climatology Laoag, Ilocos Norte serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2026 training_climatology Mactan, Cebu serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2026 xgboost source sum",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2026 xgboost General Santos City serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2026 xgboost Laoag, Ilocos Norte serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2026 xgboost Mactan, Cebu serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2026 reference SOC bounds",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2026 previous_day stored planning balance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2026 training_climatology stored planning balance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rolling_2026 xgboost stored planning balance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "recent_2026 issue midnight",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "recent_2026 horizon and target ordering",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "recent_2026 unique site source target",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "recent_2026 test year only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "recent_2026 complete days and sources",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "recent_2026 previous_day source sum",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "recent_2026 previous_day General Santos City serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "recent_2026 previous_day Laoag, Ilocos Norte serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "recent_2026 previous_day Mactan, Cebu serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "recent_2026 training_climatology source sum",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "recent_2026 training_climatology General Santos City serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "recent_2026 training_climatology Laoag, Ilocos Norte serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "recent_2026 training_climatology Mactan, Cebu serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "recent_2026 xgboost source sum",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "recent_2026 xgboost General Santos City serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "recent_2026 xgboost Laoag, Ilocos Norte serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "recent_2026 xgboost Mactan, Cebu serialized metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "recent_2026 reference SOC bounds",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "recent_2026 previous_day stored planning balance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "recent_2026 training_climatology stored planning balance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "recent_2026 xgboost stored planning balance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "matched window equal hour counts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "original 2025 forecasts reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "24 newly fitted saved models",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "result hash data/forecasting/rolling/results/paired_block_bootstrap.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "result hash data/forecasting/rolling/results/recent_2026_planning_hourly.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "result hash data/forecasting/rolling/results/recent_2026_predictions.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "result hash data/forecasting/rolling/results/recent_2026_validation_predictions.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "result hash data/forecasting/rolling/results/rolling_2024_planning_hourly.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "result hash data/forecasting/rolling/results/rolling_2024_predictions.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "result hash data/forecasting/rolling/results/rolling_2024_validation_predictions.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "result hash data/forecasting/rolling/results/rolling_2025_planning_hourly.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "result hash data/forecasting/rolling/results/rolling_2025_predictions.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "result hash data/forecasting/rolling/results/rolling_2025_validation_predictions.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "result hash data/forecasting/rolling/results/rolling_2026_planning_hourly.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "result hash data/forecasting/rolling/results/rolling_2026_predictions.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "result hash data/forecasting/rolling/results/rolling_2026_validation_predictions.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "result hash data/forecasting/rolling/results/rolling_metrics.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "result hash data/forecasting/rolling/results/rolling_planning_summary.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "result hash data/forecasting/rolling/results/rolling_selection.csv",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "limitations": [
+    "Internal model-series verification; no measured plant ground truth.",
+    "Jan-Sep 2026 remains incomplete; no invented months.",
+    "Bootstrap conditional on fixed models and seven-day block."
+  ]
+}

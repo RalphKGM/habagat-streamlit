@@ -1,0 +1,407 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0C1E2B; --sea:#0A1925; --rail:#0F2433; --line:#1F3A4D; --line2:#2A4B60; --text:#EAF2F6; --muted:#8BA6B5;
+    --solar:#FF8A5B; --wind:#3FD0F0; --battery:#C3A6FF; --grid:#FF5C7A; --unused:#5E7787; --served:#6EE7B7; --hi:#FFD166; }
+  * { box-sizing:border-box; margin:0; }
+  html, body { background:var(--bg); color:var(--text); font:15px/1.4 'Barlow', system-ui, sans-serif; overflow:hidden; }
+  .mono { font-family:'IBM Plex Mono', monospace; }
+  .cond { font-family:'Barlow Condensed', 'Barlow', sans-serif; letter-spacing:.01em; }
+  .num { font-variant-numeric:tabular-nums; }
+  #app { display:grid; grid-template-columns:minmax(0,1fr) 360px; grid-template-rows:minmax(0,1fr) 128px; height:760px;
+    border:1px solid var(--line); background:var(--sea); }
+  #mapbox { position:relative; overflow:hidden; background:radial-gradient(ellipse at 60% 45%, #0E2535 0%, #0A1925 70%); }
+  svg#map, canvas#wind { position:absolute; inset:0; width:100%; height:100%; }
+  canvas#wind { pointer-events:none; }
+  .region { stroke:#06121B; stroke-width:1; cursor:pointer; transition:fill .5s, opacity .2s; }
+  .region.dim { opacity:.5; }
+  .region.sel { stroke:var(--hi); stroke-width:1.6; }
+  .contour { fill:none; stroke:#1A3B50; stroke-width:1; }
+  .grat { stroke:#132C3D; stroke-width:1; stroke-dasharray:2 5; }
+  .tick { font-family:'IBM Plex Mono', monospace; fill:#6D8C9E; }
+  .site-dot { fill:var(--sea); stroke:var(--text); stroke-width:2; cursor:pointer; }
+  .site-dot.sel { fill:var(--hi); stroke:var(--hi); }
+  .site-label { font-family:'Barlow Condensed', sans-serif; font-weight:600; fill:var(--text); letter-spacing:.04em; text-transform:uppercase; pointer-events:none;
+    paint-order:stroke; stroke:var(--sea); stroke-width:4px; }
+  .cross { stroke:var(--hi); stroke-width:1; opacity:0; }
+  .cross.on { opacity:.7; }
+
+  #key { position:absolute; left:16px; top:16px; width:230px; border:1px solid var(--line2); background:rgba(10,25,37,.85); padding:10px 12px; }
+  #key .opts { display:flex; gap:12px; margin-bottom:8px; font-size:13px; }
+  #key .opts button { background:none; border:0; color:var(--muted); font:500 13px 'Barlow'; padding:0 0 3px; cursor:pointer; border-bottom:2px solid transparent; }
+  #key .opts button.on { color:var(--text); border-color:var(--hi); }
+  #key .bar { height:8px; }
+  #key .ticks { display:flex; justify-content:space-between; font:11px 'IBM Plex Mono'; color:var(--muted); margin-top:4px; }
+  #key .title { font-size:12px; color:var(--muted); margin-bottom:6px; }
+  #toggles { position:absolute; right:16px; top:16px; display:flex; gap:6px; }
+  #toggles button { border:1px solid var(--line2); background:rgba(10,25,37,.85); color:var(--muted); font:500 12px 'Barlow'; padding:5px 9px; cursor:pointer; }
+  #toggles button.on { color:var(--text); border-color:var(--text); }
+  #compass { position:absolute; right:22px; bottom:18px; opacity:.7; }
+  #tip { position:absolute; pointer-events:none; background:#06121B; border:1px solid var(--line2); padding:8px 10px; min-width:190px; opacity:0; transition:opacity .12s; }
+  #tip.on { opacity:1; }
+  #tip h4 { font:600 18px 'Barlow Condensed'; letter-spacing:.03em; text-transform:uppercase; }
+  #tip table { width:100%; font-size:13px; border-collapse:collapse; margin-top:4px; }
+  #tip td { padding:1px 0; color:var(--muted); } #tip td:last-child { text-align:right; color:var(--text); font-family:'IBM Plex Mono'; font-size:12px; }
+
+  /* rail */
+  #rail { grid-row:1 / span 2; grid-column:2; background:var(--rail); border-left:1px solid var(--line); overflow:auto; scrollbar-width:thin; }
+  .sites { display:grid; grid-template-columns:repeat(3,1fr); border-bottom:1px solid var(--line); }
+  .sites button { background:none; border:0; border-right:1px solid var(--line); color:var(--muted); padding:10px 6px 9px; cursor:pointer; text-align:left; }
+  .sites button:last-child { border-right:0; }
+  .sites button b { display:block; font:600 15px 'Barlow Condensed'; letter-spacing:.04em; text-transform:uppercase; color:inherit; }
+  .sites button small { font-size:11.5px; }
+  .sites button.on { color:var(--text); background:#132D3F; box-shadow:inset 0 -2px 0 var(--hi); }
+  .sec { padding:14px 16px; border-bottom:1px solid var(--line); }
+  .sec h5 { font:500 12px 'Barlow'; color:var(--muted); margin-bottom:8px; display:flex; justify-content:space-between; }
+  .name { font:600 34px/1 'Barlow Condensed'; text-transform:uppercase; letter-spacing:.02em; }
+  .coord { font:12px 'IBM Plex Mono'; color:var(--muted); margin-top:6px; }
+  .tabs { display:flex; gap:18px; margin-top:12px; }
+  .tabs button { background:none; border:0; color:var(--muted); font:500 14px 'Barlow'; padding:0 0 4px; cursor:pointer; border-bottom:2px solid transparent; }
+  .tabs button.on { color:var(--text); border-color:var(--hi); }
+  .readouts { display:grid; grid-template-columns:repeat(3,1fr); }
+  .readouts div { border-left:1px solid var(--line); padding-left:10px; }
+  .readouts div:first-child { border-left:0; padding-left:0; }
+  .readouts b { display:block; font:600 32px/1 'Barlow Condensed'; }
+  .readouts b small { font-size:15px; color:var(--muted); font-weight:500; margin-left:2px; }
+  .readouts span { font-size:12px; color:var(--muted); }
+  .split { display:flex; height:10px; margin:4px 0 6px; }
+  .split i { display:block; height:100%; }
+  .legendrow { display:flex; justify-content:space-between; font-size:13px; }
+  .gauge { margin-bottom:9px; }
+  .gauge .top { display:flex; justify-content:space-between; font-size:13.5px; }
+  .gauge .top em { font-style:normal; font:12px 'IBM Plex Mono'; }
+  .gauge .rail2 { position:relative; height:4px; background:#1B3547; margin-top:4px; }
+  .gauge .rail2 i { position:absolute; left:0; top:0; bottom:0; transition:width .35s; }
+  .gauge .rail2 u { position:absolute; top:-3px; bottom:-3px; width:2px; background:var(--text); transition:left .35s; }
+  .sw { display:inline-block; width:8px; height:8px; margin-right:7px; vertical-align:1px; }
+  table.facts { width:100%; border-collapse:collapse; font-size:14px; }
+  table.facts td { padding:5px 0; border-top:1px solid var(--line); color:var(--muted); }
+  table.facts tr:first-child td { border-top:0; }
+  table.facts td:last-child { text-align:right; color:var(--text); font:13px 'IBM Plex Mono'; }
+  .fine { font-size:12.5px; color:var(--muted); line-height:1.45; }
+  .fine b { color:var(--text); font-weight:500; }
+
+  /* timeline strip */
+  #strip { grid-column:1; grid-row:2; border-top:1px solid var(--line); background:var(--bg); display:grid; grid-template-columns:236px 1fr 120px; }
+  #strip .date { padding:14px 16px; border-right:1px solid var(--line); }
+  #strip .date .row { display:flex; gap:6px; margin-top:8px; }
+  .sq { width:30px; height:30px; border:1px solid var(--line2); background:none; color:var(--text); cursor:pointer; font-size:16px; }
+  .sq:hover { border-color:var(--text); }
+  input[type=date] { flex:1; min-width:0; background:none; color:var(--text); border:1px solid var(--line2); padding:3px 6px; font:13px 'Barlow'; color-scheme:dark; }
+  #strip .chart { position:relative; cursor:ew-resize; padding:10px 14px 18px; }
+  #strip svg { width:100%; height:100%; display:block; overflow:visible; }
+  #strip .clock { border-left:1px solid var(--line); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; }
+  #strip .clock b { font:600 30px/1 'Barlow Condensed'; }
+  #play { width:64px; height:28px; border:1px solid var(--hi); background:none; color:var(--hi); font:600 12px 'Barlow'; letter-spacing:.06em; cursor:pointer; }
+  #play.on { background:var(--hi); color:#0A1925; }
+  @media (max-width: 760px) {
+    #app { grid-template-columns:1fr; grid-template-rows:420px 128px auto; height:auto; }
+    #rail { grid-row:3; grid-column:1; border-left:0; border-top:1px solid var(--line); }
+    #strip { grid-template-columns:1fr 90px; } #strip .date { display:none; }
+    #key { width:190px; } #tip { display:none; }
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="mapbox">
+    <svg id="map"></svg><canvas id="wind"></canvas>
+    <div id="key"></div>
+    <div id="toggles"><button id="tWind" class="on">Wind</button><button id="tLabels" class="on">Labels</button></div>
+    <svg id="compass" width="34" height="46" viewBox="0 0 34 46"><path d="M17 4 23 24 17 20 11 24Z" fill="#EAF2F6"/><path d="M17 44 11 24 17 28 23 24Z" fill="#5F7F91"/><text x="17" y="3" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#8BA6B5" dy="-1">N</text></svg>
+    <div id="tip"></div>
+  </div>
+  <div id="strip"></div>
+  <div id="rail"></div>
+</div>
+<script>
+// ---------- Streamlit component protocol (no build step) ----------
+const send = (type, extra) => window.parent.postMessage(Object.assign({ isStreamlitMessage: true, type }, extra), "*");
+const setValue = (value) => send("streamlit:setComponentValue", { value, dataType: "json" });
+
+const NS = "http://www.w3.org/2000/svg", $ = (id) => document.getElementById(id);
+const el = (tag, attrs, parent) => { const n = document.createElementNS(NS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); if (parent) parent.appendChild(n); return n; };
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x)), lerp = (a, b, f) => a + (b - a) * f;
+const f2 = (v) => v.toFixed(2), f1 = (v) => v.toFixed(1), f0 = (v) => Math.round(v).toString(), pad = (h) => String(h).padStart(2, "0");
+const comma = (v) => f0(v).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+const C = { solar: "#FF8A5B", wind: "#3FD0F0", battery: "#C3A6FF", grid: "#FF5C7A", unused: "#5E7787", served: "#6EE7B7", hi: "#FFD166", text: "#EAF2F6" };
+const SCALE = ["#123247", "#14566A", "#1A8190", "#3DB6B0", "#9EE3C0", "#FFF1B8"];
+function scale(v) {
+  v = clamp(v, 0, 1) * (SCALE.length - 1);
+  const i = Math.min(Math.floor(v), SCALE.length - 2), f = v - i;
+  const a = SCALE[i].match(/\w\w/g).map(h => parseInt(h, 16)), b = SCALE[i + 1].match(/\w\w/g).map(h => parseInt(h, 16));
+  return "rgb(" + a.map((x, k) => Math.round(lerp(x, b[k], f))).join(",") + ")";
+}
+
+let A = null, built = false, site = null, hover = null, t = 13, playing = false, tab = "now", metric = "now", showWind = true, showLabels = true;
+let view = { s: 1, x0: 0, y0: 0, W: 0, H: 0 };
+const regionEls = {}, siteEls = {};
+let gratLayer = null;
+
+const H = (s, hour) => A.day[s][clamp(Math.floor(hour), 0, 23)];
+function sample(s, hour) {
+  const i = Math.floor(hour), f = hour - i, a = A.day[s][clamp(i, 0, 23)], b = A.day[s][clamp(i + 1, 0, 23)], o = {};
+  for (const k in a) o[k] = lerp(a[k], b[k], f);
+  return o;
+}
+const cap = () => Math.max(A.cfg.solar + A.cfg.wind, 0.001);
+function metricValue(s) {
+  const S = A.sites[s];
+  if (metric === "now") { const h = sample(s, t); return (h.s + h.w) / cap(); }
+  if (metric === "cf") return S.cf / 0.3;
+  return S.wind_share;
+}
+const KEY = { now: ["Output this hour, % of capacity", "0", "50", "100"], cf: ["Capacity factor 2020–2024, %", "0", "15", "30"], share: ["Wind share of generation, %", "0", "50", "100"] };
+
+// ---------- map ----------
+function build() {
+  const svg = $("map"), M = A.map;
+  el("path", { d: M.neighbours, fill: "#10283A" }, svg);
+  gratLayer = el("g", {}, svg);
+  const cont = el("g", {}, svg);
+  (M.contours || []).forEach((d, i) => el("path", { d, class: "contour", opacity: 1 - i * .2 }, cont));
+  for (const name in A.sites) {
+    const p = el("path", { d: M.regions[A.sites[name].group], class: "region" }, svg);
+    p.addEventListener("mousemove", (e) => showTip(name, e));
+    p.addEventListener("mouseleave", hideTip);
+    p.addEventListener("click", () => select(name));
+    regionEls[name] = p;
+  }
+  for (const name in A.sites) {
+    const s = M.sites[name], g = el("g", {}, svg);
+    const cx = el("line", { x1: s.x - 26, x2: s.x + 26, y1: s.y, y2: s.y, class: "cross" }, g);
+    const cy = el("line", { x1: s.x, x2: s.x, y1: s.y - 26, y2: s.y + 26, class: "cross" }, g);
+    const dot = el("rect", { x: s.x - 5, y: s.y - 5, width: 10, height: 10, class: "site-dot", transform: `rotate(45 ${s.x} ${s.y})` }, g);
+    const label = el("text", { x: s.x + 14, y: s.y + 5, class: "site-label" }, g);
+    label.textContent = A.sites[name].short;
+    dot.addEventListener("mousemove", (e) => showTip(name, e)); dot.addEventListener("mouseleave", hideTip);
+    dot.addEventListener("click", () => select(name));
+    siteEls[name] = { dot, label, cross: [cx, cy] };
+  }
+  $("tWind").onclick = () => { showWind = !showWind; $("tWind").classList.toggle("on", showWind); };
+  $("tLabels").onclick = () => { showLabels = !showLabels; $("tLabels").classList.toggle("on", showLabels); paint(); };
+  addEventListener("resize", resize);
+  built = true;
+}
+function resize() {
+  const box = $("mapbox"), W = box.clientWidth, Ht = box.clientHeight, M = A.map;
+  const s = Math.min((W - 80) / M.width, (Ht - 50) / M.height);
+  view = { s, x0: (W - M.width * s) / 2 + 30, y0: (Ht - M.height * s) / 2, W, H: Ht };
+  $("map").setAttribute("viewBox", `${-view.x0 / s} ${-view.y0 / s} ${W / s} ${Ht / s}`);
+  const cv = $("wind"); cv.width = W * devicePixelRatio; cv.height = Ht * devicePixelRatio;
+  drawGraticule(); seedParticles(); sizeMarkers();
+}
+// Keep labels and markers a constant on-screen size whatever the map scale.
+function sizeMarkers() {
+  const k = 1 / view.s, M = A.map;
+  for (const n in siteEls) {
+    const s = M.sites[n], e = siteEls[n], r = 6 * k;
+    e.dot.setAttribute("x", s.x - r); e.dot.setAttribute("y", s.y - r); e.dot.setAttribute("width", 2 * r); e.dot.setAttribute("height", 2 * r);
+    e.dot.style.strokeWidth = 2 * k;
+    e.label.setAttribute("x", s.x + 12 * k); e.label.setAttribute("y", s.y + 6 * k); e.label.style.fontSize = (17 * k) + "px";
+    e.label.style.strokeWidth = (4 * k) + "px";
+    e.cross[0].setAttribute("x1", s.x - 30 * k); e.cross[0].setAttribute("x2", s.x + 30 * k);
+    e.cross[1].setAttribute("y1", s.y - 30 * k); e.cross[1].setAttribute("y2", s.y + 30 * k);
+    e.cross.forEach(c => c.style.strokeWidth = k);
+  }
+}
+function drawGraticule() {
+  const M = A.map, s = view.s, vx = -view.x0 / s, vy = -view.y0 / s, vw = view.W / s, vh = view.H / s;
+  gratLayer.innerHTML = "";
+  const lonX = (lon) => (lon - M.bounds[0]) / (M.bounds[2] - M.bounds[0]) * M.width;
+  const latY = (lat) => (M.bounds[3] - lat) / (M.bounds[3] - M.bounds[1]) * M.height;
+  for (let lon = 112; lon <= 134; lon += 2) {
+    const x = lonX(lon); if (x < vx || x > vx + vw) continue;
+    el("line", { x1: x, x2: x, y1: vy, y2: vy + vh, class: "grat" }, gratLayer);
+    const tx = el("text", { x: x + 4 / s, y: vy + vh - 8 / s, class: "tick", style: `font-size:${12 / s}px` }, gratLayer); tx.textContent = lon + "°E";
+  }
+  for (let lat = 0; lat <= 26; lat += 2) {
+    const y = latY(lat); if (y < vy || y > vy + vh) continue;
+    el("line", { x1: vx, x2: vx + vw, y1: y, y2: y, class: "grat" }, gratLayer);
+    const ty = el("text", { x: vx + vw - 8 / s, y: y - 4 / s, class: "tick", "text-anchor": "end", style: `font-size:${12 / s}px` }, gratLayer); ty.textContent = lat + "°N";
+  }
+}
+const toScreen = (x, y) => [view.x0 + x * view.s, view.y0 + y * view.s];
+
+function select(name) { site = name; renderRail(); paint(); setValue({ site, date: A.date, nonce: Date.now() }); }
+function showTip(name, e) {
+  hover = name;
+  const S = A.sites[name], h = H(name, t), tip = $("tip"), box = $("mapbox").getBoundingClientRect();
+  tip.innerHTML = `<h4>${S.short} <span style="color:#8BA6B5;font-size:14px;text-transform:none">${S.group}</span></h4>
+    <table><tr><td>Output at ${pad(Math.floor(t))}:00</td><td>${f2(h.s + h.w)} MW</td></tr>
+    <tr><td><span class="sw" style="background:${C.solar}"></span>Solar / <span class="sw" style="background:${C.wind}"></span>wind</td><td>${f2(h.s)} / ${f2(h.w)}</td></tr>
+    <tr><td>Renewable share today</td><td>${f0(A.daySummary[name].share * 100)}%</td></tr>
+    <tr><td>Capacity factor, 5 yr</td><td>${f1(S.cf * 100)}%</td></tr>
+    <tr><td>Hub wind</td><td>${f1(h.hub)} m/s</td></tr></table>`;
+  let x = e.clientX - box.left + 16, y = e.clientY - box.top + 14;
+  if (x + 220 > box.width) x -= 240; if (y + 150 > box.height) y -= 170;
+  tip.style.left = x + "px"; tip.style.top = y + "px"; tip.classList.add("on");
+  for (const n in regionEls) regionEls[n].classList.toggle("dim", n !== name);
+}
+function hideTip() { hover = null; $("tip").classList.remove("on"); for (const n in regionEls) regionEls[n].classList.remove("dim"); }
+
+function renderKey() {
+  const [title, a, b, c] = KEY[metric];
+  $("key").innerHTML = `<div class="opts"><button data-m="now" class="${metric === "now" ? "on" : ""}">Output</button><button data-m="cf" class="${metric === "cf" ? "on" : ""}">Capacity factor</button><button data-m="share" class="${metric === "share" ? "on" : ""}">Wind share</button></div>
+    <div class="title">${title}</div><div class="bar" style="background:linear-gradient(90deg,${SCALE.join(",")})"></div><div class="ticks"><span>${a}</span><span>${b}</span><span>${c}</span></div>`;
+  $("key").querySelectorAll("button").forEach(b => b.onclick = () => { metric = b.dataset.m; renderKey(); paint(); });
+}
+function paint() {
+  for (const n in regionEls) {
+    regionEls[n].setAttribute("fill", scale(metricValue(n)));
+    regionEls[n].classList.toggle("sel", n === site);
+    siteEls[n].dot.classList.toggle("sel", n === site);
+    siteEls[n].cross.forEach(c => c.classList.toggle("on", n === site));
+    siteEls[n].label.style.display = showLabels ? "" : "none";
+  }
+}
+
+// ---------- rail ----------
+function renderRail() {
+  const S = A.sites[site];
+  const buttons = Object.keys(A.sites).map(n => `<button data-s="${n}" class="${n === site ? "on" : ""}"><b>${A.sites[n].short}</b><small>${A.sites[n].group}</small></button>`).join("");
+  $("rail").innerHTML = `<div class="sites">${buttons}</div>
+    <div class="sec"><div class="name">${S.short}</div><div class="coord">${S.lat.toFixed(3)}°N ${S.lon.toFixed(3)}°E · ${S.group}</div>
+      <div class="tabs"><button data-t="now" class="${tab === "now" ? "on" : ""}">This day</button><button data-t="fc" class="${tab === "fc" ? "on" : ""}">2025 forecast test</button></div></div>
+    ${tab === "now" ? nowTab(S) : fcTab(S)}`;
+  $("rail").querySelectorAll(".sites button").forEach(b => b.onclick = () => select(b.dataset.s));
+  $("rail").querySelectorAll(".tabs button").forEach(b => b.onclick = () => { tab = b.dataset.t; renderRail(); });
+  updateRail();
+}
+function gauge(id, label, color) {
+  return `<div class="gauge"><div class="top"><span><span class="sw" style="background:${color}"></span>${label}</span><em class="num" id="v-${id}"></em></div><div class="rail2"><i id="g-${id}" style="background:${color}"></i><u id="d-${id}" style="display:none"></u></div></div>`;
+}
+function nowTab(S) {
+  const ws = S.wind_share;
+  return `<div class="sec"><h5><span id="atHour"></span><span>${A.dateLabel}</span></h5>
+      <div class="readouts"><div><b class="num" id="r-out"></b><span>Output</span></div><div><b class="num" id="r-share"></b><span>Renewable today</span></div><div><b class="num" id="r-batt"></b><span>Battery</span></div></div></div>
+    <div class="sec"><h5><span>Flows this hour</span><span>MW · white mark = demand</span></h5>
+      ${gauge("solar", "Solar", C.solar)}${gauge("wind", "Wind", C.wind)}${gauge("battery", "Battery to load", C.battery)}${gauge("grid", "From grid", C.grid)}${gauge("unused", "Unused", C.unused)}</div>
+    <div class="sec"><h5><span>Source split, 2020–2024</span></h5>
+      <div class="split"><i style="width:${(1 - ws) * 100}%;background:${C.solar}"></i><i style="width:${ws * 100}%;background:${C.wind}"></i></div>
+      <div class="legendrow"><span>Solar ${f0((1 - ws) * 100)}%</span><span>Wind ${f0(ws * 100)}%</span></div></div>
+    <div class="sec"><table class="facts">
+      <tr><td>Energy per year</td><td>${comma(S.annual)} MWh</td></tr><tr><td>Capacity factor</td><td>${f1(S.cf * 100)}%</td></tr>
+      <tr><td>Demand met by renewables</td><td>${f1(S.coverage)}%</td></tr><tr><td>Grid energy needed</td><td>${comma(S.grid)} MWh/yr</td></tr>
+      <tr><td>Plant</td><td>${A.cfg.solar} + ${A.cfg.wind} MW, ${A.cfg.batt} MWh</td></tr></table></div>
+    <div class="sec fine">Reference modeled output from NASA POWER weather and a standardized demand scenario. Not metered plant data or measured city load.</div>`;
+}
+function fcTab(S) {
+  const F = S.forecast, order = ["xgboost", "previous_day", "training_climatology"];
+  const names = { xgboost: "XGBoost", previous_day: "Previous day", training_climatology: "Past average" };
+  const colors = { xgboost: C.hi, previous_day: C.battery, training_climatology: "#6F8796" };
+  const block = (vals, fmt) => { const m = Math.max(...Object.values(vals)) * 1.05;
+    return order.map(k => `<div class="gauge"><div class="top"><span>${names[k]}</span><em class="num">${fmt(vals[k])}</em></div><div class="rail2"><i style="width:${vals[k] / m * 100}%;background:${colors[k]}"></i></div></div>`).join(""); };
+  return `<div class="sec"><h5><span>Combined error (MAE)</span><span>MW, lower is better</span></h5>${block(F.mae, v => v.toFixed(3))}
+      <p class="fine">XGBoost error is <b>${f1(F.mae_cut)}% lower</b> than the best baseline at this site.</p></div>
+    <div class="sec"><h5><span>Grid-plan adjustment</span><span>MWh over 2025</span></h5>${block(F.adj, f0)}
+      <p class="fine">Extra grid energy plus planned energy that wasn't needed. XGBoost needs <b>${f1(F.plan_cut)}% less</b>.</p></div>
+    <div class="sec fine">Trained 2020–2023, selected on 2024, scored once on all 8,760 hours of 2025.</div>`;
+}
+function updateRail() {
+  if (tab !== "now" || !site) return;
+  const h = sample(site, t), hi = H(site, t), max = Math.max(A.cfg.solar, A.cfg.wind, 1);
+  $("atHour").textContent = `At ${pad(Math.floor(t))}:00 PHT`;
+  $("r-out").innerHTML = `${f2(hi.s + hi.w)}<small>MW</small>`;
+  $("r-share").innerHTML = `${f0(A.daySummary[site].share * 100)}<small>%</small>`;
+  $("r-batt").innerHTML = A.cfg.batt > 0 ? `${f0(h.soc / A.cfg.batt * 100)}<small>%</small>` : "–";
+  const v = { solar: [h.s, hi.s], wind: [h.w, hi.w], battery: [h.dis, hi.dis], grid: [h.g, hi.g], unused: [h.sp, hi.sp] };
+  for (const k in v) {
+    $("g-" + k).style.width = clamp(v[k][0] / max * 100, 0, 100) + "%";
+    $("v-" + k).textContent = f2(v[k][1]);
+  }
+  ["solar", "wind"].forEach(k => { const d = $("d-" + k); d.style.display = ""; d.style.left = clamp(h.d / max * 100, 0, 100) + "%"; });
+}
+
+// ---------- timeline strip ----------
+function renderStrip() {
+  $("strip").innerHTML = `<div class="date"><div class="fine">Day</div><div class="row">
+      <button class="sq" id="prev">‹</button><input type="date" id="date" value="${A.date}" min="${A.minDate}" max="${A.maxDate}"><button class="sq" id="next">›</button></div></div>
+    <div class="chart" id="chart"><svg id="tl" preserveAspectRatio="none" viewBox="0 0 1000 100"></svg></div>
+    <div class="clock"><b class="num" id="clock"></b><button id="play">PLAY</button></div>`;
+  const step = (d) => { const x = new Date(A.date + "T00:00:00Z"); x.setUTCDate(x.getUTCDate() + d); const s = x.toISOString().slice(0, 10); if (s >= A.minDate && s <= A.maxDate) changeDate(s); };
+  $("prev").onclick = () => step(-1); $("next").onclick = () => step(1);
+  $("date").onchange = (e) => e.target.value && changeDate(e.target.value);
+  $("play").onclick = () => { playing = !playing; if (playing && t >= 23) t = 0; };
+  const chart = $("chart"); let drag = false;
+  const seek = (e) => { const r = $("tl").getBoundingClientRect(); t = clamp((e.clientX - r.left) / r.width * 23, 0, 23); playing = false; };
+  chart.onmousedown = (e) => { drag = true; seek(e); };
+  addEventListener("mousemove", (e) => drag && seek(e)); addEventListener("mouseup", () => drag = false);
+  drawStrip();
+}
+function drawStrip() {
+  const svg = $("tl"); if (!svg || !site) return;
+  const D = A.day[site], max = Math.max(...D.map(r => Math.max(r.s + r.w, r.d)), .1) * 1.1;
+  const X = (i) => i / 23 * 1000, Y = (v) => 100 - v / max * 92;
+  const area = (fn) => "M0,100" + D.map((r, i) => `L${X(i).toFixed(1)},${Y(fn(r)).toFixed(1)}`).join("") + "L1000,100Z";
+  const ticks = [0, 3, 6, 9, 12, 15, 18, 21, 23].map(h => `<text x="${X(h)}" y="114" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#5F7F91" style="font-size:11px">${pad(h)}</text>`).join("");
+  svg.innerHTML = `<path d="${area(r => r.s + r.w)}" fill="${C.wind}" opacity=".55"/><path d="${area(r => r.s)}" fill="${C.solar}" opacity=".8"/>
+    <path d="${D.map((r, i) => `${i ? "L" : "M"}${X(i)},${Y(r.d)}`).join("")}" fill="none" stroke="#EAF2F6" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
+    <line x1="0" x2="1000" y1="100" y2="100" stroke="#2A4B60" vector-effect="non-scaling-stroke"/>${ticks}
+    <line id="needle" y1="-4" y2="100" stroke="${C.hi}" stroke-width="2" vector-effect="non-scaling-stroke"/>`;
+}
+function changeDate(d) { playing = false; setValue({ site, date: d, nonce: Date.now() }); }
+
+// ---------- wind particles (inverse-distance blend of the three sites' hub wind) ----------
+let particles = [];
+function seedParticles() { particles = Array.from({ length: Math.round(view.W * view.H / 2400) }, () => ({ x: Math.random() * view.W, y: Math.random() * view.H, age: Math.random() * 70 })); }
+function windAt(x, y) {
+  let wx = 0, wy = 0, ws = 0;
+  for (const n in A.sites) {
+    const s = A.map.sites[n], [sx, sy] = toScreen(s.x, s.y), h = sample(n, t);
+    const w = 1 / (Math.pow((x - sx) ** 2 + (y - sy) ** 2, 1.1) + 400), rad = h.dir * Math.PI / 180;
+    wx += w * -Math.sin(rad) * h.hub; wy += w * Math.cos(rad) * h.hub; ws += w;
+  }
+  return [wx / ws, wy / ws];
+}
+function drawWind(dt) {
+  const cv = $("wind"), ctx = cv.getContext("2d"), dpr = devicePixelRatio, W = view.W, Ht = view.H;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  if (!showWind) { ctx.clearRect(0, 0, W, Ht); return; }
+  ctx.globalCompositeOperation = "destination-out"; ctx.fillStyle = "rgba(0,0,0,0.15)"; ctx.fillRect(0, 0, W, Ht);
+  ctx.globalCompositeOperation = "source-over"; ctx.strokeStyle = "rgba(160,225,245,0.45)"; ctx.lineWidth = 1; ctx.beginPath();
+  const k = 2.2 * view.s * dt * 6;
+  for (const p of particles) {
+    const [vx, vy] = windAt(p.x, p.y), nx = p.x + vx * k, ny = p.y + vy * k;
+    ctx.moveTo(p.x, p.y); ctx.lineTo(nx, ny); p.x = nx; p.y = ny;
+    if (++p.age > 70 || p.x < 0 || p.y < 0 || p.x > W || p.y > Ht) { p.x = Math.random() * W; p.y = Math.random() * Ht; p.age = 0; }
+  }
+  ctx.stroke();
+}
+
+// ---------- loop ----------
+let last = performance.now();
+function frame(now) {
+  const dt = Math.min((now - last) / 1000, .1); last = now;
+  if (A && built && site) {
+    if (playing) { t += dt * 1.2; if (t >= 23) { t = 23; playing = false; } }
+    $("play").textContent = playing ? "PAUSE" : "PLAY"; $("play").classList.toggle("on", playing);
+    const n = $("needle"); if (n) { n.setAttribute("x1", t / 23 * 1000); n.setAttribute("x2", t / 23 * 1000); }
+    $("clock").textContent = `${pad(Math.floor(t))}:${pad(Math.floor((t % 1) * 60))}`;
+    if (metric === "now") paint();
+    updateRail(); drawWind(dt);
+  }
+  requestAnimationFrame(frame);
+}
+
+window.addEventListener("message", (event) => {
+  if (event.data.type !== "streamlit:render") return;
+  const first = !A;
+  A = event.data.args.data;
+  if (first) { site = A.selected; t = A.startHour; build(); }
+  if (!(site in A.sites)) site = A.selected;
+  let height = 760;
+  try { height = Math.max(620, window.parent.innerHeight - 90); } catch (e) {}
+  if (innerWidth <= 760) height = 1400;
+  $("app").style.height = innerWidth <= 760 ? "auto" : height + "px";
+  send("streamlit:setFrameHeight", { height: height + 2 });
+  resize(); renderRail(); renderStrip(); renderKey(); paint();
+});
+send("streamlit:componentReady", { apiVersion: 1 });
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

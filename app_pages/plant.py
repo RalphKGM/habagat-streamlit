@@ -6,13 +6,7 @@ import streamlit as st
 from habagat import scenes, theme, ui
 from habagat.data import SITE_SHORT, current_dispatch, settings
 
-theme.header(
-    "Live plant",
-    "Watch one day <em>unfold</em>, hour by hour",
-    "The sun follows the real hour. The rotor turns with simulated wind output and the clouds follow NASA POWER "
-    "cloud cover. Energy moves along the lines in proportion to megawatts. Everything is computed from the "
-    "weather for the day you pick.",
-)
+theme.header('Live plant', 'One simulated day at the selected site. The sky follows the hour, the rotor follows wind output, and the flows are scaled to MW.')
 
 cfg = settings()
 top = st.columns([1.3, 1, 1.4], vertical_alignment="bottom")
@@ -60,9 +54,9 @@ m[4].metric("Peak hub wind", f"{day['hub_wind_m_s'].max():.1f} m/s")
 
 fig = go.Figure()
 fig.add_scatter(x=day["timestamp_pht"], y=day["solar_mw"], name="Solar", stackgroup="g",
-                line=dict(color=theme.SUN, width=0), fillcolor="rgba(229,154,43,.75)")
+                line=dict(color=theme.SUN, width=0), fillcolor="rgba(255,138,91,.85)")
 fig.add_scatter(x=day["timestamp_pht"], y=day["wind_mw"], name="Wind", stackgroup="g",
-                line=dict(color=theme.SEA, width=0), fillcolor="rgba(45,106,138,.7)")
+                line=dict(color=theme.SEA, width=0), fillcolor="rgba(63,208,240,.6)")
 fig.add_scatter(x=day["timestamp_pht"], y=day["demand_mw"], name="Demand", line=dict(color=theme.INK, width=2.5, shape="hv"))
 fig.add_scatter(x=day["timestamp_pht"], y=day["battery_soc_end_mwh"], name="Battery (MWh)", yaxis="y2",
                 line=dict(color=theme.VIOLET, width=2.5, dash="dot"))

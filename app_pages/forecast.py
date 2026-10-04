@@ -6,12 +6,7 @@ import streamlit as st
 from habagat import theme, ui
 from habagat.data import MODEL_LABEL, MODELS, SITE_SHORT, SITES, headline_findings, load_metrics, load_predictions
 
-theme.header(
-    "Forecast lab",
-    "Three forecasters, <em>one year they never saw</em>",
-    "Each midnight in 2025, every method predicts the next 24 hours of solar and wind output using only the "
-    "previous 24 hours and the calendar. Scores compare those predictions with the reference modeled output.",
-)
+theme.header('Forecast accuracy', 'Day-ahead forecasts issued at 00:00 for every day of 2025, a year held out from training. Error is measured against the reference modeled output.')
 
 metrics = load_metrics()
 overall = metrics.loc[(metrics["scope"] == "all_hours") & (metrics["aggregation"] == "overall")]
@@ -66,11 +61,7 @@ with a:
 with b:
     theme.chart(theme.style(m_fig, f"{SITE_SHORT[site]} · error by month", "MAE · MW", 330), key="month")
 
-theme.header(
-    "Playback",
-    "Replay a forecast <em>against what happened</em>",
-    "Press play to draw the day hour by hour. Hide the reference to guess first, then reveal it.",
-)
+theme.section('Single-day playback', 'Hide the reference to compare the forecast alone first.')
 predictions = load_predictions()
 p = st.columns([1, 1, 1, 1], vertical_alignment="bottom")
 with p[0]:
@@ -93,7 +84,7 @@ sel = sel.sort_values("target_timestamp_pht").reset_index(drop=True)
 shown = MODELS if everyone else [model]
 fig = go.Figure()
 fig.add_scatter(x=sel["target_timestamp_pht"], y=sel["reference_output_mw"], name="Reference (what happened)",
-                line=dict(color=theme.INK, width=3), fill="tozeroy", fillcolor="rgba(22,35,42,.07)",
+                line=dict(color=theme.INK, width=3), fill="tozeroy", fillcolor="rgba(234,242,246,.06)",
                 visible=True if reveal else "legendonly")
 for m in shown:
     fig.add_scatter(x=sel["target_timestamp_pht"], y=sel[f"{m}_prediction_mw"], name=MODEL_LABEL[m],
@@ -130,5 +121,5 @@ q[2].metric("Energy forecast vs reference", f"{sel[f'{model}_prediction_mw'].sum
             f"{sel[f'{model}_prediction_mw'].sum() - sel['reference_output_mw'].sum():+.2f} MWh", delta_color="off")
 theme.note(
     "<b>Reference</b> is electricity calculated from the 2025 weather with the same physics. It is not metered plant output. "
-    "Models were trained on 2020–2023, selected on 2024 and scored once on 2025."
+    "Models were trained on 2020–2023, selected on 2024 and scored once on 2025. The Rolling test page repeats this for 2024 and January–June 2026."
 )

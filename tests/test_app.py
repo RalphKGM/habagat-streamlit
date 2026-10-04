@@ -8,14 +8,14 @@ import pytest
 from streamlit.testing.v1 import AppTest
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = ["overview", "plant", "designer", "sites", "forecast", "planning", "methods"]
+PAGES = ["map", "plant", "designer", "sites", "forecast", "planning", "rolling", "methods"]
 
 
 @pytest.mark.parametrize("page", PAGES)
 def test_page_renders(page: str) -> None:
     app = AppTest.from_file(str(ROOT / "streamlit_app.py"), default_timeout=120)
     app.run()
-    if page != "overview":
+    if page != "map":
         app.switch_page(f"app_pages/{page}.py")
         app.run()
     assert not app.exception, [e.message for e in app.exception]

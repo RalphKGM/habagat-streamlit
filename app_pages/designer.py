@@ -19,12 +19,7 @@ from habagat.data import (
     settings,
 )
 
-theme.header(
-    "System designer",
-    "Size the plant, then <em>stress it</em>",
-    "Every change reruns the solar and wind equations over five years of hourly weather. The battery is then "
-    "dispatched hour by hour. Deltas compare your design with the paper’s 1 MW + 1 MW + 2 MWh baseline.",
-)
+theme.header('System designer', 'Change the plant and rerun 2020–2024. Differences are shown against the study baseline: 1 MW solar, 1 MW wind and a 2 MWh battery.')
 
 
 def _reset() -> None:
@@ -87,12 +82,7 @@ with results:
     fig.update_layout(barmode="stack", bargap=.35)
     theme.chart(theme.style(fig, f"Where {SITE_SHORT[site]}’s demand was met, by year", "MWh", 330), key="yearly")
 
-theme.header(
-    "Supply fingerprint",
-    "When does your plant <em>run short?</em>",
-    "Average surplus or shortfall for each month and hour of the day: renewable output minus demand, before the battery. "
-    "Green hours charge the battery and red hours drain it.",
-)
+theme.section('Average surplus by month and hour', 'Renewable output minus demand, before the battery. Green hours charge the battery and red hours drain it.')
 net = dispatch.assign(
     month=dispatch["timestamp_pht"].dt.month,
     hour=dispatch["timestamp_pht"].dt.hour,
@@ -105,7 +95,7 @@ heat = go.Figure(
         x=[f"{h:02d}" for h in net.columns],
         y=theme.MONTHS,
         zmin=-limit, zmax=limit,
-        colorscale=[[0, theme.EMBER], [0.5, "#F7F3EA"], [1, theme.LEAF]],
+        colorscale=theme.DIVERGING,
         xgap=2, ygap=2,
         colorbar=dict(title=dict(text="MW", font=dict(family=theme.FONT_MONO, size=11)), thickness=10, outlinewidth=0,
                       tickfont=dict(family=theme.FONT_MONO, size=10)),
@@ -117,12 +107,7 @@ heat.update_xaxes(ticks="", title="Hour of day")
 heat.update_layout(hovermode="closest")
 theme.chart(theme.style(heat, "", "", 380), key="fingerprint")
 
-theme.header(
-    "Outage drill",
-    "Cut the grid. <em>How long do the lights stay on?</em>",
-    "The grid becomes unavailable for the window you choose. Solar, wind and the battery carry the load alone, "
-    "and any shortfall is unmet demand.",
-)
+theme.section('Outage test', 'The grid is unavailable during the selected window, so any shortfall becomes unmet demand.')
 o = st.columns([1, 1, 1], vertical_alignment="bottom")
 first, last = dispatch["timestamp_pht"].dt.date.min(), dispatch["timestamp_pht"].dt.date.max()
 outage_day = o[0].date_input("Outage day", dt.date(2022, 9, 15), min_value=first, max_value=last, key="outage_day")
@@ -152,7 +137,7 @@ drill.add_vrect(x0=begin, x1=begin + pd.Timedelta(hours=outage_len), fillcolor=t
                 annotation_font=dict(family=theme.FONT_MONO, size=10, color=theme.EMBER))
 drill.add_scatter(x=span["timestamp_pht"], y=span["demand_mw"], name="Demand", line=dict(color=theme.INK, width=2.5, shape="hv"))
 drill.add_scatter(x=span["timestamp_pht"], y=span["combined_mw"], name="Solar + wind", line=dict(color=theme.LEAF, width=2.5),
-                  fill="tozeroy", fillcolor="rgba(31,94,87,.12)")
+                  fill="tozeroy", fillcolor="rgba(110,231,183,.12)")
 drill.add_scatter(x=span["timestamp_pht"], y=span["battery_soc_end_mwh"], name="Battery (MWh)",
                   line=dict(color=theme.VIOLET, width=2.5, dash="dot"))
 theme.chart(theme.style(drill, "", "MW · MWh", 340), key="drill")
