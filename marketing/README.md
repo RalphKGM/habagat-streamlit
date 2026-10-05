@@ -1,74 +1,103 @@
 # Habagat ad kit
 
-Everything you need for the "advertisement" item on the final checklist:
+1. **The finished 60-second ad** (`film/renders/`): 16:9 and 9:16 MP4s, with voice-over, an original soundtrack, captions and subtitles.
+2. **The source** to change it and re-render (`film/`).
+3. **Script, claims check and social copy** (below).
+4. **Research** on tools that make app ads with Claude Code or Codex.
 
-1. **A finished 30-second ad**: `ad/habagat_ad.html` (open it in Chrome).
-2. **Script, storyboard and voice-over** to record or narrate over it.
-3. **Social copy** for posting.
-4. **Research: tools that use Claude Code / Codex to make app ads**, with exact prompts to turn this into an MP4 with music and a voice-over.
+The older 30-second motion piece is still in `ad/habagat_ad.html`.
 
 ---
 
-## 1. The ready-made ad
+## 1. The film
 
-`ad/habagat_ad.html` is a self-contained 30-second motion ad (1920×1080) in the app's own visual language. It uses the real Philippine outlines from the app, a monsoon wind-particle field, and real screenshots from `ad/shots/`. Keep `map_data.js` and `shots/` next to the HTML file.
-
-| Key | Action |
+| File | Use |
 |---|---|
-| `F` | fullscreen |
-| `H` | hide the help text |
-| `R` | restart from 0 s |
-| `Space` | pause / play |
-| `←` `→` | seek 1 s |
+| `film/renders/habagat_ad_16x9.mp4` | YouTube, presentations, LinkedIn (1920×1080, 30 fps, about 59 s) |
+| `film/renders/habagat_ad_9x16.mp4` | Reels, TikTok, Shorts (1080×1920, captions burned in) |
+| `film/renders/habagat_ad.srt` | Subtitles for the 16:9 upload |
+| `film/renders/thumb_end.png`, `thumb_result.png` | Thumbnails |
+| `film/renders/habagat_teaser.gif` | 6-second silent teaser for READMEs and chats |
 
-- **Vertical 9:16 cut** (Reels, TikTok, Shorts): open `habagat_ad.html?vertical`.
-- **Your deployed URL** on the end card: `habagat_ad.html?url=yourname.streamlit.app`.
-- **Jump to a moment:** `habagat_ad.html?t=18`.
+### How it was made (all free, all local)
 
-**Export to MP4 (simplest):** open in Chrome → `F` → `H` → `R` → record the screen.
-- **macOS:** `Cmd+Shift+5` → *Record Entire Screen*, stop after the end card (about 30 s).
-- **Windows:** Xbox Game Bar (`Win+G`) or OBS.
+| Step | Tool | File |
+|---|---|---|
+| Real product footage | Playwright drives the running app; Chrome DevTools screencast captures 1920×1080 frames with a visible cursor | `film/record_clips.py` → `film/clips/*.mp4` |
+| Voice-over | Microsoft Edge neural TTS (`edge-tts`, voice *en-US-AndrewNeural*), with word timings | `film/voice.py` → `film/audio/` |
+| Timeline | Scene lengths are fitted to the voice lines | `film/timeline.json` |
+| Motion design | One HTML page where every frame is a pure function of time: map outlines, monsoon wind particles, the fold grid, result bars, and the app clips seeked frame by frame | `film/habagat_film.html` |
+| Frame-exact render | Headless Chrome steps 30 fps and pipes frames to ffmpeg (H.264) | `film/render.py` |
+| Music | Synthesised in numpy (pad, marimba pulse, wind noise, riser), ducked under the voice, loudness-normalised to −15 LUFS | `film/mix.py` |
+| Finish | Mux, subtitles, thumbnails, GIF | `film/finish.py` |
 
-Trim the start and end in QuickTime or Clipchamp, then add the voice-over and music below in CapCut, iMovie, or Canva.
+### Re-render after a change
 
-**Export to MP4 (frame-perfect, with AI):** see section 4.
+The app must be running on `localhost:8501` for step 1. `FFMPEG` points to any ffmpeg with libx264 (`brew install ffmpeg`, or `pip install imageio-ffmpeg`).
 
-## 2. Script and storyboard (30 s)
+```bash
+cd marketing/film
+../../.venv/bin/python record_clips.py          # optional: re-shoot the app clips
+python voice.py                                  # needs: pip install edge-tts
+# rebuild timeline.json if the voice lines changed (see the scene plan at the top of this README)
+../../.venv/bin/python render.py video                     # 16:9
+../../.venv/bin/python render.py video --vertical --cap    # 9:16 with captions
+../../.venv/bin/python mix.py && python finish.py
+```
 
-| Time | Picture | On-screen text | Voice-over (calm, matter-of-fact) |
-|---|---|---|---|
-| 0.0–4.6 | Dark screen, the Philippine coastline draws itself in, monsoon wind particles drift | *Every midnight, the grid has to guess tomorrow.* | "Every night, the people who run our grid have to guess tomorrow." |
-| 4.6–9.2 | Luzon, Visayas and Mindanao fill in one by one, and the three sites light up | *How much sun. How much wind. Hour by hour, at three sites across the Philippines.* | "How much sun, and how much wind, hour by hour?" |
-| 9.2–13.4 | The wind glyph draws in, then the wordmark | *Habagat · Solar-wind forecasting for Philippine microgrids* | "Meet Habagat." |
-| 13.4–17.8 | Map screenshot with a hover card, stat counts up | *Hover any island group · 131,544 hourly weather records* | "It replays five years of NASA weather at Laoag, Mactan and General Santos." |
-| 17.8–22.2 | Forecast accuracy screenshot, stat counts up | *Tested on a year it never saw · −27% error (up to)* | "Its forecasts were tested on a year they'd never seen, with up to 27% less error." |
-| 22.2–26.4 | Grid planning screenshot, stat counts up | *Better forecasts, steadier plans · −24% adjustment (up to)* | "Better forecasts mean steadier grid plans." |
-| 26.4–30.4 | End card over a faded map, with the URL | *Habagat · habagat.streamlit.app* | "Habagat." |
+Preview without rendering: run `python3 -m http.server` in `film/` and open `habagat_film.html` (Space to pause, arrows to seek, `?vertical&cap` for the vertical cut).
 
-**Music:** warm, minimal piano or marimba with a soft pulse, building at 9 s (logo) and resolving at 26.4 s. Use royalty-free tracks from the YouTube Audio Library, Pixabay Music, or an AI generator such as ElevenLabs Music or Google Lyria. Keep music about 12 dB under the voice.
+- **Deployed URL on the end card:** add `?url=yourname.streamlit.app` to the page, or edit `#url` in the HTML, then re-render.
 
-**Claims check:** every number in the ad comes from the app's own result files.
-- **27%:** XGBoost vs. the best baseline at Laoag. The range across sites is 17–27%, so "up to 27%" is accurate.
-- **24%:** the grid-plan adjustment at Mactan. The range is 18–24%.
-- **131,544:** hourly weather records across 2020–2024.
+## 2. Script (about 59 s)
 
-Avoid saying "saves money" or "prevents blackouts". The study doesn't measure either.
+| Time | Picture | Voice-over |
+|---|---|---|
+| 0:00 | Coastline draws in, monsoon wind particles | "Every midnight, the grid has to guess tomorrow." |
+| 0:04 | Luzon, Visayas and Mindanao fill in, and the three sites light up | "How much sun? How much wind? Hour by hour." |
+| 0:09 | Logo | "This is Habagat." |
+| 0:12 | **App:** map hover, switch to Mactan, press PLAY, with 170,856 counting up | "It replays six and a half years of NASA weather, hour by hour, at three sites across the Philippines." |
+| 0:20 | **App:** day picker, jump to 20 May 2026 | "Pick any day, right up to June 2026, and watch it play out." |
+| 0:26 | **App:** System designer, wind to 0 MW (renewables fall from 71.2% to 37.0%) | "Change the plant, and every hour reruns. Take the wind away, and the grid has to cover it." |
+| 0:32 | Fold grid builds on each spoken year | "Then the forecasts face a year they've never seen. 2024. 2025. And 2026." |
+| 0:41 | **App:** Rolling test calendar, open one day | "Every day is forecast automatically, at midnight." |
+| 0:45 | Result bars for each site and year | "Seventeen to twenty-nine percent less error than the best baseline." |
+| 0:50 | **App:** grid-plan day replay, with 16–25% | "And grid plans that need up to a quarter less correction." |
+| 0:54 | End card | "Habagat. Read tomorrow's sky." |
+
+**Claims check.** Every number comes from the app's result files.
+- **170,856:** site-hours of NASA POWER weather, January 2020 to June 2026 (56,952 per site).
+- **17–29%:** XGBoost combined MAE against the better baseline, per site and test year (`data/rolling/rolling_metrics.csv`, `available_test`).
+
+  | Site | 2024 | 2025 | 2026 H1 |
+  |---|---|---|---|
+  | Laoag | 23.8% | 26.9% | 29.2% |
+  | Mactan | 17.6% | 25.7% | 26.6% |
+  | General Santos | 22.8% | 17.2% | 17.5% |
+
+- **16–25% ("up to a quarter"):** grid-plan adjustment against the best baseline, every site and test year.
+- **71.2% → 37.0%:** Laoag demand met by renewables, standard design vs. 0 MW wind, read off the designer during the shoot.
+
+Don't add "saves money" or "prevents blackouts". The study doesn't measure either. The end card says "Modeled output, not metered plant data".
 
 ## 3. Social copy
 
 **LinkedIn / Facebook**
-> Every midnight, grid operators have to guess tomorrow's sun and wind. For our CSS142 project we built **Habagat**, which simulates a solar-wind microgrid at Laoag, Mactan and General Santos from five years of NASA POWER weather. It tests machine-learning day-ahead forecasts on a held-out 2025. XGBoost cut forecast error by up to 27% and grid-plan adjustments by up to 24% compared with simple baselines. Try it: https://habagat.streamlit.app · Code: https://github.com/<you>/habagat
+> Every midnight, grid operators have to guess tomorrow's sun and wind. **Habagat** replays six and a half years of NASA POWER weather, hour by hour, for a 1 MW solar + 1 MW wind + 2 MWh battery system at Laoag, Mactan and General Santos. Then it tests day-ahead forecasts on years the model never saw: 2024, 2025 and early 2026. XGBoost had 17–29% less error than the best simple baseline at every site in every year, and its grid plans needed 16–25% less correction.
+> Code: https://github.com/RalphKGM/habagat-streamlit
 > #RenewableEnergy #MachineLearning #Philippines #Streamlit #DataScience
 
 **X / Threads (≤280 chars)**
-> Every midnight the grid has to guess tomorrow's sun & wind. Habagat replays 5 years of NASA weather at 3 PH sites and tests ML forecasts on a year they never saw: up to 27% less error. ☀️🌬️ https://habagat.streamlit.app
+> Every midnight the grid has to guess tomorrow's sun & wind. Habagat replays 6.5 years of NASA weather at 3 PH sites and tests forecasts on years they never saw: 17–29% less error than the best baseline. ☀️🌬️ github.com/RalphKGM/habagat-streamlit
 
-**TikTok / Reels caption (vertical cut)**
-> POV: you taught a model to read tomorrow's sky ☀️🌬️🔋 #habagat #renewables #machinelearning #studentproject
+**Reels / TikTok / Shorts caption (vertical cut)**
+> Read tomorrow's sky ☀️🌬️🔋 Day-ahead solar + wind forecasts for three Philippine sites, tested on years the model never saw. #habagat #renewables #machinelearning #philippines
 
 ---
 
 ## 4. Research: making app ads with Claude Code or Codex
+
+The film in section 1 follows the code-based approach described here. It uses plain HTML, Playwright and ffmpeg instead of Remotion or HyperFrames, so it needs no extra install.
 
 As of October 2026, the common approach is **code-based video**. The AI agent doesn't generate pixels the way Sora or Veo do. It writes a video as code (React with Remotion, or HTML/CSS/GSAP with HyperFrames) and a renderer turns that code into a frame-perfect MP4. That keeps your real UI, fonts, colors and numbers exact, which text-to-video models can't guarantee.
 
@@ -94,40 +123,11 @@ His lessons apply directly here:
 
 One kit that came up in search (video-shotcraft) returned a 404 when checked, so it's not listed.
 
-### Recommended path for Habagat
+### If you want to go further
 
-**Option A: zero setup (10 minutes).** Screen-record `habagat_ad.html` (section 1). Add the voice-over with free TTS or your own voice, plus music. This is good enough for the checklist.
-
-**Option B: frame-perfect MP4 with HyperFrames (about 30 minutes).** Install Node.js 22+ and FFmpeg (`brew install node ffmpeg`), then in this folder:
-
-```bash
-claude plugin install hyperframes@hyperframes      # or: npx skills add heygen-com/hyperframes --full-depth --yes
-claude
-```
-
-Paste this prompt:
-
-```text
-Use the HyperFrames skill to turn marketing/ad/habagat_ad.html into a HyperFrames composition
-and render it to marketing/ad/renders/habagat_30s_16x9.mp4 (1920x1080, 30 fps) and
-habagat_30s_9x16.mp4 (1080x1920).
-Keep the exact scene timings, copy, colours (#0F1215 background, #E6E9EB text, #F2B544 solar, #5BB5E0 wind, #7FD3A8 accent),
-fonts (IBM Plex Sans, IBM Plex Mono), map_data.js and the screenshots in marketing/ad/shots/.
-Remove the keyboard HUD. Do not invent new numbers; every statistic must come from the HTML.
-Show me a preview before the final render.
-```
-
-**Option C: Remotion, with voice-over and captions.** Run `npx skills add remotion-dev/skills`, plus `claude-promo-video` or `promo-video-skill` if you want an AI voice. Then prompt:
-
-```text
-Make a 30-second promo video for this app (Habagat) for a university final defense and social media.
-Follow the storyboard and voice-over in marketing/README.md section 2 exactly, and use
-marketing/ad/habagat_ad.html as the visual reference. Use the real screenshots in marketing/ad/shots/,
-the brand colours in .streamlit/config.toml, and only the statistics already in the README.
-Render 16:9 and 9:16 MP4s to marketing/ad/renders/.
-```
-
-**Codex users:** the Remotion skills and HyperFrames both list Codex as supported. Run the same prompts in Codex CLI from this folder.
+- **HyperFrames or Remotion:** port `film/habagat_film.html` to either one to get timeline editing in a GUI.
+- **Better voice:** the free tiers of ElevenLabs have more natural voices. Swap the files in `film/audio/`, rebuild `timeline.json`, then re-render.
+- **Licensed music:** replace the synthesised bed in `mix.py` with a track from the YouTube Audio Library or Pixabay Music. Keep it about 12 dB under the voice.
 
 ### Tips that make AI-made ads look less generic
 

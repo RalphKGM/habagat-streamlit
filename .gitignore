@@ -7,3 +7,10 @@ __pycache__/
 .ipynb_checkpoints/
 .streamlit/secrets.toml
 marketing/ad/renders/
+
+# ad film: heavy intermediates (re-created by record_clips.py / render.py / mix.py / finish.py)
+marketing/film/frames/
+marketing/film/clips/
+marketing/film/renders/video_*.mp4
+marketing/film/share/*.mp4
+marketing/film/audio/mix.wav

@@ -1,0 +1,44 @@
+1
+00:00:00,600 --> 00:00:03,870
+Every midnight, the grid has to guess tomorrow.
+
+2
+00:00:04,800 --> 00:00:08,520
+How much sun? How much wind? Hour by hour.
+
+3
+00:00:09,600 --> 00:00:11,670
+This is Habagat.
+
+4
+00:00:12,600 --> 00:00:19,800
+It replays six and a half years of NASA weather, hour by hour, at three sites across the Philippines.
+
+5
+00:00:20,500 --> 00:00:25,420
+Pick any day, right up to June 2026, and watch it play out.
+
+6
+00:00:25,900 --> 00:00:32,290
+Change the plant, and every hour reruns. Take the wind away, and the grid has to cover it.
+
+7
+00:00:32,740 --> 00:00:40,380
+Then the forecasts face a year they've never seen. 2024. 2025. And 2026.
+
+8
+00:00:40,830 --> 00:00:44,530
+Every day is forecast automatically, at midnight.
+
+9
+00:00:44,980 --> 00:00:49,420
+Seventeen to twenty-nine percent less error than the best baseline.
+
+10
+00:00:49,970 --> 00:00:53,600
+And grid plans that need up to a quarter less correction.
+
+11
+00:00:54,470 --> 00:00:57,160
+Habagat. Read tomorrow's sky.
+
