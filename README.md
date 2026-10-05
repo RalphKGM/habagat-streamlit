@@ -71,6 +71,7 @@ marketing/              30-second ad, ad kit, and AI ad-tool research
 docs/DEPLOY.md          GitHub + Streamlit Community Cloud steps
 docs/RELATED_WORK.md    comparison with the related IEEE studies
 docs/DEFENSE_NOTES.md   pitch, demo path, numbers and deck corrections
+docs/SolWind_System_Users_Manual.pdf   System User's Manual (built by scripts/build_manual.py)
 ```
 
 ## Data and honesty notes
