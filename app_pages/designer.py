@@ -21,7 +21,7 @@ from habagat.data import (
     study,
 )
 
-theme.header('System designer', 'Change the plant and rerun 2020–2024. Differences are shown against the study baseline: 1 MW solar, 1 MW wind and a 2 MWh battery.')
+theme.header('System designer', 'Change the plant and rerun 2020–2024. Differences are shown against the standard design: 1 MW solar, 1 MW wind and a 2 MWh battery.')
 
 
 def _reset() -> None:
@@ -44,7 +44,7 @@ with controls:
                       key="temperature_coefficient")
             st.slider("Wind-shear exponent", 0.08, 0.30, step=0.01, key="wind_shear")
             st.slider("Wind net-output factor", 0.70, 1.00, step=0.01, key="wind_net_factor")
-        st.button("Reset to paper baseline", on_click=_reset, icon=":material/restart_alt:", width="stretch")
+        st.button("Reset to standard design", on_click=_reset, icon=":material/restart_alt:", width="stretch")
 
 cfg = settings()
 full = current_dispatch(site)  # every hour to June 2026, used by the outage test
