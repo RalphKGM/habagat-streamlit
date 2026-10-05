@@ -10,6 +10,7 @@ import pandas as pd
 import streamlit as st
 import streamlit.components.v1 as components
 
+from habagat.daypicker import daily_series
 from habagat.data import (
     SITE_SHORT,
     SITES,
@@ -21,6 +22,7 @@ from habagat.data import (
     load_plan_summary,
     load_weather,
     settings,
+    study,
 )
 
 ASSETS = Path(__file__).resolve().parent / "assets"
@@ -35,7 +37,7 @@ def _outlines() -> dict:
 
 def _site_summaries() -> dict:
     cfg = settings()
-    generation = current_generation()
+    generation = study(current_generation())
     years = generation["timestamp_pht"].dt.year.nunique()
     weather = load_weather().drop_duplicates("location").set_index("location")
     metrics = load_metrics()
@@ -47,7 +49,7 @@ def _site_summaries() -> dict:
     out = {}
     for site in SITES:
         g = generation.loc[generation["location"] == site]
-        d = current_dispatch(site)
+        d = study(current_dispatch(site))
         solar, wind = g["solar_mw"].sum(), g["wind_mw"].sum()
         models = ["xgboost", "previous_day", "training_climatology"]
         out[site] = {
@@ -104,6 +106,7 @@ def render(key: str = "map") -> None:
         "minDate": stamps.min().date().isoformat(),
         "maxDate": stamps.max().date().isoformat(),
         "selected": cfg["site"],
+        "daily": daily_series(cfg["site"]),
         "startHour": 13,
         "cfg": {"solar": cfg["solar_capacity"], "wind": cfg["wind_capacity"], "batt": cfg["battery_capacity"]},
     }

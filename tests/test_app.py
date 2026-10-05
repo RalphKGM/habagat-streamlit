@@ -33,3 +33,9 @@ def test_custom_design_renders_everywhere(page: str) -> None:
     app.switch_page(f"app_pages/{page}.py").run()
     assert not app.exception, [e.message for e in app.exception]
     assert app.session_state["battery_capacity"] == 6.0
+
+
+def test_day_picker_copies_match() -> None:
+    # Each component serves only its own folder, so the map keeps a copy of the picker script.
+    picker = ROOT / "habagat/assets/daypicker/daypicker.js"
+    assert picker.read_bytes() == (ROOT / "habagat/assets/map/daypicker.js").read_bytes()

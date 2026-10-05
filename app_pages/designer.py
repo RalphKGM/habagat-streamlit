@@ -8,6 +8,7 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from habagat import theme, ui
+from habagat.daypicker import day_picker
 from habagat.data import (
     DEFAULTS,
     SITE_SHORT,
@@ -17,6 +18,7 @@ from habagat.data import (
     physics_args,
     run_dispatch,
     settings,
+    study,
 )
 
 theme.header('System designer', 'Change the plant and rerun 2020–2024. Differences are shown against the study baseline: 1 MW solar, 1 MW wind and a 2 MWh battery.')
@@ -45,8 +47,9 @@ with controls:
         st.button("Reset to paper baseline", on_click=_reset, icon=":material/restart_alt:", width="stretch")
 
 cfg = settings()
-dispatch = current_dispatch(site)
-baseline = run_dispatch(site, DEFAULTS["load_scale"], DEFAULTS["battery_capacity"], **physics_args(DEFAULTS))
+full = current_dispatch(site)  # every hour to June 2026, used by the outage test
+dispatch = study(full)  # the paper's 2020-2024 comparison
+baseline = study(run_dispatch(site, DEFAULTS["load_scale"], DEFAULTS["battery_capacity"], **physics_args(DEFAULTS)))
 years = dispatch["timestamp_pht"].dt.year.nunique()
 
 
@@ -108,15 +111,14 @@ heat.update_layout(hovermode="closest")
 theme.chart(theme.style(heat, "", "", 380), key="fingerprint")
 
 theme.section('Outage test', 'The grid is unavailable during the selected window, so any shortfall becomes unmet demand.')
-o = st.columns([1, 1, 1], vertical_alignment="bottom")
-first, last = dispatch["timestamp_pht"].dt.date.min(), dispatch["timestamp_pht"].dt.date.max()
-outage_day = o[0].date_input("Outage day", dt.date(2022, 9, 15), min_value=first, max_value=last, key="outage_day")
-outage_start = o[1].slider("Starts at", 0, 23, 18, format="%d:00", key="outage_start")
-outage_len = o[2].slider("Lasts · hours", 1, 24, 6, key="outage_len")
+outage_day = day_picker("outage_day", site, dt.date(2022, 9, 15), key="outage_picker")
+o = st.columns(2)
+outage_start = o[0].slider("Starts at", 0, 23, 18, format="%d:00", key="outage_start")
+outage_len = o[1].slider("Lasts · hours", 1, 24, 6, key="outage_len")
 
 begin = pd.Timestamp(outage_day).tz_localize(dispatch["timestamp_pht"].dt.tz) + pd.Timedelta(hours=outage_start)
-window = dispatch.loc[
-    (dispatch["timestamp_pht"] >= begin) & (dispatch["timestamp_pht"] < begin + pd.Timedelta(hours=outage_len))
+window = full.loc[
+    (full["timestamp_pht"] >= begin) & (full["timestamp_pht"] < begin + pd.Timedelta(hours=outage_len))
 ]
 need = window["demand_mw"].sum()
 unmet = window["grid_import_mwh"].sum()
@@ -127,9 +129,9 @@ r[0].metric("Demand served in outage", f"{served:.0f}%")
 r[1].metric("Unmet demand", f"{unmet:.2f} MWh")
 r[2].metric("First shortfall", "None" if lights_out.empty else f"{lights_out.iloc[0]:%H:%M}")
 
-span = dispatch.loc[
-    (dispatch["timestamp_pht"] >= begin - pd.Timedelta(hours=6))
-    & (dispatch["timestamp_pht"] < begin + pd.Timedelta(hours=outage_len + 6))
+span = full.loc[
+    (full["timestamp_pht"] >= begin - pd.Timedelta(hours=6))
+    & (full["timestamp_pht"] < begin + pd.Timedelta(hours=outage_len + 6))
 ]
 drill = go.Figure()
 drill.add_vrect(x0=begin, x1=begin + pd.Timedelta(hours=outage_len), fillcolor=theme.EMBER, opacity=.09, line_width=0,
@@ -145,12 +147,12 @@ theme.chart(theme.style(drill, "", "MW · MWh", 340), key="drill")
 with st.expander("Hourly results table and download"):
     cols = ["timestamp_pht", "solar_mw", "wind_mw", "combined_mw", "demand_mw", "battery_soc_end_mwh",
             "grid_import_mwh", "curtailed_renewable_mwh"]
-    shown = dispatch.loc[dispatch["timestamp_pht"].dt.date == outage_day, cols]
+    shown = full.loc[full["timestamp_pht"].dt.date == outage_day, cols]
     st.dataframe(shown, hide_index=True, width="stretch")
     st.download_button(
-        "Download all five years for this design (CSV)",
+        "Download every hour, 2020 to June 2026, for this design (CSV)",
         dispatch_csv(site, cfg["load_scale"], cfg["battery_capacity"], **physics_args(cfg)),
-        file_name=f"habagat_{SITE_SHORT[site].lower().replace(' ', '_')}_2020_2024.csv",
+        file_name=f"habagat_{SITE_SHORT[site].lower().replace(' ', '_')}_2020_2026.csv",
         mime="text/csv",
         icon=":material/download:",
     )

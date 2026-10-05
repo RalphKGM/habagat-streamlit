@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<script src="daypicker.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root { --bg:#0C1E2B; --sea:#0A1925; --rail:#0F2433; --line:#1F3A4D; --line2:#2A4B60; --text:#EAF2F6; --muted:#8BA6B5;
@@ -85,8 +86,10 @@
   .fine b { color:var(--text); font-weight:500; }
 
   /* timeline strip */
-  #strip { grid-column:1; grid-row:2; border-top:1px solid var(--line); background:var(--bg); display:grid; grid-template-columns:236px 1fr 120px; }
-  #strip .date { padding:14px 16px; border-right:1px solid var(--line); }
+  #strip { grid-column:1; grid-row:2; border-top:1px solid var(--line); background:var(--bg); display:grid; grid-template-columns:272px 1fr 120px; }
+  #strip .date { padding:14px 16px; border-right:1px solid var(--line); position:relative; z-index:30; }
+  #strip .date .dp-label { min-width:0; flex:1; }
+  #strip .date .dp-label i { display:none; }
   #strip .date .row { display:flex; gap:6px; margin-top:8px; }
   .sq { width:30px; height:30px; border:1px solid var(--line2); background:none; color:var(--text); cursor:pointer; font-size:16px; }
   .sq:hover { border-color:var(--text); }
@@ -318,13 +321,11 @@ function updateRail() {
 
 // ---------- timeline strip ----------
 function renderStrip() {
-  $("strip").innerHTML = `<div class="date"><div class="fine">Day</div><div class="row">
-      <button class="sq" id="prev">‹</button><input type="date" id="date" value="${A.date}" min="${A.minDate}" max="${A.maxDate}"><button class="sq" id="next">›</button></div></div>
+  $("strip").innerHTML = `<div class="date"><div class="fine">Day · <span class="mono">←</span> <span class="mono">→</span> to step</div><div class="row" id="dp"></div></div>
     <div class="chart" id="chart"><svg id="tl" preserveAspectRatio="none" viewBox="0 0 1000 100"></svg></div>
     <div class="clock"><b class="num" id="clock"></b><button id="play">PLAY</button></div>`;
-  const step = (d) => { const x = new Date(A.date + "T00:00:00Z"); x.setUTCDate(x.getUTCDate() + d); const s = x.toISOString().slice(0, 10); if (s >= A.minDate && s <= A.maxDate) changeDate(s); };
-  $("prev").onclick = () => step(-1); $("next").onclick = () => step(1);
-  $("date").onchange = (e) => e.target.value && changeDate(e.target.value);
+  DayPicker.mount($("dp"), { daily: A.daily, value: A.date, min: A.minDate, max: A.maxDate, site: A.sites[site].short,
+    mode: "up", onPick: changeDate });
   $("play").onclick = () => { playing = !playing; if (playing && t >= 23) t = 0; };
   const chart = $("chart"); let drag = false;
   const seek = (e) => { const r = $("tl").getBoundingClientRect(); t = clamp((e.clientX - r.left) / r.width * 23, 0, 23); playing = false; };

@@ -23,7 +23,8 @@ COVERAGE = pd.read_csv(ROOT / "data/demand_coverage_summary.csv")
 
 @pytest.fixture(scope="module")
 def generation() -> pd.DataFrame:
-    weather = pd.read_parquet(ROOT / "data/weather_2020_2024.parquet")
+    weather = pd.read_parquet(ROOT / "data/weather_hourly.parquet")
+    weather = weather.loc[weather["timestamp_pht"].dt.year <= 2024].reset_index(drop=True)
     solar = pv_output(
         weather,
         ASSUMPTIONS["pv_system_loss_fraction"],
@@ -64,3 +65,21 @@ def test_battery_coverage_matches_paper(generation: pd.DataFrame, battery: float
             "renewable_demand_coverage_pct",
         ].item()
         assert coverage == pytest.approx(expected, abs=1e-4)
+
+
+def test_extension_years_match_team_reference() -> None:
+    # 2025 and Jan-Jun 2026 hours reproduce the research team's modeled output (CSV rounding is 1e-6 MW per hour).
+    weather = pd.read_parquet(ROOT / "data/weather_hourly.parquet")
+    weather = weather.loc[weather["timestamp_pht"].dt.year >= 2025].reset_index(drop=True)
+    solar = pv_output(weather, ASSUMPTIONS["pv_system_loss_fraction"], ASSUMPTIONS["pv_temperature_coefficient_per_c"])
+    wind = wind_output(weather, load_power_curve(), ASSUMPTIONS["wind_shear_exponent"], ASSUMPTIONS["wind_net_output_factor"])
+    frame = weather[["location"]].copy()
+    frame["period"] = weather["timestamp_pht"].dt.year.map({2025: "2025", 2026: "2026H1"})
+    frame["solar_energy_mwh"] = solar["solar_output_mw"]
+    frame["wind_energy_mwh"] = wind["wind_output_mw"]
+    ours = frame.groupby(["period", "location"]).sum()
+    ref = pd.read_csv(ROOT / "data/reference_totals_2025_2026.csv").set_index(["period", "location"])
+    hours = frame.groupby(["period", "location"]).size()
+    for key, row in ref.iterrows():
+        for col in ["solar_energy_mwh", "wind_energy_mwh"]:
+            assert abs(ours.loc[key, col] - row[col]) <= hours.loc[key] * 1e-6

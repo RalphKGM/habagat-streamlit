@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from habagat import theme, ui
+from habagat.daypicker import day_picker
 from habagat.data import MODEL_LABEL, MODELS, SITE_SHORT, SITES, headline_findings, load_metrics, load_predictions
 
 theme.header('Forecast accuracy', 'Day-ahead forecasts issued at 00:00 for every day of 2025, a year held out from training. Error is measured against the reference modeled output.')
@@ -63,15 +64,14 @@ with b:
 
 theme.section('Single-day playback', 'Hide the reference to compare the forecast alone first.')
 predictions = load_predictions()
-p = st.columns([1, 1, 1, 1], vertical_alignment="bottom")
+day = day_picker("fc_date", site, dt.date(2025, 7, 15), key="fc_picker",
+                 first=dt.date(2025, 1, 1), last=dt.date(2025, 12, 31))
+p = st.columns([1.4, 1, 1], vertical_alignment="bottom")
 with p[0]:
     model = ui.model_picker("fc_model")
 with p[1]:
-    st.session_state.setdefault("fc_date", dt.date(2025, 7, 15))
-    day = st.date_input("Day in 2025", key="fc_date", min_value=dt.date(2025, 1, 1), max_value=dt.date(2025, 12, 31))
-with p[2]:
     reveal = st.toggle("Reveal the reference", value=True)
-with p[3]:
+with p[2]:
     everyone = st.toggle("Show all three methods", value=False)
 
 sel = predictions.loc[(predictions["location"] == site) & (predictions["target_timestamp_pht"].dt.date == day)]

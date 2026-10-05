@@ -45,6 +45,7 @@ If the research outputs change, regenerate `data/` from the full project and rer
 
 ```bash
 python scripts/build_data.py ~/Downloads/Solar_Wind_Classroom_Presentation
+python scripts/extend_weather.py "~/Desktop/final-submission-simulation/[3 - STREAMLIT]/project"
 python scripts/build_rolling.py "~/Desktop/final-submission-simulation/[3 - STREAMLIT]/project"
 python -m pytest tests -q
 ```

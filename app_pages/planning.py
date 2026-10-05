@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from habagat import scenes, theme, ui
+from habagat.daypicker import day_picker
 from habagat.data import MODEL_LABEL, MODELS, SITE_SHORT, SITES, headline_findings, load_plan_summary, load_replay
 
 theme.header('Grid planning', "Each forecast sets an hourly grid-purchase plan at midnight. The day is then replayed with actual generation. Adjustment is the extra energy bought plus planned energy that wasn't needed.")
@@ -36,14 +37,13 @@ with side:
 
 theme.section('Day replay', 'The dashed forecast is fixed at 00:00. Actual generation is revealed as the playhead moves.')
 replay = load_replay()
-c = st.columns([1.3, 1.3, 1], vertical_alignment="bottom")
+c = st.columns(2, vertical_alignment="bottom")
 with c[0]:
     site = ui.site_picker()
 with c[1]:
     model = ui.model_picker("plan_model")
-with c[2]:
-    st.session_state.setdefault("plan_date", dt.date(2025, 7, 15))
-    day = st.date_input("Day in 2025", key="plan_date", min_value=dt.date(2025, 1, 1), max_value=dt.date(2025, 12, 31))
+day = day_picker("plan_date", site, dt.date(2025, 7, 15), key="plan_picker",
+                 first=dt.date(2025, 1, 1), last=dt.date(2025, 12, 31))
 sel = replay.loc[(replay["location"] == site) & (replay["timestamp"].dt.date == day)].sort_values("timestamp")
 scenes.replay(sel, model, MODEL_LABEL[model], f"{SITE_SHORT[site]} · {day:%d %b %Y}")
 

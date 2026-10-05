@@ -50,6 +50,16 @@ DEFAULTS = {
 }
 
 
+# The paper's physical comparison covers 2020-2024. Aggregates (annual energy, coverage, site
+# comparisons) use only these years; the Map and Live plant can replay any day up to June 2026.
+STUDY_YEARS = (2020, 2024)
+
+
+def study(frame: pd.DataFrame, column: str = "timestamp_pht") -> pd.DataFrame:
+    years = frame[column].dt.year
+    return frame.loc[(years >= STUDY_YEARS[0]) & (years <= STUDY_YEARS[1])]
+
+
 def settings() -> dict:
     """Current system design, shared across pages through session state."""
     return {key: st.session_state.get(key, value) for key, value in DEFAULTS.items()}
@@ -57,7 +67,8 @@ def settings() -> dict:
 
 @st.cache_data(show_spinner=False)
 def load_weather() -> pd.DataFrame:
-    return pd.read_parquet(DATA / "weather_2020_2024.parquet")
+    """Hourly NASA POWER weather, 1 Jan 2020 to 30 Jun 2026 (see scripts/extend_weather.py)."""
+    return pd.read_parquet(DATA / "weather_hourly.parquet")
 
 
 @st.cache_data(show_spinner=False)
@@ -85,7 +96,7 @@ def load_site_summary() -> pd.DataFrame:
     return pd.read_csv(DATA / "site_summary.csv")
 
 
-@st.cache_data(show_spinner="Running the solar and wind equations over 131,544 site-hours…")
+@st.cache_data(show_spinner="Running the solar and wind equations over 170,856 site-hours…")
 def run_generation(
     solar_loss: float,
     temperature_coefficient: float,

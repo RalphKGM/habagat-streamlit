@@ -27,7 +27,7 @@ from habagat.data import DEFAULTS  # noqa: E402
 # state for widgets that are not on the current page unless it is re-assigned.
 for key, value in DEFAULTS.items():
     st.session_state[key] = st.session_state.get(key, value)
-for key in ["plant_date", "fc_date", "fc_source", "fc_model", "plan_date", "plan_model", "roll_fold", "roll_day"]:
+for key in ["plant_date", "outage_day", "fc_date", "fc_source", "fc_model", "plan_date", "plan_model", "roll_fold", "roll_day"]:
     if key in st.session_state:
         st.session_state[key] = st.session_state[key]
 

@@ -4,41 +4,17 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from habagat import scenes, theme, ui
+from habagat.daypicker import day_picker
 from habagat.data import SITE_SHORT, current_dispatch, settings
 
 theme.header('Live plant', 'One simulated day at the selected site. The sky follows the hour, the rotor follows wind output, and the flows are scaled to MW.')
 
 cfg = settings()
-top = st.columns([1.3, 1, 1.4], vertical_alignment="bottom")
+top = st.columns([1.3, 2.4], vertical_alignment="bottom")
 with top[0]:
     site = ui.site_picker()
 dispatch = current_dispatch(site)
-daily = (
-    dispatch.assign(date=dispatch["timestamp_pht"].dt.date)
-    .groupby("date")
-    .agg(solar=("solar_mw", "sum"), wind=("wind_mw", "sum"), grid=("grid_import_mwh", "sum"))
-)
-presets = {
-    "Windiest": daily["wind"].idxmax(),
-    "Sunniest": daily["solar"].idxmax(),
-    "Hardest day": daily["grid"].idxmax(),
-}
-st.session_state.setdefault("plant_date", dt.date(2022, 9, 15))
-
-
-def _jump(day: dt.date) -> None:
-    st.session_state.plant_date = day
-
-
-with top[1]:
-    day_pick = st.date_input(
-        "Day", key="plant_date", min_value=daily.index.min(), max_value=daily.index.max(), format="YYYY-MM-DD"
-    )
-with top[2]:
-    st.caption(f"Notable days at {SITE_SHORT[site]}")
-    cols = st.columns(len(presets))
-    for col, (name, day) in zip(cols, presets.items()):
-        col.button(name, on_click=_jump, args=(day,), width="stretch", help=f"{day:%d %b %Y}")
+day_pick = day_picker("plant_date", site, dt.date(2022, 9, 15), key="plant_picker")
 
 day = dispatch.loc[dispatch["timestamp_pht"].dt.date == day_pick].reset_index(drop=True)
 label = f"{SITE_SHORT[site]} · {day_pick:%a %d %b %Y}"

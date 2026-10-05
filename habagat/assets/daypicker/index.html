@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html { overflow:hidden; } html, body { margin:0; background:#0C1E2B; }
+  #root { padding:2px 1px 6px; }
+</style>
+<script src="daypicker.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script>
+const send = (type, data) => parent.postMessage(Object.assign({ isStreamlitMessage: true, type }, data), "*");
+let shown = null, height = 0;
+const fit = (px) => { const h = Math.ceil(px) + 10; if (h !== height) { height = h; send("streamlit:setFrameHeight", { height: h }); } };
+window.addEventListener("message", (event) => {
+  if (event.data.type !== "streamlit:render") return;
+  const a = event.data.args;
+  const key = JSON.stringify([a.value, a.site, a.daily.start, a.daily.gen.length, a.daily.gen[0], a.daily.gen[a.daily.gen.length - 1]]);
+  if (key === shown) return;   // a rerun with the same inputs: keep the open calendar as it is
+  shown = key;
+  DayPicker.mount(document.getElementById("root"), {
+    daily: a.daily, value: a.value, min: a.min, max: a.max, site: a.site, mode: "inline",
+    onPick: (date) => send("streamlit:setComponentValue", { value: { date, nonce: Date.now() }, dataType: "json" }),
+    onHeight: fit,
+  });
+});
+send("streamlit:componentReady", { apiVersion: 1 });
+</script>
+</body>
+</html>
