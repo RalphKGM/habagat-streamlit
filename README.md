@@ -2,7 +2,7 @@
 
 **Read tomorrow's sun and monsoon wind, then plan the grid around it.**
 
-Habagat is the interactive product for our CSS142 research project. It simulates a 1 MW solar + 1 MW wind microgrid with a battery at three Philippine sites: Laoag (Luzon), Mactan (Visayas) and General Santos (Mindanao). The simulation runs on hourly NASA POWER weather from January 2020 to June 2026; the paper's site comparison uses 2020–2024. Habagat then tests day-ahead forecasts (XGBoost vs. two baselines) on held-out years (2024, 2025 and January–June 2026) and shows what each forecast does to a grid-purchase plan.
+Habagat is the interactive product for our CSS142 research project. It simulates a 1 MW solar + 1 MW wind microgrid with a battery at three Philippine sites: Laoag (Luzon), Mactan (Visayas) and General Santos (Mindanao). The simulation runs on hourly NASA POWER weather from January 2020 to June 2026 (the paper's published site tables cover 2020–2024). Habagat then tests day-ahead forecasts (XGBoost vs. two baselines) on held-out years (2024, 2025 and January–June 2026) and shows what each forecast does to a grid-purchase plan.
 
 > *Habagat* is the Filipino name for the southwest monsoon.
 
@@ -11,9 +11,9 @@ Habagat is the interactive product for our CSS142 research project. It simulates
 | Page | What it does |
 |---|---|
 | **Day picker** (Map, Live plant, outage test, forecast pages) | A calendar coloured by each day's energy, an energy ribbon across the whole record (click or drag to jump), presets (windiest, sunniest, calmest, hardest, random, ±1 year), typed dates such as `14 Mar 2025`, and ←/→ to step days. |
-| **Map** (home) | A night nautical chart of Luzon, Visayas and Mindanao, the three grid island groups our sites sit in, with depth-contour rings and lat/long ticks. Hover a region for a readout; click it or use the site switcher in the right-hand instrument rail. The timeline strip under the map plays or scrubs the day, the map recolors by output, capacity factor or wind share, and wind particles follow each site's simulated hub-height wind. The rail shows this hour's flows, the source split, five-year averages and the 2025 forecast test. |
+| **Map** (home) | A night nautical chart of Luzon, Visayas and Mindanao, the three grid island groups our sites sit in, with depth-contour rings and lat/long ticks. Hover a region for a readout; click it or use the site switcher in the right-hand instrument rail. The timeline strip under the map plays or scrubs the day, the map recolors by output, capacity factor or wind share, and wind particles follow each site's simulated hub-height wind. The rail shows this hour's flows, averages for January 2020 to June 2026 and the 2025 forecast test. |
 | **Live plant** | Any day from 1 Jan 2020 to 30 Jun 2026 animated as a plant: sun position, rotor speed from wind output, cloud cover, battery charge and energy flows scaled to MW. |
-| **System designer** | Resize solar, wind, battery and demand, or adjust engineering assumptions, and rerun five years of physics. Includes a month × hour surplus heatmap and an outage test. |
+| **System designer** | Resize solar, wind, battery and demand, or adjust engineering assumptions, and rerun every hour from January 2020 to June 2026. Includes a month × hour surplus heatmap and an outage test. |
 | **Compare sites** | Energy mix, monthly profiles, wind roses and solar-wind complementarity. |
 | **Forecast accuracy** | Model leaderboard, error by hours ahead and by month, and a single-day playback. |
 | **Grid planning** | Total 2025 plan adjustment by method, plus an animated replay of the midnight plan against the actual day. |
@@ -74,7 +74,7 @@ docs/DEFENSE_NOTES.md   pitch, demo path, numbers and deck corrections
 ## Data and honesty notes
 
 - Weather: NASA POWER hourly v2.10 (gridded reanalysis, not on-site measurement), 1 Jan 2020 to 30 Jun 2026. Later 2026 months had no released solar inputs when downloaded.
-- Averages, site comparisons and the System designer use 2020–2024, matching the paper; the extra 2025–2026 days are for replaying individual days. `tests/test_engine.py` checks that those days reproduce the research team's modeled output.
+- Averages, site comparisons and the System designer cover January 2020 to June 2026, so they differ slightly from the paper's 2020–2024 tables (Laoag: 3,589 vs 3,563 MWh/yr). Per-year figures divide by the record's length in years (about 6.5). `tests/test_engine.py` checks 2020–2024 against the paper and 2025–2026 against the research team's modeled output.
 - Generation is *reference modeled* output from that weather. It is not metered plant data.
 - Demand is one standardized scenario used at every site. It is not measured NGCP or city load.
 - Forecasts: the Forecast accuracy and Grid planning pages show the original experiment (trained 2020–2023, selected on 2024, scored once on 2025). The Rolling test page shows the chronological folds for 2024, 2025 and Jan–Jun 2026. July–September 2026 is not scored because NASA POWER had not released the solar inputs.

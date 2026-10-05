@@ -5,13 +5,13 @@ import streamlit as st
 from plotly.subplots import make_subplots
 
 from habagat import theme
-from habagat.data import SITE_ISLAND, SITE_SHORT, SITES, current_generation, load_weather, settings, study
+from habagat.data import SITE_ISLAND, SITE_SHORT, SITES, current_generation, load_weather, settings, years_in
 
-theme.header('Compare sites', 'The same equipment at Laoag, Mactan and General Santos, 2020–2024.')
+theme.header('Compare sites', 'The same equipment at Laoag, Mactan and General Santos, January 2020 to June 2026.')
 
 cfg = settings()
-generation = study(current_generation())
-years = generation["timestamp_pht"].dt.year.nunique()
+generation = current_generation()
+years = years_in(generation.loc[generation["location"] == SITES[0]])
 annual = generation.groupby("location")[["solar_mw", "wind_mw"]].sum().div(years).reindex(SITES)
 
 left, right = st.columns(2, gap="medium")
@@ -33,8 +33,8 @@ with right:
     trend.update_xaxes(type="category")
     theme.chart(theme.style(trend, "Average combined output by month", "MW", 300), key="monthly")
 
-theme.section('Wind direction and speed', 'Share of hours by direction at hub height (69 m), 2020–2024.')
-weather_all = study(load_weather())
+theme.section('Wind direction and speed', 'Share of hours by direction at hub height (69 m), January 2020 to June 2026.')
+weather_all = load_weather()
 bins = [0, 3, 6, 9, 12, 40]
 bin_names = ["<3 m/s", "3–6", "6–9", "9–12", "12+"]
 shades = ["#22343D", "#2C5A6E", "#3C88AA", "#5BB5E0", "#C3E7F7"]

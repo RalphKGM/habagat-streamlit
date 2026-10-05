@@ -50,14 +50,12 @@ DEFAULTS = {
 }
 
 
-# The paper's physical comparison covers 2020-2024. Aggregates (annual energy, coverage, site
-# comparisons) use only these years; the Map and Live plant can replay any day up to June 2026.
-STUDY_YEARS = (2020, 2024)
+HOURS_PER_YEAR = 8766  # 365.25 days
 
 
-def study(frame: pd.DataFrame, column: str = "timestamp_pht") -> pd.DataFrame:
-    years = frame[column].dt.year
-    return frame.loc[(years >= STUDY_YEARS[0]) & (years <= STUDY_YEARS[1])]
+def years_in(frame: pd.DataFrame) -> float:
+    """Length of a one-site hourly record in years (Jan 2020 to Jun 2026 is about 6.5)."""
+    return len(frame) / HOURS_PER_YEAR
 
 
 def settings() -> dict:

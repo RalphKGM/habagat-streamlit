@@ -22,7 +22,7 @@ from habagat.data import (
     load_plan_summary,
     load_weather,
     settings,
-    study,
+    years_in,
 )
 
 ASSETS = Path(__file__).resolve().parent / "assets"
@@ -37,8 +37,7 @@ def _outlines() -> dict:
 
 def _site_summaries() -> dict:
     cfg = settings()
-    generation = study(current_generation())
-    years = generation["timestamp_pht"].dt.year.nunique()
+    generation = current_generation()
     weather = load_weather().drop_duplicates("location").set_index("location")
     metrics = load_metrics()
     mae = metrics.loc[(metrics["scope"] == "all_hours") & (metrics["aggregation"] == "overall")
@@ -49,7 +48,8 @@ def _site_summaries() -> dict:
     out = {}
     for site in SITES:
         g = generation.loc[generation["location"] == site]
-        d = study(current_dispatch(site))
+        d = current_dispatch(site)
+        years = years_in(g)
         solar, wind = g["solar_mw"].sum(), g["wind_mw"].sum()
         models = ["xgboost", "previous_day", "training_climatology"]
         out[site] = {

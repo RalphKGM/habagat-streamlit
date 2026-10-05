@@ -18,10 +18,10 @@ from habagat.data import (
     physics_args,
     run_dispatch,
     settings,
-    study,
+    years_in,
 )
 
-theme.header('System designer', 'Change the plant and rerun 2020–2024. Differences are shown against the standard design: 1 MW solar, 1 MW wind and a 2 MWh battery.')
+theme.header('System designer', 'Change the plant and rerun every hour from January 2020 to June 2026. Differences are shown against the standard design: 1 MW solar, 1 MW wind and a 2 MWh battery.')
 
 
 def _reset() -> None:
@@ -47,10 +47,9 @@ with controls:
         st.button("Reset to standard design", on_click=_reset, icon=":material/restart_alt:", width="stretch")
 
 cfg = settings()
-full = current_dispatch(site)  # every hour to June 2026, used by the outage test
-dispatch = study(full)  # the paper's 2020-2024 comparison
-baseline = study(run_dispatch(site, DEFAULTS["load_scale"], DEFAULTS["battery_capacity"], **physics_args(DEFAULTS)))
-years = dispatch["timestamp_pht"].dt.year.nunique()
+full = dispatch = current_dispatch(site)
+baseline = run_dispatch(site, DEFAULTS["load_scale"], DEFAULTS["battery_capacity"], **physics_args(DEFAULTS))
+years = years_in(dispatch)
 
 
 def delta(value: float, fmt: str) -> str | None:
@@ -81,8 +80,9 @@ with results:
     fig = go.Figure()
     for col, name, color in [("direct", "Renewables → load", theme.LEAF), ("battery", "Battery → load", theme.VIOLET),
                              ("grid", "Grid → load", theme.EMBER)]:
-        fig.add_bar(x=yearly.index.astype(str), y=yearly[col], name=name, marker_color=color)
+        fig.add_bar(x=[f"{y} (Jan–Jun)" if y == 2026 else str(y) for y in yearly.index], y=yearly[col], name=name, marker_color=color)
     fig.update_layout(barmode="stack", bargap=.35)
+    fig.update_xaxes(type="category")
     theme.chart(theme.style(fig, f"Where {SITE_SHORT[site]}’s demand was met, by year", "MWh", 330), key="yearly")
 
 theme.section('Average surplus by month and hour', 'Renewable output minus demand, before the battery. Green hours charge the battery and red hours drain it.')

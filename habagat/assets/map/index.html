@@ -157,7 +157,7 @@ function metricValue(s) {
   if (metric === "cf") return S.cf / 0.3;
   return S.wind_share;
 }
-const KEY = { now: ["Output this hour, % of capacity", "0", "50", "100"], cf: ["Capacity factor 2020–2024, %", "0", "15", "30"], share: ["Wind share of generation, %", "0", "50", "100"] };
+const KEY = { now: ["Output this hour, % of capacity", "0", "50", "100"], cf: ["Capacity factor 2020–2026, %", "0", "15", "30"], share: ["Wind share of generation, %", "0", "50", "100"] };
 
 // ---------- map ----------
 function build() {
@@ -278,19 +278,15 @@ function gauge(id, label, color) {
   return `<div class="gauge"><div class="top"><span><span class="sw" style="background:${color}"></span>${label}</span><em class="num" id="v-${id}"></em></div><div class="rail2"><i id="g-${id}" style="background:${color}"></i><u id="d-${id}" style="display:none"></u></div></div>`;
 }
 function nowTab(S) {
-  const ws = S.wind_share;
   return `<div class="sec"><h5><span id="atHour"></span><span>${A.dateLabel}</span></h5>
       <div class="readouts"><div><b class="num" id="r-out"></b><span>Output</span></div><div><b class="num" id="r-share"></b><span>Renewable today</span></div><div><b class="num" id="r-batt"></b><span>Battery</span></div></div></div>
     <div class="sec"><h5><span>Flows this hour</span><span>MW · white mark = demand</span></h5>
       ${gauge("solar", "Solar", C.solar)}${gauge("wind", "Wind", C.wind)}${gauge("battery", "Battery to load", C.battery)}${gauge("grid", "From grid", C.grid)}${gauge("unused", "Unused", C.unused)}</div>
-    <div class="sec"><h5><span>Source split, 2020–2024</span></h5>
-      <div class="split"><i style="width:${(1 - ws) * 100}%;background:${C.solar}"></i><i style="width:${ws * 100}%;background:${C.wind}"></i></div>
-      <div class="legendrow"><span>Solar ${f0((1 - ws) * 100)}%</span><span>Wind ${f0(ws * 100)}%</span></div></div>
     <div class="sec"><table class="facts">
       <tr><td>Energy per year</td><td>${comma(S.annual)} MWh</td></tr><tr><td>Capacity factor</td><td>${f1(S.cf * 100)}%</td></tr>
       <tr><td>Demand met by renewables</td><td>${f1(S.coverage)}%</td></tr><tr><td>Grid energy needed</td><td>${comma(S.grid)} MWh/yr</td></tr>
       <tr><td>Plant</td><td>${A.cfg.solar} + ${A.cfg.wind} MW, ${A.cfg.batt} MWh</td></tr></table></div>
-    <div class="sec fine">Reference modeled output from NASA POWER weather and a standardized demand scenario. Not metered plant data or measured city load.</div>`;
+    <div class="sec fine">Reference: NASA POWER weather, January 2020 to June 2026.</div>`;
 }
 function fcTab(S) {
   const F = S.forecast, order = ["xgboost", "previous_day", "training_climatology"];
