@@ -11,7 +11,7 @@ from solwind.data import (
 )
 
 theme.header("Rolling test", "Each year predicted by a model that only saw earlier years.")
-st.page_link("app_pages/audit.py", label="2026 audit: how to verify the 2026 forecast never saw 2026", icon=":material/fact_check:")
+st.page_link("app_pages/audit.py", label="2026 forecast: computed vs forecast", icon=":material/event_upcoming:")
 
 # --- How the window moves -----------------------------------------------------------------------
 YEARS = list(range(2020, 2027))

@@ -25,7 +25,7 @@ These notes are for presenting. Every number below comes from `data/rolling/` or
 1. **Map**: hover the three island groups, click Laoag and press PLAY.
 2. **System designer**: drag wind to 0 and watch coverage fall.
 3. **Rolling test**: walk through the fold grid (fit, select, test). Then click one green and one red day in the calendar. This answers "do you have to click day by day?": every day is forecast automatically at midnight.
-4. **2026 audit**: show the five steps (fit 2020–2024, select on 2025, refit 2020–2025, forecast 2026 at midnight, score once). Then switch to "Each hour" to show computed vs forecast, and point at "Largest difference 9.9e-07 MW": the app reruns the physics and gets the same 2026 values the forecasts were scored against.
+4. **2026 forecast**: show the five steps (fit 2020–2024, select on 2025, refit 2020–2025, forecast 2026 at midnight, score once). Then switch to "Each hour" to show computed vs forecast, and point at "Largest difference 9.9e-07 MW": the app reruns the physics and gets the same 2026 values the forecasts were scored against.
 5. **Grid planning**: replay a day. The plan is fixed at midnight and reality fills in.
 6. **Methodology**: the related-work table, then the limitations.
 
@@ -63,7 +63,7 @@ The Canva deck has to be edited by the team.
 - **Do you click day by day?** No. The model forecasts every day automatically at midnight. The Rolling test calendar shows all of them at once.
 - **Is this real plant data?** No. It is reference modeled output from NASA weather, so we compare methods fairly instead of claiming real-world accuracy.
 - **Why not 2027?** A 2027 forecast would be a resource outlook from long-term averages, which is a separate task. Day-ahead skill does not validate a whole year.
-- **How do we know 2026 was not used to train the 2026 model?** Open the 2026 audit page.
+- **How do we know 2026 was not used to train the 2026 model?** Open the 2026 forecast page.
   - The model saw 52,584 hours per site and source, from 2020 to 2025. Its last training hour is 31 Dec 2025 at 23:00.
   - The evaluation script has `assert refit.target_timestamp_pht.max() < test.target_timestamp_pht.min()`, so it cannot run with any overlap.
   - Each 2026 forecast is issued at 00:00 using only the previous day's output.

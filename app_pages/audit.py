@@ -1,4 +1,4 @@
-"""2026 audit: evidence that the January–June 2026 forecasts were made from earlier years only,
+"""2026 forecast: evidence that the January–June 2026 forecasts were made from earlier years only,
 and how they compare with the output computed from 2026 weather."""
 
 import json
@@ -15,9 +15,8 @@ from solwind.data import (
 
 FOLD = "rolling_2026"
 RUN = json.loads((ROLLING / "run_2026.json").read_text())
-CHECKS = json.loads((ROLLING / "rolling_verification.json").read_text())
 
-theme.header("2026 audit", "Trained on 2020–2025 only. Scored once on January–June 2026.")
+theme.header("2026 forecast", "Trained on 2020–2025 only. Scored once on January–June 2026.")
 
 # --- 1. Chain of custody --------------------------------------------------------------------------
 weather = load_weather()
@@ -146,43 +145,9 @@ k[1].metric("Missing hours", f"{int(check['combined_mw'].isna().sum())}")
 k[2].metric("Largest difference", f"{gap.max():.1e} MW", "rounding only", delta_color="off")
 k[3].metric("Computed energy, 3 sites", f"{check['combined_mw'].sum():,.0f} MWh", "Jan–Jun 2026", delta_color="off")
 
-# --- 4. Automated checks ------------------------------------------------------------------------------
-passed = sum(c["passed"] for c in CHECKS["checks"])
-theme.section("Automated checks", f"{passed} of {CHECKS['check_count']} passed. The 2026 checks:")
-plain = {
-    "issue midnight": "Every forecast was issued at 00:00 of its target day",
-    "horizon and target ordering": "Each target hour is 1 to 24 hours after its issue time",
-    "test year only": "Every scored hour is in 2026",
-    "complete days and sources": "Every day has all 24 hours for solar and wind",
-    "unique site source target": "No hour is scored twice",
-    "2026 complete local range": "2026 data runs without gaps from 1 Jan to 30 Jun",
-    "2026 site hour counts": "Each site has exactly 4,344 hours",
-    "2026 physical outputs bounded": "Computed output stays between 0 and installed capacity",
-}
-rows = []
-for chk in CHECKS["checks"]:
-    name = chk["name"]
-    if not name.startswith("rolling_2026") and not name.startswith("2026") and "2026_available" not in name:
-        continue
-    short = name.replace("rolling_2026 ", "")
-    meaning = next((v for key, v in plain.items() if short == key or name == key), "")
-    if not meaning:
-        if "serialized metrics" in short:
-            meaning = "Stored error matches a fresh recomputation from the hourly predictions"
-        elif "source sum" in short:
-            meaning = "Combined forecast equals solar plus wind"
-        elif "planning balance" in short:
-            meaning = "Grid-plan energy balances every hour"
-        elif "SOC bounds" in short:
-            meaning = "Battery charge stays within 0 and 2 MWh"
-        elif "hash" in short:
-            meaning = "Input file is byte-identical to the one the run used (SHA-256)"
-    rows.append({"Check": short, "What it proves": meaning, "Result": "Passed" if chk["passed"] else "Failed"})
-st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch", height=min(38 + 35 * len(rows), 460))
-flags = RUN["pipeline_checks"]
 theme.note(f"Trained {RUN['created_at_utc'][:10]} · Python {RUN['versions']['python']} · XGBoost {RUN['versions']['xgboost']}. Output is modeled, not metered.")
 
-# --- 5. Download ---------------------------------------------------------------------------------------
+# --- 4. Download ---------------------------------------------------------------------------------------
 theme.section("Download")
 out = hourly.loc[hourly["fold"] == FOLD, ["location", "target_timestamp_pht", "reference_output_mw", *pred.values()]].copy()
 out.insert(2, "issued_at_pht", out["target_timestamp_pht"].dt.normalize())

@@ -64,7 +64,7 @@ navigation = st.navigation(
             st.Page(PAGES / "forecast.py", title="Forecast accuracy", icon=":material/query_stats:", url_path="forecast"),
             st.Page(PAGES / "planning.py", title="Grid planning", icon=":material/event_repeat:", url_path="planning"),
             st.Page(PAGES / "rolling.py", title="Rolling test", icon=":material/date_range:", url_path="rolling"),
-            st.Page(PAGES / "audit.py", title="2026 audit", icon=":material/fact_check:", url_path="audit"),
+            st.Page(PAGES / "audit.py", title="2026 forecast", icon=":material/event_upcoming:", url_path="forecast-2026"),
         ],
         "Reference": [
             st.Page(PAGES / "methods.py", title="Methodology", icon=":material/menu_book:", url_path="methods"),

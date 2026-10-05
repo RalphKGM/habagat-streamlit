@@ -18,7 +18,7 @@ SolWind is the interactive product for our CSS142 research project. It simulates
 | **Forecast accuracy** | Model leaderboard, error by hours ahead and by month, and a single-day playback. |
 | **Grid planning** | Total 2025 plan adjustment by method, plus an animated replay of the midnight plan against the actual day. |
 | **Rolling test** | The forecast re-run for 2024, 2025 and Jan–Jun 2026, each year predicted by a model that only saw earlier years. A calendar of every forecast day (click one to open it), paired bootstrap intervals, grid-plan adjustment and the recent-window comparison. |
-| **2026 audit** | Evidence that the Jan–Jun 2026 forecasts came from models trained only on 2020–2025: the fit/select/refit/forecast/score steps with exact hour counts, computed vs forecast for every 2026 hour (daily chart, hourly scatter, monthly table), a live re-run of the physics against the scoring reference, the 2026 automated checks, and a CSV download. |
+| **2026 forecast** | Evidence that the Jan–Jun 2026 forecasts came from models trained only on 2020–2025: the fit/select/refit/forecast/score steps with exact hour counts, computed vs forecast for every 2026 hour (daily chart, hourly scatter, monthly table), a live re-run of the physics against the scoring reference, and a CSV download. |
 | **Methodology** | Equations, fixed assumptions, a comparison with related IEEE studies, sources and limitations. |
 
 ## Run it locally
