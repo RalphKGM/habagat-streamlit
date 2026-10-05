@@ -8,7 +8,7 @@ import pytest
 from streamlit.testing.v1 import AppTest
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = ["map", "plant", "designer", "sites", "forecast", "planning", "rolling", "methods"]
+PAGES = ["map", "plant", "designer", "sites", "forecast", "planning", "rolling", "audit", "methods"]
 
 
 @pytest.mark.parametrize("page", PAGES)

@@ -15,6 +15,7 @@ theme.header(
     "The same forecast, re-run as if it were 2024, 2025 and 2026. Each year is predicted by a model that only saw the "
     "years before it. 2026 stops at June, the last month with complete NASA solar data.",
 )
+st.page_link("app_pages/audit.py", label="2026 audit: how to verify the 2026 forecast never saw 2026", icon=":material/fact_check:")
 
 # --- How the window moves -----------------------------------------------------------------------
 YEARS = list(range(2020, 2027))

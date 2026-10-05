@@ -1,0 +1,84 @@
+{
+ "source": "[4 - MODELS]/rolling_run_metadata.json (team rolling evaluation run)",
+ "created_at_utc": "2026-10-03T05:18:09.020294+00:00",
+ "fold": {
+  "id": "rolling_2026",
+  "start_year": 2020,
+  "validation_year": 2025,
+  "test_year": 2026,
+  "status": "evaluated",
+  "test_end_pht": "2026-06-30T23:00:00+08:00"
+ },
+ "chosen_settings": {
+  "general_santos_city_solar": "compact",
+  "general_santos_city_wind": "compact",
+  "laoag_ilocos_norte_solar": "compact",
+  "laoag_ilocos_norte_wind": "compact",
+  "mactan_cebu_solar": "compact",
+  "mactan_cebu_wind": "shallow"
+ },
+ "counts": [
+  {
+   "location": "General Santos City",
+   "source": "solar",
+   "fit_hours": 43824,
+   "validation_hours": 8760,
+   "refit_hours": 52584,
+   "test_hours": 4344
+  },
+  {
+   "location": "General Santos City",
+   "source": "wind",
+   "fit_hours": 43824,
+   "validation_hours": 8760,
+   "refit_hours": 52584,
+   "test_hours": 4344
+  },
+  {
+   "location": "Laoag, Ilocos Norte",
+   "source": "solar",
+   "fit_hours": 43824,
+   "validation_hours": 8760,
+   "refit_hours": 52584,
+   "test_hours": 4344
+  },
+  {
+   "location": "Laoag, Ilocos Norte",
+   "source": "wind",
+   "fit_hours": 43824,
+   "validation_hours": 8760,
+   "refit_hours": 52584,
+   "test_hours": 4344
+  },
+  {
+   "location": "Mactan, Cebu",
+   "source": "solar",
+   "fit_hours": 43824,
+   "validation_hours": 8760,
+   "refit_hours": 52584,
+   "test_hours": 4344
+  },
+  {
+   "location": "Mactan, Cebu",
+   "source": "wind",
+   "fit_hours": 43824,
+   "validation_hours": 8760,
+   "refit_hours": 52584,
+   "test_hours": 4344
+  }
+ ],
+ "pipeline_checks": {
+  "chronological_boundaries": true,
+  "no_future_features": true,
+  "no_missing_climatology": true,
+  "reloaded_models_equal": true,
+  "planning_balance": true
+ },
+ "versions": {
+  "python": "3.9.6",
+  "pandas": "2.3.3",
+  "numpy": "2.0.2",
+  "xgboost": "2.1.4",
+  "sklearn": "1.6.1"
+ }
+}

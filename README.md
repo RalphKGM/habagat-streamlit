@@ -18,6 +18,7 @@ Habagat is the interactive product for our CSS142 research project. It simulates
 | **Forecast accuracy** | Model leaderboard, error by hours ahead and by month, and a single-day playback. |
 | **Grid planning** | Total 2025 plan adjustment by method, plus an animated replay of the midnight plan against the actual day. |
 | **Rolling test** | The forecast re-run for 2024, 2025 and Jan–Jun 2026, each year predicted by a model that only saw earlier years. A calendar of every forecast day (click one to open it), paired bootstrap intervals, grid-plan adjustment and the recent-window comparison. |
+| **2026 audit** | Evidence that the Jan–Jun 2026 forecasts came from models trained only on 2020–2025: the fit/select/refit/forecast/score steps with exact hour counts, computed vs forecast for every 2026 hour (daily chart, hourly scatter, monthly table), a live re-run of the physics against the scoring reference, the 2026 automated checks, and a CSV download. |
 | **Methodology** | Equations, fixed assumptions, a comparison with related IEEE studies, sources and limitations. |
 
 ## Run it locally
@@ -62,6 +63,7 @@ data/                   compact Parquet/CSV inputs (about 10 MB) + turbine-curve
 scripts/build_data.py   rebuilds data/ from the full research project
 scripts/extend_weather.py appends 2025 and Jan–Jun 2026 weather (weather_hourly.parquet)
 scripts/build_rolling.py packages the team's rolling-year evaluation into data/rolling/
+scripts/draw_audit_figure.py draws the paper's Fig. 6 (2026 computed vs forecast); insert_audit_figure.py places it in the DOCX
 scripts/build_map.py    rebuilds ph_map.json from Natural Earth (needs shapely)
 tests/                  parity + smoke tests
 paper/                  IEEE paper (DOCX + PDF), current version
