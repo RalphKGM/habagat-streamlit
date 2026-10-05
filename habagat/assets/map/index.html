@@ -321,7 +321,7 @@ function updateRail() {
 
 // ---------- timeline strip ----------
 function renderStrip() {
-  $("strip").innerHTML = `<div class="date"><div class="fine">Day · <span class="mono">←</span> <span class="mono">→</span> to step</div><div class="row" id="dp"></div></div>
+  $("strip").innerHTML = `<div class="date"><div class="fine">Day</div><div class="row" id="dp"></div></div>
     <div class="chart" id="chart"><svg id="tl" preserveAspectRatio="none" viewBox="0 0 1000 100"></svg></div>
     <div class="clock"><b class="num" id="clock"></b><button id="play">PLAY</button></div>`;
   DayPicker.mount($("dp"), { daily: A.daily, value: A.date, min: A.minDate, max: A.maxDate, site: A.sites[site].short,
