@@ -1,4 +1,4 @@
-/* Habagat day picker: a quiet date control with a small calendar, typed dates, a few shortcuts
+/* SolWind day picker: a quiet date control with a small calendar, typed dates, a few shortcuts
    and keyboard stepping.
 
    The canonical copy lives in assets/daypicker/; assets/map/daypicker.js must be identical
@@ -18,40 +18,40 @@
   const DAY = 864e5;
 
   const CSS = `
-  .dp { position:relative; font:14px/1.35 'Barlow', system-ui, sans-serif; color:#EAF2F6; }
+  .dp { position:relative; font:14px/1.35 'Archivo', system-ui, sans-serif; color:#15191C; }
   .dp button, .dp select { font:inherit; color:inherit; background:none; border:0; cursor:pointer; padding:0; }
-  .dp-bar { display:inline-flex; align-items:center; gap:2px; border-bottom:1px solid #2A4B60; }
-  .dp-step { width:26px; height:32px; color:#8BA6B5 !important; font-size:16px !important; }
-  .dp-step:hover { color:#EAF2F6 !important; }
+  .dp-bar { display:inline-flex; align-items:center; gap:2px; border-bottom:1px solid #C9CEC9; }
+  .dp-step { width:26px; height:32px; color:#60686E !important; font-size:16px !important; }
+  .dp-step:hover { color:#15191C !important; }
   .dp-step:disabled { opacity:.25; cursor:default; }
-  .dp-label { height:32px; padding:0 6px; font:500 15px 'Barlow', sans-serif !important; font-variant-numeric:tabular-nums; }
-  .dp.open .dp-label, .dp-label:hover { color:#FFD166 !important; }
-  .dp-pop { position:absolute; z-index:20; width:284px; background:#0C1E2B; border:1px solid #1F3A4D; padding:12px 12px 10px; }
+  .dp-label { height:32px; padding:0 6px; font:500 15px 'Archivo', sans-serif !important; font-variant-numeric:tabular-nums; }
+  .dp.open .dp-label, .dp-label:hover { color:#15191C !important; }
+  .dp-pop { position:absolute; z-index:20; width:284px; background:#FFFFFF; border:1px solid #E1E4E0; padding:12px 12px 10px; }
   .dp-pop[hidden] { display:none; }
   .dp.inline .dp-pop { left:0; top:40px; }
   .dp.up .dp-pop { left:0; bottom:40px; }
   .dp-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
-  .dp-head select { appearance:none; -webkit-appearance:none; font:500 14px 'Barlow', sans-serif !important; padding:2px 4px; }
-  .dp-head select:hover { color:#FFD166 !important; }
-  .dp-head select option { background:#0C1E2B; color:#EAF2F6; }
-  .dp-nav { width:26px; height:26px; color:#8BA6B5 !important; font-size:15px !important; }
-  .dp-nav:hover { color:#EAF2F6 !important; }
+  .dp-head select { appearance:none; -webkit-appearance:none; font:500 14px 'Archivo', sans-serif !important; padding:2px 4px; }
+  .dp-head select:hover { color:#15191C !important; }
+  .dp-head select option { background:#FFFFFF; color:#15191C; }
+  .dp-nav { width:26px; height:26px; color:#60686E !important; font-size:15px !important; }
+  .dp-nav:hover { color:#15191C !important; }
   .dp-nav:disabled { opacity:.25; cursor:default; }
   .dp-grid { display:grid; grid-template-columns:repeat(7, 1fr); }
-  .dp-wd { font-size:11px; color:#5F7F91; text-align:center; padding:2px 0 6px; }
-  .dp-day { height:32px; font-size:13px !important; font-variant-numeric:tabular-nums; color:#C9D8E0 !important; border:1px solid transparent !important; }
-  .dp-day:hover { border-color:#2A4B60 !important; }
-  .dp-day.sel { color:#0A1925 !important; background:#FFD166 !important; }
-  .dp-day.cur { border-color:#8BA6B5 !important; }
-  .dp-day:disabled { color:#2A4B60 !important; cursor:default; border-color:transparent !important; }
-  .dp-foot { border-top:1px solid #1F3A4D; margin-top:8px; padding-top:8px; display:flex; flex-direction:column; gap:7px; }
-  .dp-type { width:100%; height:28px; background:none; border:0; border-bottom:1px solid #2A4B60; color:#EAF2F6; padding:0 2px; font:13px 'Barlow', sans-serif; outline:none; }
-  .dp-type::placeholder { color:#5F7F91; }
-  .dp-type:focus { border-color:#FFD166; }
-  .dp-type.bad { border-color:#FF5C7A; }
+  .dp-wd { font-size:11px; color:#8A9297; text-align:center; padding:2px 0 6px; }
+  .dp-day { height:32px; font-size:13px !important; font-variant-numeric:tabular-nums; color:#4A5258 !important; border:1px solid transparent !important; }
+  .dp-day:hover { border-color:#C9CEC9 !important; }
+  .dp-day.sel { color:#FFFFFF !important; background:#15191C !important; }
+  .dp-day.cur { border-color:#60686E !important; }
+  .dp-day:disabled { color:#C9CEC9 !important; cursor:default; border-color:transparent !important; }
+  .dp-foot { border-top:1px solid #E1E4E0; margin-top:8px; padding-top:8px; display:flex; flex-direction:column; gap:7px; }
+  .dp-type { width:100%; height:28px; background:none; border:0; border-bottom:1px solid #C9CEC9; color:#15191C; padding:0 2px; font:13px 'Archivo', sans-serif; outline:none; }
+  .dp-type::placeholder { color:#8A9297; }
+  .dp-type:focus { border-color:#15191C; }
+  .dp-type.bad { border-color:#D64545; }
   .dp-links { display:flex; gap:12px; flex-wrap:wrap; }
-  .dp-link { font-size:12.5px !important; color:#8BA6B5 !important; }
-  .dp-link:hover { color:#FFD166 !important; }
+  .dp-link { font-size:12.5px !important; color:#60686E !important; }
+  .dp-link:hover { color:#15191C !important; }
   `;
 
   const ms = (s) => Date.parse(s + "T00:00:00Z");

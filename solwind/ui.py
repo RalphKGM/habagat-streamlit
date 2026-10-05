@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import streamlit as st
 
-from habagat.data import DEFAULTS, MODEL_LABEL, MODELS, SITE_SHORT, SITES
+from solwind.data import DEFAULTS, MODEL_LABEL, MODELS, SITE_SHORT, SITES
 
 
 def _keep_site() -> None:

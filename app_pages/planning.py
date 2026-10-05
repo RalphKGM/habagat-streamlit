@@ -3,11 +3,11 @@ import datetime as dt
 import plotly.graph_objects as go
 import streamlit as st
 
-from habagat import scenes, theme, ui
-from habagat.daypicker import day_picker
-from habagat.data import MODEL_LABEL, MODELS, SITE_SHORT, SITES, headline_findings, load_plan_summary, load_replay
+from solwind import scenes, theme, ui
+from solwind.daypicker import day_picker
+from solwind.data import MODEL_LABEL, MODELS, SITE_SHORT, SITES, headline_findings, load_plan_summary, load_replay
 
-theme.header('Grid planning', "Each forecast sets an hourly grid-purchase plan at midnight. The day is then replayed with actual generation. Adjustment is the extra energy bought plus planned energy that wasn't needed.")
+theme.header('Grid planning', 'Each forecast fixes an hourly grid plan at midnight. Adjustment is how far the real day moved it.')
 
 summary = load_plan_summary()
 found = headline_findings()
@@ -32,10 +32,9 @@ with side:
         st.metric(f"{SITE_SHORT[site]} · XGBoost",
                   f"{summary.set_index(['location', 'model']).loc[(site, 'xgboost'), 'total_grid_adjustment_mwh']:.0f} MWh",
                   f"{-found['plan_cut'].loc[site]:.1f}% vs best baseline", delta_color="inverse")
-    theme.note("<b>Same outcome, different plans.</b> Battery dispatch and load served are identical for every "
-               "method. Only the plan, and how far it had to be corrected, changes.")
+    theme.note("<b>Same outcome, different plans.</b> Only the plan changes between methods.")
 
-theme.section('Day replay', 'The dashed forecast is fixed at 00:00. Actual generation is revealed as the playhead moves.')
+theme.section('Day replay', 'Plan fixed at 00:00. Actual output fills in.')
 replay = load_replay()
 c = st.columns(2, vertical_alignment="bottom")
 with c[0]:
@@ -53,5 +52,4 @@ for col, m in zip(k, MODELS):
     best = min(totals, key=totals.get) == m
     col.metric(f"{MODEL_LABEL[m]} · adjustment this day", f"{totals[m]:.3f} MWh", "best this day" if best else None,
                delta_color="normal" if best else "off")
-st.caption("A retrospective planning scenario, not a live market result. Real-time grid adjustment is assumed available. "
-           "The battery starts at 1 MWh on 1 January and carries its charge through the year.")
+st.caption("Retrospective scenario, not a live market.")

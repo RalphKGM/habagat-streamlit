@@ -1,10 +1,10 @@
 import pandas as pd
 import streamlit as st
 
-from habagat import dispatch, literature, theme
-from habagat.physics import ASSUMPTIONS
+from solwind import dispatch, literature, theme
+from solwind.physics import ASSUMPTIONS
 
-theme.header('Methodology', 'Equations, fixed assumptions, sources and limits. The app runs the same code as the paper, and the tests check it reproduces the published tables.')
+theme.header('Methodology', 'Equations, assumptions, sources and limits.')
 
 solar, wind, storage, forecast = st.tabs(["Solar PV", "Wind turbine", "Battery", "Forecasting"])
 with solar:
@@ -57,11 +57,7 @@ st.dataframe(
     hide_index=True, width="stretch", height=320,
 )
 
-theme.section(
-    "How this compares",
-    "Related IEEE studies reviewed for the paper. Forecasting work abroad uses measured plants but rarely tests years in "
-    "order; Philippine work sizes systems but does not evaluate forecasts.",
-)
+theme.section("How this compares", "Related IEEE studies.")
 st.dataframe(
     pd.DataFrame(literature.FORECASTING, columns=["Study", "Venue", "Where", "Data", "Task", "Method", "Test split", "Planning link"]),
     hide_index=True, width="stretch",
@@ -70,7 +66,7 @@ st.dataframe(
     pd.DataFrame(literature.PHILIPPINES, columns=["Philippine study", "Venue", "Focus", "Tool", "Relation to this work"]),
     hide_index=True, width="stretch",
 )
-st.markdown("\n".join(f"- {t}" for t in literature.TAKEAWAYS))
+st.markdown("\n".join(f"- {t}" for t in literature.TAKEAWAYS[:2]))
 
 theme.section('Sources')
 st.markdown(

@@ -4,7 +4,7 @@ These notes are for presenting. Every number below comes from `data/rolling/` or
 
 ## 30-second pitch
 
-> Every night, grid operators guess how much sun and wind tomorrow will bring. We built Habagat. It simulates the same 1 MW solar + 1 MW wind system with a 2 MWh battery at Laoag, Mactan and General Santos, using hourly NASA POWER weather. Then it tests day-ahead forecasts year by year: 2024, 2025 and January–June 2026, each predicted by a model that only saw earlier years. XGBoost beat both simple baselines at every site in every test year. It had 17–29% lower error, and the grid plans built from it needed 16–25% less correction.
+> Every night, grid operators guess how much sun and wind tomorrow will bring. We built SolWind. It simulates the same 1 MW solar + 1 MW wind system with a 2 MWh battery at Laoag, Mactan and General Santos, using hourly NASA POWER weather. Then it tests day-ahead forecasts year by year: 2024, 2025 and January–June 2026, each predicted by a model that only saw earlier years. XGBoost beat both simple baselines at every site in every test year. It had 17–29% lower error, and the grid plans built from it needed 16–25% less correction.
 
 ## Headline numbers
 

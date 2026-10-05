@@ -1,5 +1,5 @@
 #!/bin/zsh
-# Double-click to start Habagat. First run creates .venv and installs packages (needs internet).
+# Double-click to start SolWind. First run creates .venv and installs packages (needs internet).
 cd "$(dirname "$0")"
 if [ ! -x .venv/bin/python ]; then
   python3 -m venv .venv || { echo "Python 3 is required: https://www.python.org/downloads/"; read; exit 1; }

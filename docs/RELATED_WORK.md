@@ -1,19 +1,19 @@
 # Related work comparison
 
-Summarised from the IEEE papers the team collected (`~/Downloads/IEEE`). The same tables appear on the app's Methodology page (`habagat/literature.py`). Paper references [11] and [16]–[27] cover these studies.
+Summarised from the IEEE papers the team collected (`~/Downloads/IEEE`). The same tables appear on the app's Methodology page (`solwind/literature.py`). Paper references [11] and [16]–[27] cover these studies.
 
 ## Forecasting studies
 
 | Study | Venue | Where | Data | Task | Method | Test split | Planning link |
 |---|---|---|---|---|---|---|---|
-| Hu et al. | EEICE 2025 | Province in China | Measured farm output, 2020, 15 min | Ultra-short-term power | CNN-BiLSTM-Attention | Random 7:3 | No |
-| Kavaz & Karazor | ICPSE 2023 | Turkey, one co-located plant | Measured, 15 months | 24 h ahead from previous 24 h | RF, boosting incl. XGBoost, LSTM, CNN-LSTM-Attention | 70 / 20 / 10 | No |
+| Hu et al. | EEICE 2025 | Province in China | Measured farm output, 2020, 15 min | Ultra-short-term power | CNN-BiLSTM-Attention | 7:3 split | No |
+| Kavaz & Karazor | ICPSE 2023 | Denmark, one co-located plant | Measured, 15 months | 24 h ahead from previous 24 h | RF, boosting incl. XGBoost, LSTM, CNN-LSTM-Attention | 70 / 20 / 10 | No |
 | Zhang, Han et al. | CIEEC 2022 | Southern China, 8 wind and 6 PV stations | NWP + measured, 1 year, 15 min | Short-term, regional joint | Attention neural network | Held-out 54 days | No |
 | Zhang, Zheng et al. | TELEPE 2025 | Hubei, China | Measured generation and load | Joint generation + load | GRU-CNN with attention | Not chronological by year | Scheduling motivation |
-| Yan et al. | SOLI 2013 | Zhangjiakou demo, China | Turbine-level NWP + monitoring | Next day and next 4 h | NWP + statistical ensemble | Operational months | Grid requirement |
+| Yan et al. | SOLI 2013 | Zhangjiakou demo, China | Turbine-level NWP + monitoring | Next day and next 4 h | NWP + statistical ensemble | Monthly accuracy | Grid requirement |
 | Laouafi et al. | IREC 2015 | Mainland France | RTE 15 min, 2013–2014 | 1 h ahead load, wind, solar | Feed-forward neural network | Hold-out period | No |
-| Vallejo et al. | EPIM 2018 | Uruguay | Met-service forecasts + farm output | Medium-term, 168 h | GA-trained neural network | Hold-out period | Market operator use |
-| Tambing et al. | ICISS 2025 | Jakarta, Indonesia | Daily weather, 2024 | Irradiance → panel sizing | LSTM | Random 85:15 | PV + battery sizing |
+| Vallejo et al. | EPIM 2018 | Uruguay | Met-service forecasts + farm output | Medium-term, 168 h | GA-trained neural network | Chronological 70/30 | Market operator use |
+| Tambing et al. | ICISS 2025 | Jakarta, Indonesia | Daily weather, 2024 | Irradiance → panel sizing | LSTM | 85:15 split | PV + battery sizing |
 | This work | CSS142 2026 | Laoag, Mactan, General Santos | NASA POWER hourly 2020–Jun 2026, modeled output | Day-ahead, 24 h issued 00:00 | XGBoost vs previous day and climatology | Rolling years: 2024, 2025, Jan–Jun 2026 | Battery grid-plan replay |
 
 ## Philippine planning and simulation studies
@@ -31,7 +31,7 @@ Summarised from the IEEE papers the team collected (`~/Downloads/IEEE`). The sam
 
 ## What this means for the defense
 
-- Most forecasting papers split data randomly or by ratio. This work tests whole years in order, so the model never sees the future.
+- Most forecasting papers use a ratio split or one hold-out period. This work tests whole years in order, so the model never sees the future.
 - They use measured output from one plant or one region abroad. This work compares three Philippine island groups with identical equipment, but the output is modeled.
 - Philippine studies mostly size systems in HOMER or simulate electrical faults. None evaluates a day-ahead forecast against a battery plan.
 - Deep networks (CNN-BiLSTM, attention) report gains on measured data. This work uses gradient boosting with two simple baselines, and adding deep models is listed as future work.

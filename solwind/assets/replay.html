@@ -2,44 +2,44 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   * { box-sizing:border-box; }
-  html, body { margin:0; background:transparent; font-family:'Barlow', sans-serif; color:#EAF2F6; }
-  .wrap { border:1px solid #1F3A4D; border-radius:2px; overflow:hidden; background:#0F2433; display:grid; grid-template-columns:1fr 250px; }
+  html, body { margin:0; background:transparent; font-family:'Archivo', sans-serif; color:#15191C; }
+  .wrap { border:1px solid #E1E4E0; border-radius:2px; overflow:hidden; background:#F4F5F3; display:grid; grid-template-columns:1fr 250px; }
   .charts { padding:14px 10px 6px 14px; }
-  .cap { font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#8BA6B5; display:flex; justify-content:space-between; margin:2px 4px 2px 40px; }
+  .cap { font-family:'JetBrains Mono', monospace; font-size:10.5px; color:#60686E; display:flex; justify-content:space-between; margin:2px 4px 2px 40px; }
   .cap span i { display:inline-block; width:14px; height:3px; vertical-align:middle; margin:0 4px 0 10px; }
   svg { display:block; width:100%; }
-  .side { border-left:1px solid #1F3A4D; padding:14px; display:flex; flex-direction:column; gap:8px; background:#0F2433; }
-  .clock { font-family:'IBM Plex Mono', monospace; font-size:30px; font-weight:600; line-height:1; }
-  .sub { font-size:12px; color:#8BA6B5; }
-  .card { border:1px solid #1F3A4D; border-left:3px solid var(--c); border-radius:2px; padding:6px 10px; background:#132D3F; }
-  .card small { display:block; font-size:11.5px; color:#8BA6B5; }
-  .card b { font-family:'IBM Plex Mono', monospace; font-size:21px; font-weight:600; font-variant-numeric:tabular-nums; }
-  .card em { font-style:normal; font-family:'IBM Plex Mono', monospace; font-size:11px; color:#8BA6B5; margin-left:4px; }
+  .side { border-left:1px solid #E1E4E0; padding:14px; display:flex; flex-direction:column; gap:8px; background:#F4F5F3; }
+  .clock { font-family:'JetBrains Mono', monospace; font-size:30px; font-weight:600; line-height:1; }
+  .sub { font-size:12px; color:#60686E; }
+  .card { border:1px solid #E1E4E0; border-left:3px solid var(--c); border-radius:2px; padding:6px 10px; background:#F0F2EF; }
+  .card small { display:block; font-size:11.5px; color:#60686E; }
+  .card b { font-family:'JetBrains Mono', monospace; font-size:21px; font-weight:600; font-variant-numeric:tabular-nums; }
+  .card em { font-style:normal; font-family:'JetBrains Mono', monospace; font-size:11px; color:#60686E; margin-left:4px; }
   .controls { display:flex; gap:6px; margin-top:auto; }
-  button { flex:1; font-family:'Barlow', sans-serif; font-size:12px; font-weight:500; border:1px solid #1F3A4D; background:#1B3547; color:#EAF2F6; border-radius:2px; padding:7px 8px; cursor:pointer; }
-  button.ghost { background:transparent; color:#8BA6B5; }
+  button { flex:1; font-family:'Archivo', sans-serif; font-size:12px; font-weight:500; border:1px solid #E1E4E0; background:#E9ECE8; color:#15191C; border-radius:2px; padding:7px 8px; cursor:pointer; }
+  button.ghost { background:transparent; color:#60686E; }
   .pulse { animation:pulse .5s ease; }
-  @keyframes pulse { 40% { transform:scale(1.04); background:#1B3547; } }
-  @media (max-width: 760px) { .wrap { grid-template-columns:1fr; } .side { border-left:0; border-top:1px solid #1F3A4D; } }
+  @keyframes pulse { 40% { transform:scale(1.04); background:#E9ECE8; } }
+  @media (max-width: 760px) { .wrap { grid-template-columns:1fr; } .side { border-left:0; border-top:1px solid #E1E4E0; } }
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="charts">
-    <div class="cap"><b>Generation · MW</b><span><i style="background:#EAF2F6"></i>what happened<i style="background:__COLOR__;height:0;border-top:2px dashed __COLOR__"></i>__MODEL__ forecast</span></div>
+    <div class="cap"><b>Generation · MW</b><span><i style="background:#15191C"></i>what happened<i style="background:__COLOR__;height:0;border-top:2px dashed __COLOR__"></i>__MODEL__ forecast</span></div>
     <svg viewBox="0 0 900 190" id="top"></svg>
-    <div class="cap"><b>Grid energy · MWh</b><span><i style="background:#FF8A5B"></i>planned at midnight<i style="background:#EAF2F6"></i>needed in replay</span></div>
+    <div class="cap"><b>Grid energy · MWh</b><span><i style="background:#E8A317"></i>planned at midnight<i style="background:#15191C"></i>needed in replay</span></div>
     <svg viewBox="0 0 900 170" id="bot"></svg>
   </div>
   <div class="side">
     <div><div class="clock" id="clock">00:00</div><div class="sub" id="label"></div></div>
     <div class="card" style="--c:__COLOR__"><small>Forecast generation</small><b id="fc">0</b><em>MW</em></div>
-    <div class="card" style="--c:#EAF2F6"><small>Actual (reference) generation</small><b id="ref">0</b><em>MW</em></div>
-    <div class="card" style="--c:#FF8A5B"><small>Grid planned → needed</small><b id="grid">0</b><em>MWh</em></div>
-    <div class="card" style="--c:#FF5C7A" id="adjCard"><small>Adjustment so far today</small><b id="adj">0</b><em>MWh</em></div>
+    <div class="card" style="--c:#15191C"><small>Actual (reference) generation</small><b id="ref">0</b><em>MW</em></div>
+    <div class="card" style="--c:#E8A317"><small>Grid planned → needed</small><b id="grid">0</b><em>MWh</em></div>
+    <div class="card" style="--c:#D64545" id="adjCard"><small>Adjustment so far today</small><b id="adj">0</b><em>MWh</em></div>
     <div class="controls"><button id="play">Pause</button><button class="ghost" id="restart">Restart</button></div>
   </div>
 </div>
@@ -52,10 +52,10 @@ const L = 40, W = 850, X = (t) => L + t / 23 * W;
 function axes(svg, h, max, ticks) {
   for (let i = 0; i <= ticks; i++) {
     const y = h - 22 - (h - 34) * i / ticks;
-    el("line", { x1: L, x2: L + W, y1: y, y2: y, stroke: "#EAF2F6", "stroke-opacity": i ? .08 : .6 }, svg);
-    el("text", { x: L - 6, y: y + 3, "text-anchor": "end", "font-family": "IBM Plex Mono", "font-size": 10, fill: "#8BA6B5" }, svg).textContent = (max * i / ticks).toFixed(2);
+    el("line", { x1: L, x2: L + W, y1: y, y2: y, stroke: "#15191C", "stroke-opacity": i ? .08 : .6 }, svg);
+    el("text", { x: L - 6, y: y + 3, "text-anchor": "end", "font-family": "JetBrains Mono", "font-size": 10, fill: "#60686E" }, svg).textContent = (max * i / ticks).toFixed(2);
   }
-  for (let hr = 0; hr < 24; hr += 3) el("text", { x: X(hr), y: h - 6, "text-anchor": "middle", "font-family": "IBM Plex Mono", "font-size": 10, fill: "#8BA6B5" }, svg).textContent = String(hr).padStart(2, "0") + ":00";
+  for (let hr = 0; hr < 24; hr += 3) el("text", { x: X(hr), y: h - 6, "text-anchor": "middle", "font-family": "JetBrains Mono", "font-size": 10, fill: "#60686E" }, svg).textContent = String(hr).padStart(2, "0") + ":00";
 }
 
 // --- top: generation ---
@@ -66,11 +66,11 @@ const line = (key) => H.map((h, i) => `${i ? "L" : "M"}${X(i).toFixed(1)},${gy(h
 const clipId = "reveal";
 const cp = el("clipPath", { id: clipId }, el("defs", {}, topSvg));
 const revealRect = el("rect", { x: 0, y: 0, width: L, height: th }, cp);
-el("path", { d: line("ref") + ` L${X(23)},${gy(0)} L${X(0)},${gy(0)}Z`, fill: "#EAF2F6", "fill-opacity": .08, "clip-path": `url(#${clipId})` }, topSvg);
-el("path", { d: line("ref"), fill: "none", stroke: "#EAF2F6", "stroke-width": 2.4, "clip-path": `url(#${clipId})` }, topSvg);
+el("path", { d: line("ref") + ` L${X(23)},${gy(0)} L${X(0)},${gy(0)}Z`, fill: "#15191C", "fill-opacity": .08, "clip-path": `url(#${clipId})` }, topSvg);
+el("path", { d: line("ref"), fill: "none", stroke: "#15191C", "stroke-width": 2.4, "clip-path": `url(#${clipId})` }, topSvg);
 el("path", { d: line("fc"), fill: "none", stroke: D.color, "stroke-width": 2.4, "stroke-dasharray": "7 5" }, topSvg);
-const fog = el("rect", { y: 8, height: th - 30, fill: "#EAF2F6", "fill-opacity": .04 }, topSvg);
-const fogText = el("text", { y: 24, "font-family": "IBM Plex Mono", "font-size": 10, fill: "#8BA6B5", }, topSvg);
+const fog = el("rect", { y: 8, height: th - 30, fill: "#15191C", "fill-opacity": .04 }, topSvg);
+const fogText = el("text", { y: 24, "font-family": "JetBrains Mono", "font-size": 10, fill: "#60686E", }, topSvg);
 fogText.textContent = "not yet known →";
 
 // --- bottom: grid plan vs need ---
@@ -78,11 +78,11 @@ const bot = $("bot"), bh = 170, bmax = Math.max(...H.map(h => Math.max(h.planned
 axes(bot, bh, bmax, 3);
 const by = (v) => bh - 22 - (bh - 34) * v / bmax, bw = W / 24 * .34;
 const bars = H.map((h, i) => {
-  const p = el("rect", { x: X(i) - bw - 1, width: bw, y: by(h.planned), height: by(0) - by(h.planned), fill: "#FF8A5B", rx: 1.5 }, bot);
-  const n = el("rect", { x: X(i) + 1, width: bw, y: by(0), height: 0, fill: "#EAF2F6", rx: 1.5 }, bot);
+  const p = el("rect", { x: X(i) - bw - 1, width: bw, y: by(h.planned), height: by(0) - by(h.planned), fill: "#E8A317", rx: 1.5 }, bot);
+  const n = el("rect", { x: X(i) + 1, width: bw, y: by(0), height: 0, fill: "#15191C", rx: 1.5 }, bot);
   return { n, h };
 });
-const head = [topSvg, bot].map((s, k) => el("line", { y1: 6, y2: (k ? bh : th) - 20, stroke: "#FF5C7A", "stroke-width": 1.6 }, s));
+const head = [topSvg, bot].map((s, k) => el("line", { y1: 6, y2: (k ? bh : th) - 20, stroke: "#D64545", "stroke-width": 1.6 }, s));
 
 let t = 0, playing = true, last = performance.now(), lastHour = -1;
 $("label").textContent = D.label;

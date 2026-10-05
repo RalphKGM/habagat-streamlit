@@ -1,11 +1,11 @@
-# Habagat ad kit
+# SolWind ad kit
 
 1. **The finished 60-second ad** (`film/renders/`): 16:9 and 9:16 MP4s, with voice-over, an original soundtrack, captions and subtitles.
 2. **The source** to change it and re-render (`film/`).
 3. **Script, claims check and social copy** (below).
 4. **Research** on tools that make app ads with Claude Code or Codex.
 
-The older 30-second motion piece is still in `ad/habagat_ad.html`.
+The older 30-second motion piece is still in `ad/solwind_ad.html`.
 
 ---
 
@@ -13,11 +13,11 @@ The older 30-second motion piece is still in `ad/habagat_ad.html`.
 
 | File | Use |
 |---|---|
-| `film/renders/habagat_ad_16x9.mp4` | YouTube, presentations, LinkedIn (1920×1080, 30 fps, about 59 s) |
-| `film/renders/habagat_ad_9x16.mp4` | Reels, TikTok, Shorts (1080×1920, captions burned in) |
-| `film/renders/habagat_ad.srt` | Subtitles for the 16:9 upload |
+| `film/renders/solwind_ad_16x9.mp4` | YouTube, presentations, LinkedIn (1920×1080, 30 fps, about 59 s) |
+| `film/renders/solwind_ad_9x16.mp4` | Reels, TikTok, Shorts (1080×1920, captions burned in) |
+| `film/renders/solwind_ad.srt` | Subtitles for the 16:9 upload |
 | `film/renders/thumb_end.png`, `thumb_result.png` | Thumbnails |
-| `film/renders/habagat_teaser.gif` | 6-second silent teaser for READMEs and chats |
+| `film/renders/solwind_teaser.gif` | 6-second silent teaser for READMEs and chats |
 
 ### How it was made (all free, all local)
 
@@ -26,7 +26,7 @@ The older 30-second motion piece is still in `ad/habagat_ad.html`.
 | Real product footage | Playwright drives the running app; Chrome DevTools screencast captures 1920×1080 frames with a visible cursor | `film/record_clips.py` → `film/clips/*.mp4` |
 | Voice-over | Microsoft Edge neural TTS (`edge-tts`, voice *en-US-AndrewNeural*), with word timings | `film/voice.py` → `film/audio/` |
 | Timeline | Scene lengths are fitted to the voice lines | `film/timeline.json` |
-| Motion design | One HTML page where every frame is a pure function of time: map outlines, monsoon wind particles, the fold grid, result bars, and the app clips seeked frame by frame | `film/habagat_film.html` |
+| Motion design | One HTML page where every frame is a pure function of time: map outlines, monsoon wind particles, the fold grid, result bars, and the app clips seeked frame by frame | `film/solwind_film.html` |
 | Frame-exact render | Headless Chrome steps 30 fps and pipes frames to ffmpeg (H.264) | `film/render.py` |
 | Music | Synthesised in numpy (pad, marimba pulse, wind noise, riser), ducked under the voice, loudness-normalised to −15 LUFS | `film/mix.py` |
 | Finish | Mux, subtitles, thumbnails, GIF | `film/finish.py` |
@@ -45,7 +45,7 @@ python voice.py                                  # needs: pip install edge-tts
 ../../.venv/bin/python mix.py && python finish.py
 ```
 
-Preview without rendering: run `python3 -m http.server` in `film/` and open `habagat_film.html` (Space to pause, arrows to seek, `?vertical&cap` for the vertical cut).
+Preview without rendering: run `python3 -m http.server` in `film/` and open `solwind_film.html` (Space to pause, arrows to seek, `?vertical&cap` for the vertical cut).
 
 - **Deployed URL on the end card:** add `?url=yourname.streamlit.app` to the page, or edit `#url` in the HTML, then re-render.
 
@@ -55,7 +55,7 @@ Preview without rendering: run `python3 -m http.server` in `film/` and open `hab
 |---|---|---|
 | 0:00 | Coastline draws in, monsoon wind particles | "Every midnight, the grid has to guess tomorrow." |
 | 0:04 | Luzon, Visayas and Mindanao fill in, and the three sites light up | "How much sun? How much wind? Hour by hour." |
-| 0:09 | Logo | "This is Habagat." |
+| 0:09 | Logo | "This is SolWind." |
 | 0:12 | **App:** map hover, switch to Mactan, press PLAY, with 170,856 counting up | "It replays six and a half years of NASA weather, hour by hour, at three sites across the Philippines." |
 | 0:20 | **App:** day picker, jump to 20 May 2026 | "Pick any day, right up to June 2026, and watch it play out." |
 | 0:26 | **App:** System designer, wind to 0 MW (renewables fall from 71.2% to 37.0%) | "Change the plant, and every hour reruns. Take the wind away, and the grid has to cover it." |
@@ -63,7 +63,7 @@ Preview without rendering: run `python3 -m http.server` in `film/` and open `hab
 | 0:41 | **App:** Rolling test calendar, open one day | "Every day is forecast automatically, at midnight." |
 | 0:45 | Result bars for each site and year | "Seventeen to twenty-nine percent less error than the best baseline." |
 | 0:50 | **App:** grid-plan day replay, with 16–25% | "And grid plans that need up to a quarter less correction." |
-| 0:54 | End card | "Habagat. Read tomorrow's sky." |
+| 0:54 | End card | "SolWind. Read tomorrow's sky." |
 
 **Claims check.** Every number comes from the app's result files.
 - **170,856:** site-hours of NASA POWER weather, January 2020 to June 2026 (56,952 per site).
@@ -83,15 +83,15 @@ Don't add "saves money" or "prevents blackouts". The study doesn't measure eithe
 ## 3. Social copy
 
 **LinkedIn / Facebook**
-> Every midnight, grid operators have to guess tomorrow's sun and wind. **Habagat** replays six and a half years of NASA POWER weather, hour by hour, for a 1 MW solar + 1 MW wind + 2 MWh battery system at Laoag, Mactan and General Santos. Then it tests day-ahead forecasts on years the model never saw: 2024, 2025 and early 2026. XGBoost had 17–29% less error than the best simple baseline at every site in every year, and its grid plans needed 16–25% less correction.
+> Every midnight, grid operators have to guess tomorrow's sun and wind. **SolWind** replays six and a half years of NASA POWER weather, hour by hour, for a 1 MW solar + 1 MW wind + 2 MWh battery system at Laoag, Mactan and General Santos. Then it tests day-ahead forecasts on years the model never saw: 2024, 2025 and early 2026. XGBoost had 17–29% less error than the best simple baseline at every site in every year, and its grid plans needed 16–25% less correction.
 > Code: https://github.com/RalphKGM/habagat-streamlit
 > #RenewableEnergy #MachineLearning #Philippines #Streamlit #DataScience
 
 **X / Threads (≤280 chars)**
-> Every midnight the grid has to guess tomorrow's sun & wind. Habagat replays 6.5 years of NASA weather at 3 PH sites and tests forecasts on years they never saw: 17–29% less error than the best baseline. ☀️🌬️ github.com/RalphKGM/habagat-streamlit
+> Every midnight the grid has to guess tomorrow's sun & wind. SolWind replays 6.5 years of NASA weather at 3 PH sites and tests forecasts on years they never saw: 17–29% less error than the best baseline. ☀️🌬️ github.com/RalphKGM/habagat-streamlit
 
 **Reels / TikTok / Shorts caption (vertical cut)**
-> Read tomorrow's sky ☀️🌬️🔋 Day-ahead solar + wind forecasts for three Philippine sites, tested on years the model never saw. #habagat #renewables #machinelearning #philippines
+> Read tomorrow's sky ☀️🌬️🔋 Day-ahead solar + wind forecasts for three Philippine sites, tested on years the model never saw. #solwind #renewables #machinelearning #philippines
 
 ---
 
@@ -117,7 +117,7 @@ As of October 2026, the common approach is **code-based video**. The AI agent do
 - Google Lyria and ElevenLabs Music produced the soundtracks.
 
 His lessons apply directly here:
-- **Give the agent one strong reference.** For you, that's `habagat_ad.html`.
+- **Give the agent one strong reference.** For you, that's `solwind_ad.html`.
 - **Hand it the real value proposition.** Point it at the README and the results.
 - **Use each model for what it's best at.**
 
@@ -125,7 +125,7 @@ One kit that came up in search (video-shotcraft) returned a 404 when checked, so
 
 ### If you want to go further
 
-- **HyperFrames or Remotion:** port `film/habagat_film.html` to either one to get timeline editing in a GUI.
+- **HyperFrames or Remotion:** port `film/solwind_film.html` to either one to get timeline editing in a GUI.
 - **Better voice:** the free tiers of ElevenLabs have more natural voices. Swap the files in `film/audio/`, rebuild `timeline.json`, then re-render.
 - **Licensed music:** replace the synthesised bed in `mix.py` with a track from the YouTube Audio Library or Pixabay Music. Keep it about 12 dB under the voice.
 

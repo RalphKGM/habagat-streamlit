@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 40" fill="none">
+  <circle cx="14" cy="15" r="7" fill="#E8A317"/>
+  <path d="M4 27h22M10 33h16" stroke="#2F6FDE" stroke-width="3" stroke-linecap="square"/>
+  <text x="36" y="28" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="-0.4" fill="#15191C">SolWind</text>
+</svg>

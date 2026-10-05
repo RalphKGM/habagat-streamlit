@@ -10,8 +10,8 @@ import pandas as pd
 import streamlit as st
 import streamlit.components.v1 as components
 
-from habagat.daypicker import daily_series
-from habagat.data import (
+from solwind.daypicker import daily_series
+from solwind.data import (
     SITE_SHORT,
     SITES,
     coverage_pct,
@@ -26,7 +26,7 @@ from habagat.data import (
 )
 
 ASSETS = Path(__file__).resolve().parent / "assets"
-_map = components.declare_component("habagat_map", path=str(ASSETS / "map"))
+_map = components.declare_component("solwind_map", path=str(ASSETS / "map"))
 GROUP = {"Laoag, Ilocos Norte": "Luzon", "Mactan, Cebu": "Visayas", "General Santos City": "Mindanao"}
 
 

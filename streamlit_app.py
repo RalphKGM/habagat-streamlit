@@ -1,4 +1,4 @@
-"""Habagat: solar-wind forecasting and grid planning for three Philippine sites.
+"""SolWind: solar-wind forecasting and grid planning for three Philippine sites.
 
 Run locally with:  streamlit run streamlit_app.py
 """
@@ -11,18 +11,18 @@ from pathlib import Path
 import streamlit as st
 
 ROOT = Path(__file__).resolve().parent
-ASSETS = ROOT / "habagat" / "assets"
+ASSETS = ROOT / "solwind" / "assets"
 PAGES = ROOT / "app_pages"
 
 st.set_page_config(
-    page_title="Habagat",
+    page_title="SolWind",
     page_icon=str(ASSETS / "icon.svg"),
     layout="wide",
     initial_sidebar_state="collapsed",
 )
 
 # Streamlit Cloud pulls new commits into the running process. Page scripts rerun from the new files, but the
-# habagat package stays imported, so a page could ask for a name the old module does not have (ImportError).
+# solwind package stays imported, so a page could ask for a name the old module does not have (ImportError).
 # Drop the package from sys.modules whenever one of its files changes, so it is imported fresh.
 @st.cache_resource
 def _package_mtimes() -> dict:
@@ -30,16 +30,16 @@ def _package_mtimes() -> dict:
 
 
 _seen, _stale = _package_mtimes(), False
-for _path in (ROOT / "habagat").glob("*.py"):
+for _path in (ROOT / "solwind").glob("*.py"):
     _mtime = _path.stat().st_mtime
     if _seen.setdefault(_path.name, _mtime) != _mtime:
         _seen[_path.name], _stale = _mtime, True
 if _stale:
-    for _name in [n for n in sys.modules if n == "habagat" or n.startswith("habagat.")]:
+    for _name in [n for n in sys.modules if n == "solwind" or n.startswith("solwind.")]:
         del sys.modules[_name]
 
-from habagat import theme  # noqa: E402  (after set_page_config)
-from habagat.data import DEFAULTS  # noqa: E402
+from solwind import theme  # noqa: E402  (after set_page_config)
+from solwind.data import DEFAULTS  # noqa: E402
 
 # Keep the system design when moving between pages: Streamlit forgets widget
 # state for widgets that are not on the current page unless it is re-assigned.

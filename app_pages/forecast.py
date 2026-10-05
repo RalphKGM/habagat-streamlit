@@ -3,11 +3,11 @@ import datetime as dt
 import plotly.graph_objects as go
 import streamlit as st
 
-from habagat import theme, ui
-from habagat.daypicker import day_picker
-from habagat.data import MODEL_LABEL, MODELS, SITE_SHORT, SITES, headline_findings, load_metrics, load_predictions
+from solwind import theme, ui
+from solwind.daypicker import day_picker
+from solwind.data import MODEL_LABEL, MODELS, SITE_SHORT, SITES, headline_findings, load_metrics, load_predictions
 
-theme.header('Forecast accuracy', 'Day-ahead forecasts issued at 00:00 for every day of 2025, a year held out from training. Error is measured against the reference modeled output.')
+theme.header('Forecast accuracy', 'Day-ahead forecasts for every day of 2025, a year held out from training.')
 
 metrics = load_metrics()
 overall = metrics.loc[(metrics["scope"] == "all_hours") & (metrics["aggregation"] == "overall")]
@@ -62,7 +62,7 @@ with a:
 with b:
     theme.chart(theme.style(m_fig, f"{SITE_SHORT[site]} · error by month", "MAE · MW", 330), key="month")
 
-theme.section('Single-day playback', 'Hide the reference to compare the forecast alone first.')
+theme.section('Single-day playback')
 predictions = load_predictions()
 day = day_picker("fc_date", site, dt.date(2025, 7, 15), key="fc_picker",
                  first=dt.date(2025, 1, 1), last=dt.date(2025, 12, 31))
@@ -84,7 +84,7 @@ sel = sel.sort_values("target_timestamp_pht").reset_index(drop=True)
 shown = MODELS if everyone else [model]
 fig = go.Figure()
 fig.add_scatter(x=sel["target_timestamp_pht"], y=sel["reference_output_mw"], name="Reference (what happened)",
-                line=dict(color=theme.INK, width=3), fill="tozeroy", fillcolor="rgba(234,242,246,.06)",
+                line=dict(color=theme.INK, width=3), fill="tozeroy", fillcolor="rgba(21,25,28,.05)",
                 visible=True if reveal else "legendonly")
 for m in shown:
     fig.add_scatter(x=sel["target_timestamp_pht"], y=sel[f"{m}_prediction_mw"], name=MODEL_LABEL[m],
@@ -119,7 +119,4 @@ q[0].metric(f"{MODEL_LABEL[model]} error this day", f"{err.mean():.3f} MW")
 q[1].metric("Worst hour", f"{sel.loc[err.idxmax(), 'target_timestamp_pht']:%H:00}", f"{err.max():.3f} MW off", delta_color="off")
 q[2].metric("Energy forecast vs reference", f"{sel[f'{model}_prediction_mw'].sum():.2f} MWh",
             f"{sel[f'{model}_prediction_mw'].sum() - sel['reference_output_mw'].sum():+.2f} MWh", delta_color="off")
-theme.note(
-    "<b>Reference</b> is electricity calculated from the 2025 weather with the same physics. It is not metered plant output. "
-    "Models were trained on 2020–2023, selected on 2024 and scored once on 2025. The Rolling test page repeats this for 2024 and January–June 2026."
-)
+theme.note("Reference = output computed from 2025 weather, not metered.")

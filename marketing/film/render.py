@@ -1,4 +1,4 @@
-"""Frame-exact render of habagat_film.html -> MP4 (video only; mix.py adds sound).
+"""Frame-exact render of solwind_film.html -> MP4 (video only; mix.py adds sound).
 
   render.py stills 1.5 10 14 ...       -> renders/still_<t>.png (quick visual checks)
   render.py video [--vertical] [--cap] -> renders/video_16x9.mp4 / video_9x16.mp4
@@ -31,7 +31,7 @@ async def main(mode, args):
         b = await p.chromium.launch(channel="chrome", args=["--autoplay-policy=no-user-gesture-required"])
         pg = await b.new_page(viewport={"width": W, "height": H})
         errs = []; pg.on("pageerror", lambda e: errs.append(str(e)))
-        await pg.goto(f"http://127.0.0.1:{port}/habagat_film.html?{q}")
+        await pg.goto(f"http://127.0.0.1:{port}/solwind_film.html?{q}")
         await pg.evaluate("FILM.ready()"); await pg.wait_for_timeout(500)
         dur, fps = await pg.evaluate("[FILM.duration, FILM.fps]")
         os.makedirs(os.path.join(HERE, "renders"), exist_ok=True)

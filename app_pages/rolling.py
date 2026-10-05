@@ -4,17 +4,13 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from habagat import theme, ui
-from habagat.data import (
+from solwind import theme, ui
+from solwind.data import (
     FOLD_LABEL, FOLD_WINDOWS, FOLDS, MODEL_LABEL, MODELS, SITE_SHORT, SITES,
     load_rolling_bootstrap, load_rolling_hourly, load_rolling_metrics, load_rolling_plan, rolling_daily,
 )
 
-theme.header(
-    "Rolling test",
-    "The same forecast, re-run as if it were 2024, 2025 and 2026. Each year is predicted by a model that only saw the "
-    "years before it. 2026 stops at June, the last month with complete NASA solar data.",
-)
+theme.header("Rolling test", "Each year predicted by a model that only saw earlier years.")
 st.page_link("app_pages/audit.py", label="2026 audit: how to verify the 2026 forecast never saw 2026", icon=":material/fact_check:")
 
 # --- How the window moves -----------------------------------------------------------------------
@@ -48,7 +44,7 @@ theme.html(
     .rt-y {{ color:{theme.INK_SOFT}; text-align:center; }}
     .rt-y:first-child {{ grid-column:2; }}
     .rt-name {{ color:{theme.INK}; font-family:{theme.FONT_HEAD} !important; font-size:.92rem !important; letter-spacing:.04em;
-                text-transform:uppercase; border-left:2px solid {theme.RULE}; }}
+                border-left:2px solid {theme.RULE}; }}
     .rt-c {{ text-align:center; color:{theme.PAPER}; background:var(--c); font-weight:500; }}
     .rt-none {{ background:transparent; border:1px dashed {theme.RULE}; color:transparent; }}
     .rt-fit {{ color:{theme.INK}; }}
@@ -57,8 +53,7 @@ theme.html(
                                  .rt-grid > div {{ font-size:.6rem; padding:.3rem .1rem; }} }}
     </style>
     <div class="rt-grid"><div></div>{cells}</div>
-    <div class="rt-key">Fit: the two candidate settings learn. Select: the better setting is chosen on the next year.
-    The chosen setting is then refit on every year before the test year. The test year is scored once.</div>"""
+    <div class="rt-key">Fit · Select the better setting · Refit · Test once.</div>"""
 )
 
 # --- Results across folds -----------------------------------------------------------------------
@@ -95,17 +90,9 @@ for col, site in zip(cols, SITES):
                for f in main_folds]
         st.metric("XGBoost vs best baseline, each year", f"−{min(cut) * 100:.0f}% to −{max(cut) * 100:.0f}%")
 
-theme.note(
-    "XGBoost has the lowest combined error and the smallest grid-plan adjustment at every site in every test. "
-    "That is the point of the rolling test: the result repeats across years instead of depending on one lucky year."
-)
 
 # --- Year at a glance ---------------------------------------------------------------------------
-theme.section(
-    "Every day, not one at a time",
-    "The model forecasts all days automatically at midnight. Each square is one day: green means XGBoost beat "
-    "yesterday's-output forecast that day, red means it lost. Click a square to open it.",
-)
+theme.section("Every day, at midnight", "Green: XGBoost beat yesterday's output. Click a day to open it.")
 c = st.columns([1.3, 1.6], vertical_alignment="bottom")
 with c[0]:
     site = ui.site_picker()
@@ -157,7 +144,7 @@ a, b = st.columns([2.2, 1], gap="large")
 with a:
     fig = go.Figure()
     fig.add_scatter(x=sel["target_timestamp_pht"], y=sel["reference_output_mw"], name="Reference (what happened)",
-                    line=dict(color=theme.INK, width=3), fill="tozeroy", fillcolor="rgba(234,242,246,.06)")
+                    line=dict(color=theme.INK, width=3), fill="tozeroy", fillcolor="rgba(21,25,28,.05)")
     for model in MODELS:
         fig.add_scatter(x=sel["target_timestamp_pht"], y=sel[f"{model}_prediction_mw"], name=MODEL_LABEL[model],
                         line=dict(color=theme.MODEL_COLOR[model], width=2.6 if model == "xgboost" else 1.8, dash="dash"))
@@ -171,11 +158,7 @@ with b:
     st.metric("Energy that day", f"{row['reference_mwh']:.2f} MWh", "modeled reference", delta_color="off")
 
 # --- Uncertainty and planning ---------------------------------------------------------------------
-theme.section(
-    "Is the gap real?",
-    "Paired block bootstrap: the same days are resampled in seven-day blocks 2,000 times. Bars left of zero favour "
-    "XGBoost. Every interval stays left of zero.",
-)
+theme.section("Is the gap real?", "Seven-day block bootstrap, 2,000 resamples. Left of zero favours XGBoost.")
 boot = load_rolling_bootstrap()
 boot = boot.loc[(boot["fold"] == fold) & (boot["period"] == "available_test")]
 forest = go.Figure()
@@ -211,10 +194,7 @@ with r:
     theme.chart(theme.style(adj, f"Grid-plan adjustment per hour · {FOLD_LABEL[fold]}", "MWh per hour", 330), key="adj")
 
 # --- Training window --------------------------------------------------------------------------------
-theme.section(
-    "Does a shorter, more recent history help?",
-    "Both 2026 runs predict the same January–June hours. One keeps 2020 in training, the other drops it.",
-)
+theme.section("Shorter history?", "Same 2026 hours, with and without 2020 in training.")
 table = pd.DataFrame({
     "Site": [SITE_SHORT[s] for s in SITES],
     "Previous day": [overall.loc[("recent_2026", s, "previous_day")] for s in SITES],
@@ -225,9 +205,4 @@ table = pd.DataFrame({
 table["Change"] = (table["XGBoost 2021–2025"] / table["XGBoost 2020–2025"] - 1).map("{:+.1%}".format)
 st.dataframe(table, hide_index=True, width="stretch",
              column_config={k: st.column_config.NumberColumn(format="%.4f MW") for k in table.columns[1:5]})
-theme.note(
-    "Dropping 2020 helps Laoag and General Santos slightly and hurts Mactan. A shorter window is not reliably better, "
-    "so the main results keep every available year. Reference output is modeled from NASA POWER weather, not metered; "
-    "intervals are conditional on the fitted models and do not include physical-model uncertainty. "
-    "July–September 2026 is not scored because NASA had not released the solar inputs when the test was run."
-)
+theme.note("Dropping 2020 does not reliably help. July–September 2026 is not scored: NASA solar data was not yet released.")

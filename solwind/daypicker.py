@@ -13,9 +13,9 @@ import pandas as pd
 import streamlit as st
 import streamlit.components.v1 as components
 
-from habagat.data import SITE_SHORT, current_dispatch, settings
+from solwind.data import SITE_SHORT, current_dispatch, settings
 
-_picker = components.declare_component("habagat_daypicker", path=str(Path(__file__).resolve().parent / "assets" / "daypicker"))
+_picker = components.declare_component("solwind_daypicker", path=str(Path(__file__).resolve().parent / "assets" / "daypicker"))
 
 
 @st.cache_data(show_spinner=False, max_entries=16)

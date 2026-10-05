@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build habagat/assets/ph_map.json: island-group outlines of the Philippines as SVG paths.
+"""Build solwind/assets/ph_map.json: island-group outlines of the Philippines as SVG paths.
 
 Source: Natural Earth (public domain), 1:10m admin-1 provinces and 1:50m countries.
 Provinces are merged into the three grid island groups (Luzon, Visayas, Mindanao),
@@ -19,7 +19,7 @@ from pathlib import Path
 from shapely.geometry import box, shape
 from shapely.ops import unary_union
 
-OUT = Path(__file__).resolve().parents[1] / "habagat" / "assets" / "ph_map.json"
+OUT = Path(__file__).resolve().parents[1] / "solwind" / "assets" / "ph_map.json"
 
 ISLAND_GROUP = {
     "Luzon": ["National Capital Region", "Ilocos", "Cagayan Valley", "Central Luzon", "Cordillera",

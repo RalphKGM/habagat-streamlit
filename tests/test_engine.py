@@ -14,8 +14,8 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from habagat.dispatch import simulate_battery, synthetic_load_mw  # noqa: E402
-from habagat.physics import ASSUMPTIONS, load_power_curve, pv_output, wind_output  # noqa: E402
+from solwind.dispatch import simulate_battery, synthetic_load_mw  # noqa: E402
+from solwind.physics import ASSUMPTIONS, load_power_curve, pv_output, wind_output  # noqa: E402
 
 SITE_SUMMARY = pd.read_csv(ROOT / "data/site_summary.csv").set_index("location")
 COVERAGE = pd.read_csv(ROOT / "data/demand_coverage_summary.csv")

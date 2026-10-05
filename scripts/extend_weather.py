@@ -3,7 +3,7 @@
 
     python scripts/extend_weather.py "~/Desktop/final-submission-simulation/[3 - STREAMLIT]/project"
 
-The paper's physical study stays 2020-2024 (see habagat.data.STUDY_YEARS); the extra hours
+The paper's physical study stays 2020-2024 (see solwind.data.STUDY_YEARS); the extra hours
 let the Map and Live plant replay any day up to 30 June 2026, the last day with complete
 solar inputs when the data were downloaded.
 """

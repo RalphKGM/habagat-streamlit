@@ -7,9 +7,9 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from habagat import theme, ui
-from habagat.daypicker import day_picker
-from habagat.data import (
+from solwind import theme, ui
+from solwind.daypicker import day_picker
+from solwind.data import (
     DEFAULTS,
     SITE_SHORT,
     coverage_pct,
@@ -21,7 +21,7 @@ from habagat.data import (
     years_in,
 )
 
-theme.header('System designer', 'Change the plant and rerun every hour from January 2020 to June 2026. Differences are shown against the standard design: 1 MW solar, 1 MW wind and a 2 MWh battery.')
+theme.header('System designer', 'Your design, rerun for every hour from January 2020 to June 2026.')
 
 
 def _reset() -> None:
@@ -85,7 +85,7 @@ with results:
     fig.update_xaxes(type="category")
     theme.chart(theme.style(fig, f"Where {SITE_SHORT[site]}’s demand was met, by year", "MWh", 330), key="yearly")
 
-theme.section('Average surplus by month and hour', 'Renewable output minus demand, before the battery. Green hours charge the battery and red hours drain it.')
+theme.section('Surplus by month and hour', 'Green charges the battery. Red draws on it.')
 net = dispatch.assign(
     month=dispatch["timestamp_pht"].dt.month,
     hour=dispatch["timestamp_pht"].dt.hour,
@@ -110,7 +110,7 @@ heat.update_xaxes(ticks="", title="Hour of day")
 heat.update_layout(hovermode="closest")
 theme.chart(theme.style(heat, "", "", 380), key="fingerprint")
 
-theme.section('Outage test', 'The grid is unavailable during the selected window, so any shortfall becomes unmet demand.')
+theme.section('Outage test')
 outage_day = day_picker("outage_day", site, dt.date(2022, 9, 15), key="outage_picker")
 o = st.columns(2)
 outage_start = o[0].slider("Starts at", 0, 23, 18, format="%d:00", key="outage_start")
@@ -139,7 +139,7 @@ drill.add_vrect(x0=begin, x1=begin + pd.Timedelta(hours=outage_len), fillcolor=t
                 annotation_font=dict(family=theme.FONT_MONO, size=10, color=theme.EMBER))
 drill.add_scatter(x=span["timestamp_pht"], y=span["demand_mw"], name="Demand", line=dict(color=theme.INK, width=2.5, shape="hv"))
 drill.add_scatter(x=span["timestamp_pht"], y=span["combined_mw"], name="Solar + wind", line=dict(color=theme.LEAF, width=2.5),
-                  fill="tozeroy", fillcolor="rgba(110,231,183,.12)")
+                  fill="tozeroy", fillcolor="rgba(59,162,114,.12)")
 drill.add_scatter(x=span["timestamp_pht"], y=span["battery_soc_end_mwh"], name="Battery (MWh)",
                   line=dict(color=theme.VIOLET, width=2.5, dash="dot"))
 theme.chart(theme.style(drill, "", "MW · MWh", 340), key="drill")
@@ -152,7 +152,7 @@ with st.expander("Hourly results table and download"):
     st.download_button(
         "Download every hour, 2020 to June 2026, for this design (CSV)",
         dispatch_csv(site, cfg["load_scale"], cfg["battery_capacity"], **physics_args(cfg)),
-        file_name=f"habagat_{SITE_SHORT[site].lower().replace(' ', '_')}_2020_2026.csv",
+        file_name=f"solwind_{SITE_SHORT[site].lower().replace(' ', '_')}_2020_2026.csv",
         mime="text/csv",
         icon=":material/download:",
     )

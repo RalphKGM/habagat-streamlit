@@ -1,4 +1,4 @@
-# Deploy Habagat
+# Deploy SolWind
 
 ## 1. Push to GitHub
 
@@ -7,9 +7,9 @@ From this folder:
 ```bash
 git init
 git add .
-git commit -m "Habagat: solar-wind forecasting app"
+git commit -m "SolWind: solar-wind forecasting app"
 git branch -M main
-git remote add origin https://github.com/<your-username>/habagat.git
+git remote add origin https://github.com/<your-username>/solwind.git
 git push -u origin main
 ```
 
@@ -19,8 +19,8 @@ Create the empty repository on github.com first (no README, so the push doesn't 
 
 1. Go to **share.streamlit.io** and sign in with GitHub.
 2. Click **Create app → Deploy a public app from GitHub**.
-3. Repository: `<your-username>/habagat` · Branch: `main` · Main file path: `streamlit_app.py`.
-4. **App URL**: choose `habagat` (giving `habagat.streamlit.app`) if it's free. Otherwise pick another name and update the URL in the ad: `marketing/ad/habagat_ad.html?url=yourname.streamlit.app`.
+3. Repository: `<your-username>/solwind` · Branch: `main` · Main file path: `streamlit_app.py`.
+4. **App URL**: choose `solwind` (giving `solwind.streamlit.app`) if it's free. Otherwise pick another name and update the URL in the ad: `marketing/ad/solwind_ad.html?url=yourname.streamlit.app`.
 5. **Advanced settings → Python version**: 3.11 or 3.12.
 6. Deploy. The first build takes 2–4 minutes. The first page load runs the physics once (about 2 seconds), and after that it's cached.
 
@@ -29,7 +29,7 @@ No secrets or API keys are needed.
 ## 3. Before the defense
 
 - Open the deployed URL once beforehand to wake the app. Free apps sleep after a period of inactivity.
-- Keep the local launcher (`Run Habagat.command`) as an offline fallback.
+- Keep the local launcher (`Run SolWind.command`) as an offline fallback.
 - Suggested demo path (about 3 minutes):
   1. **Map**: hover the three regions, click Laoag, then press play on the timeline and watch the colors and wind shift through the day. Switch the legend to *Capacity factor*, then open the *Forecast 2025* tab in the panel.
   2. **Live plant**: press *Windiest* and point out the rotor, battery and flows.

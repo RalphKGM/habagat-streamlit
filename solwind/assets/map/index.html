@@ -3,69 +3,69 @@
 <head>
 <meta charset="utf-8">
 <script src="daypicker.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root { --bg:#0C1E2B; --sea:#0A1925; --rail:#0F2433; --line:#1F3A4D; --line2:#2A4B60; --text:#EAF2F6; --muted:#8BA6B5;
-    --solar:#FF8A5B; --wind:#3FD0F0; --battery:#C3A6FF; --grid:#FF5C7A; --unused:#5E7787; --served:#6EE7B7; --hi:#FFD166; }
+  :root { --bg:#FFFFFF; --sea:#FFFFFF; --rail:#F4F5F3; --line:#E1E4E0; --line2:#C9CEC9; --text:#15191C; --muted:#60686E;
+    --solar:#E8A317; --wind:#2F6FDE; --battery:#7C5CDB; --grid:#D64545; --unused:#9AA1A6; --served:#3BA272; --hi:#15191C; }
   * { box-sizing:border-box; margin:0; }
-  html, body { background:var(--bg); color:var(--text); font:15px/1.4 'Barlow', system-ui, sans-serif; overflow:hidden; }
-  .mono { font-family:'IBM Plex Mono', monospace; }
-  .cond { font-family:'Barlow Condensed', 'Barlow', sans-serif; letter-spacing:.01em; }
+  html, body { background:var(--bg); color:var(--text); font:15px/1.4 'Archivo', system-ui, sans-serif; overflow:hidden; }
+  .mono { font-family:'JetBrains Mono', monospace; }
+  .cond { font-family:'Archivo', 'Archivo', sans-serif; letter-spacing:.01em; }
   .num { font-variant-numeric:tabular-nums; }
   #app { display:grid; grid-template-columns:minmax(0,1fr) 360px; grid-template-rows:minmax(0,1fr) 128px; height:760px;
     border:1px solid var(--line); background:var(--sea); }
-  #mapbox { position:relative; overflow:hidden; background:radial-gradient(ellipse at 60% 45%, #0E2535 0%, #0A1925 70%); }
+  #mapbox { position:relative; overflow:hidden; background:#EEF2F4; }
   svg#map, canvas#wind { position:absolute; inset:0; width:100%; height:100%; }
   canvas#wind { pointer-events:none; }
-  .region { stroke:#06121B; stroke-width:1; cursor:pointer; transition:fill .5s, opacity .2s; }
+  .region { stroke:#FFFFFF; stroke-width:1; cursor:pointer; transition:fill .5s, opacity .2s; }
   .region.dim { opacity:.5; }
   .region.sel { stroke:var(--hi); stroke-width:1.6; }
-  .contour { fill:none; stroke:#1A3B50; stroke-width:1; }
-  .grat { stroke:#132C3D; stroke-width:1; stroke-dasharray:2 5; }
-  .tick { font-family:'IBM Plex Mono', monospace; fill:#6D8C9E; }
+  .contour { fill:none; stroke:#E1E5E0; stroke-width:1; }
+  .grat { stroke:#E6E9E5; stroke-width:1; stroke-dasharray:2 5; }
+  .tick { font-family:'JetBrains Mono', monospace; fill:#8A9297; }
   .site-dot { fill:var(--sea); stroke:var(--text); stroke-width:2; cursor:pointer; }
   .site-dot.sel { fill:var(--hi); stroke:var(--hi); }
-  .site-label { font-family:'Barlow Condensed', sans-serif; font-weight:600; fill:var(--text); letter-spacing:.04em; text-transform:uppercase; pointer-events:none;
+  .site-label { font-family:'Archivo', sans-serif; font-weight:600; fill:var(--text); letter-spacing:.04em; pointer-events:none;
     paint-order:stroke; stroke:var(--sea); stroke-width:4px; }
   .cross { stroke:var(--hi); stroke-width:1; opacity:0; }
   .cross.on { opacity:.7; }
 
-  #key { position:absolute; left:16px; top:16px; width:230px; border:1px solid var(--line2); background:rgba(10,25,37,.85); padding:10px 12px; }
+  #key { position:absolute; left:16px; top:16px; width:230px; border:1px solid var(--line2); background:rgba(255,255,255,.94); padding:10px 12px; }
   #key .opts { display:flex; gap:12px; margin-bottom:8px; font-size:13px; }
-  #key .opts button { background:none; border:0; color:var(--muted); font:500 13px 'Barlow'; padding:0 0 3px; cursor:pointer; border-bottom:2px solid transparent; }
+  #key .opts button { background:none; border:0; color:var(--muted); font:500 13px 'Archivo'; padding:0 0 3px; cursor:pointer; border-bottom:2px solid transparent; }
   #key .opts button.on { color:var(--text); border-color:var(--hi); }
   #key .bar { height:8px; }
-  #key .ticks { display:flex; justify-content:space-between; font:11px 'IBM Plex Mono'; color:var(--muted); margin-top:4px; }
+  #key .ticks { display:flex; justify-content:space-between; font:11px 'JetBrains Mono'; color:var(--muted); margin-top:4px; }
   #key .title { font-size:12px; color:var(--muted); margin-bottom:6px; }
   #toggles { position:absolute; right:16px; top:16px; display:flex; gap:6px; }
-  #toggles button { border:1px solid var(--line2); background:rgba(10,25,37,.85); color:var(--muted); font:500 12px 'Barlow'; padding:5px 9px; cursor:pointer; }
+  #toggles button { border:1px solid var(--line2); background:rgba(255,255,255,.94); color:var(--muted); font:500 12px 'Archivo'; padding:5px 9px; cursor:pointer; }
   #toggles button.on { color:var(--text); border-color:var(--text); }
   #compass { position:absolute; right:22px; bottom:18px; opacity:.7; }
-  #tip { position:absolute; pointer-events:none; background:#06121B; border:1px solid var(--line2); padding:8px 10px; min-width:190px; opacity:0; transition:opacity .12s; }
+  #tip { position:absolute; pointer-events:none; background:#FFFFFF; border:1px solid var(--line2); padding:8px 10px; min-width:190px; opacity:0; transition:opacity .12s; }
   #tip.on { opacity:1; }
-  #tip h4 { font:600 18px 'Barlow Condensed'; letter-spacing:.03em; text-transform:uppercase; }
+  #tip h4 { font:600 18px 'Archivo'; letter-spacing:.03em; }
   #tip table { width:100%; font-size:13px; border-collapse:collapse; margin-top:4px; }
-  #tip td { padding:1px 0; color:var(--muted); } #tip td:last-child { text-align:right; color:var(--text); font-family:'IBM Plex Mono'; font-size:12px; }
+  #tip td { padding:1px 0; color:var(--muted); } #tip td:last-child { text-align:right; color:var(--text); font-family:'JetBrains Mono'; font-size:12px; }
 
   /* rail */
   #rail { grid-row:1 / span 2; grid-column:2; background:var(--rail); border-left:1px solid var(--line); overflow:auto; scrollbar-width:thin; }
   .sites { display:grid; grid-template-columns:repeat(3,1fr); border-bottom:1px solid var(--line); }
   .sites button { background:none; border:0; border-right:1px solid var(--line); color:var(--muted); padding:10px 6px 9px; cursor:pointer; text-align:left; }
   .sites button:last-child { border-right:0; }
-  .sites button b { display:block; font:600 15px 'Barlow Condensed'; letter-spacing:.04em; text-transform:uppercase; color:inherit; }
+  .sites button b { display:block; font:600 15px 'Archivo'; letter-spacing:.04em; color:inherit; }
   .sites button small { font-size:11.5px; }
-  .sites button.on { color:var(--text); background:#132D3F; box-shadow:inset 0 -2px 0 var(--hi); }
+  .sites button.on { color:var(--text); background:#F0F2EF; box-shadow:inset 0 -2px 0 var(--hi); }
   .sec { padding:14px 16px; border-bottom:1px solid var(--line); }
-  .sec h5 { font:500 12px 'Barlow'; color:var(--muted); margin-bottom:8px; display:flex; justify-content:space-between; }
-  .name { font:600 34px/1 'Barlow Condensed'; text-transform:uppercase; letter-spacing:.02em; }
-  .coord { font:12px 'IBM Plex Mono'; color:var(--muted); margin-top:6px; }
+  .sec h5 { font:500 12px 'Archivo'; color:var(--muted); margin-bottom:8px; display:flex; justify-content:space-between; }
+  .name { font:600 34px/1 'Archivo'; letter-spacing:.02em; }
+  .coord { font:12px 'JetBrains Mono'; color:var(--muted); margin-top:6px; }
   .tabs { display:flex; gap:18px; margin-top:12px; }
-  .tabs button { background:none; border:0; color:var(--muted); font:500 14px 'Barlow'; padding:0 0 4px; cursor:pointer; border-bottom:2px solid transparent; }
+  .tabs button { background:none; border:0; color:var(--muted); font:500 14px 'Archivo'; padding:0 0 4px; cursor:pointer; border-bottom:2px solid transparent; }
   .tabs button.on { color:var(--text); border-color:var(--hi); }
   .readouts { display:grid; grid-template-columns:repeat(3,1fr); }
   .readouts div { border-left:1px solid var(--line); padding-left:10px; }
   .readouts div:first-child { border-left:0; padding-left:0; }
-  .readouts b { display:block; font:600 32px/1 'Barlow Condensed'; }
+  .readouts b { display:block; font:600 32px/1 'Archivo'; }
   .readouts b small { font-size:15px; color:var(--muted); font-weight:500; margin-left:2px; }
   .readouts span { font-size:12px; color:var(--muted); }
   .split { display:flex; height:10px; margin:4px 0 6px; }
@@ -73,15 +73,15 @@
   .legendrow { display:flex; justify-content:space-between; font-size:13px; }
   .gauge { margin-bottom:9px; }
   .gauge .top { display:flex; justify-content:space-between; font-size:13.5px; }
-  .gauge .top em { font-style:normal; font:12px 'IBM Plex Mono'; }
-  .gauge .rail2 { position:relative; height:4px; background:#1B3547; margin-top:4px; }
+  .gauge .top em { font-style:normal; font:12px 'JetBrains Mono'; }
+  .gauge .rail2 { position:relative; height:4px; background:#E9ECE8; margin-top:4px; }
   .gauge .rail2 i { position:absolute; left:0; top:0; bottom:0; transition:width .35s; }
   .gauge .rail2 u { position:absolute; top:-3px; bottom:-3px; width:2px; background:var(--text); transition:left .35s; }
   .sw { display:inline-block; width:8px; height:8px; margin-right:7px; vertical-align:1px; }
   table.facts { width:100%; border-collapse:collapse; font-size:14px; }
   table.facts td { padding:5px 0; border-top:1px solid var(--line); color:var(--muted); }
   table.facts tr:first-child td { border-top:0; }
-  table.facts td:last-child { text-align:right; color:var(--text); font:13px 'IBM Plex Mono'; }
+  table.facts td:last-child { text-align:right; color:var(--text); font:13px 'JetBrains Mono'; }
   .fine { font-size:12.5px; color:var(--muted); line-height:1.45; }
   .fine b { color:var(--text); font-weight:500; }
 
@@ -93,13 +93,13 @@
   #strip .date .row { display:flex; gap:6px; margin-top:8px; }
   .sq { width:30px; height:30px; border:1px solid var(--line2); background:none; color:var(--text); cursor:pointer; font-size:16px; }
   .sq:hover { border-color:var(--text); }
-  input[type=date] { flex:1; min-width:0; background:none; color:var(--text); border:1px solid var(--line2); padding:3px 6px; font:13px 'Barlow'; color-scheme:dark; }
+  input[type=date] { flex:1; min-width:0; background:none; color:var(--text); border:1px solid var(--line2); padding:3px 6px; font:13px 'Archivo'; color-scheme:light; }
   #strip .chart { position:relative; cursor:ew-resize; padding:10px 14px 18px; }
   #strip svg { width:100%; height:100%; display:block; overflow:visible; }
   #strip .clock { border-left:1px solid var(--line); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; }
-  #strip .clock b { font:600 30px/1 'Barlow Condensed'; }
-  #play { width:64px; height:28px; border:1px solid var(--hi); background:none; color:var(--hi); font:600 12px 'Barlow'; letter-spacing:.06em; cursor:pointer; }
-  #play.on { background:var(--hi); color:#0A1925; }
+  #strip .clock b { font:600 30px/1 'Archivo'; }
+  #play { width:64px; height:28px; border:1px solid var(--hi); background:none; color:var(--hi); font:600 12px 'Archivo'; letter-spacing:.06em; cursor:pointer; }
+  #play.on { background:var(--hi); color:#FFFFFF; }
   @media (max-width: 760px) {
     #app { grid-template-columns:1fr; grid-template-rows:420px 128px auto; height:auto; }
     #rail { grid-row:3; grid-column:1; border-left:0; border-top:1px solid var(--line); }
@@ -114,7 +114,7 @@
     <svg id="map"></svg><canvas id="wind"></canvas>
     <div id="key"></div>
     <div id="toggles"><button id="tWind" class="on">Wind</button><button id="tLabels" class="on">Labels</button></div>
-    <svg id="compass" width="34" height="46" viewBox="0 0 34 46"><path d="M17 4 23 24 17 20 11 24Z" fill="#EAF2F6"/><path d="M17 44 11 24 17 28 23 24Z" fill="#5F7F91"/><text x="17" y="3" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#8BA6B5" dy="-1">N</text></svg>
+    <svg id="compass" width="34" height="46" viewBox="0 0 34 46"><path d="M17 4 23 24 17 20 11 24Z" fill="#15191C"/><path d="M17 44 11 24 17 28 23 24Z" fill="#8A9297"/><text x="17" y="3" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#60686E" dy="-1">N</text></svg>
     <div id="tip"></div>
   </div>
   <div id="strip"></div>
@@ -130,8 +130,8 @@ const el = (tag, attrs, parent) => { const n = document.createElementNS(NS, tag)
 const clamp = (x, a, b) => Math.max(a, Math.min(b, x)), lerp = (a, b, f) => a + (b - a) * f;
 const f2 = (v) => v.toFixed(2), f1 = (v) => v.toFixed(1), f0 = (v) => Math.round(v).toString(), pad = (h) => String(h).padStart(2, "0");
 const comma = (v) => f0(v).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-const C = { solar: "#FF8A5B", wind: "#3FD0F0", battery: "#C3A6FF", grid: "#FF5C7A", unused: "#5E7787", served: "#6EE7B7", hi: "#FFD166", text: "#EAF2F6" };
-const SCALE = ["#123247", "#14566A", "#1A8190", "#3DB6B0", "#9EE3C0", "#FFF1B8"];
+const C = { solar: "#E8A317", wind: "#2F6FDE", battery: "#7C5CDB", grid: "#D64545", unused: "#9AA1A6", served: "#3BA272", hi: "#15191C", text: "#15191C" };
+const SCALE = ["#E7EBEE", "#C9DAEF", "#97BAE8", "#5E93DD", "#2F6FDE", "#163F8C"];
 function scale(v) {
   v = clamp(v, 0, 1) * (SCALE.length - 1);
   const i = Math.min(Math.floor(v), SCALE.length - 2), f = v - i;
@@ -162,7 +162,7 @@ const KEY = { now: ["Output this hour, % of capacity", "0", "50", "100"], cf: ["
 // ---------- map ----------
 function build() {
   const svg = $("map"), M = A.map;
-  el("path", { d: M.neighbours, fill: "#10283A" }, svg);
+  el("path", { d: M.neighbours, fill: "#EEF0EE" }, svg);
   gratLayer = el("g", {}, svg);
   const cont = el("g", {}, svg);
   (M.contours || []).forEach((d, i) => el("path", { d, class: "contour", opacity: 1 - i * .2 }, cont));
@@ -233,7 +233,7 @@ function select(name) { site = name; renderRail(); paint(); setValue({ site, dat
 function showTip(name, e) {
   hover = name;
   const S = A.sites[name], h = H(name, t), tip = $("tip"), box = $("mapbox").getBoundingClientRect();
-  tip.innerHTML = `<h4>${S.short} <span style="color:#8BA6B5;font-size:14px;text-transform:none">${S.group}</span></h4>
+  tip.innerHTML = `<h4>${S.short} <span style="color:#60686E;font-size:14px;text-transform:none">${S.group}</span></h4>
     <table><tr><td>Output at ${pad(Math.floor(t))}:00</td><td>${f2(h.s + h.w)} MW</td></tr>
     <tr><td><span class="sw" style="background:${C.solar}"></span>Solar / <span class="sw" style="background:${C.wind}"></span>wind</td><td>${f2(h.s)} / ${f2(h.w)}</td></tr>
     <tr><td>Renewable share today</td><td>${f0(A.daySummary[name].share * 100)}%</td></tr>
@@ -280,7 +280,7 @@ function gauge(id, label, color) {
 function nowTab(S) {
   return `<div class="sec"><h5><span id="atHour"></span><span>${A.dateLabel}</span></h5>
       <div class="readouts"><div><b class="num" id="r-out"></b><span>Output</span></div><div><b class="num" id="r-share"></b><span>Renewable today</span></div><div><b class="num" id="r-batt"></b><span>Battery</span></div></div></div>
-    <div class="sec"><h5><span>Flows this hour</span><span>MW · white mark = demand</span></h5>
+    <div class="sec"><h5><span>Flows this hour</span><span>MW · mark = demand</span></h5>
       ${gauge("solar", "Solar", C.solar)}${gauge("wind", "Wind", C.wind)}${gauge("battery", "Battery to load", C.battery)}${gauge("grid", "From grid", C.grid)}${gauge("unused", "Unused", C.unused)}</div>
     <div class="sec"><table class="facts">
       <tr><td>Energy per year</td><td>${comma(S.annual)} MWh</td></tr><tr><td>Capacity factor</td><td>${f1(S.cf * 100)}%</td></tr>
@@ -291,7 +291,7 @@ function nowTab(S) {
 function fcTab(S) {
   const F = S.forecast, order = ["xgboost", "previous_day", "training_climatology"];
   const names = { xgboost: "XGBoost", previous_day: "Previous day", training_climatology: "Past average" };
-  const colors = { xgboost: C.hi, previous_day: C.battery, training_climatology: "#6F8796" };
+  const colors = { xgboost: C.wind, previous_day: "#8A9297", training_climatology: "#C4C9CC" };
   const block = (vals, fmt) => { const m = Math.max(...Object.values(vals)) * 1.05;
     return order.map(k => `<div class="gauge"><div class="top"><span>${names[k]}</span><em class="num">${fmt(vals[k])}</em></div><div class="rail2"><i style="width:${vals[k] / m * 100}%;background:${colors[k]}"></i></div></div>`).join(""); };
   return `<div class="sec"><h5><span>Combined error (MAE)</span><span>MW, lower is better</span></h5>${block(F.mae, v => v.toFixed(3))}
@@ -334,10 +334,10 @@ function drawStrip() {
   const D = A.day[site], max = Math.max(...D.map(r => Math.max(r.s + r.w, r.d)), .1) * 1.1;
   const X = (i) => i / 23 * 1000, Y = (v) => 100 - v / max * 92;
   const area = (fn) => "M0,100" + D.map((r, i) => `L${X(i).toFixed(1)},${Y(fn(r)).toFixed(1)}`).join("") + "L1000,100Z";
-  const ticks = [0, 3, 6, 9, 12, 15, 18, 21, 23].map(h => `<text x="${X(h)}" y="114" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#5F7F91" style="font-size:11px">${pad(h)}</text>`).join("");
+  const ticks = [0, 3, 6, 9, 12, 15, 18, 21, 23].map(h => `<text x="${X(h)}" y="114" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#8A9297" style="font-size:11px">${pad(h)}</text>`).join("");
   svg.innerHTML = `<path d="${area(r => r.s + r.w)}" fill="${C.wind}" opacity=".55"/><path d="${area(r => r.s)}" fill="${C.solar}" opacity=".8"/>
-    <path d="${D.map((r, i) => `${i ? "L" : "M"}${X(i)},${Y(r.d)}`).join("")}" fill="none" stroke="#EAF2F6" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
-    <line x1="0" x2="1000" y1="100" y2="100" stroke="#2A4B60" vector-effect="non-scaling-stroke"/>${ticks}
+    <path d="${D.map((r, i) => `${i ? "L" : "M"}${X(i)},${Y(r.d)}`).join("")}" fill="none" stroke="#15191C" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
+    <line x1="0" x2="1000" y1="100" y2="100" stroke="#C9CEC9" vector-effect="non-scaling-stroke"/>${ticks}
     <line id="needle" y1="-4" y2="100" stroke="${C.hi}" stroke-width="2" vector-effect="non-scaling-stroke"/>`;
 }
 function changeDate(d) { playing = false; setValue({ site, date: d, nonce: Date.now() }); }
@@ -359,7 +359,7 @@ function drawWind(dt) {
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   if (!showWind) { ctx.clearRect(0, 0, W, Ht); return; }
   ctx.globalCompositeOperation = "destination-out"; ctx.fillStyle = "rgba(0,0,0,0.15)"; ctx.fillRect(0, 0, W, Ht);
-  ctx.globalCompositeOperation = "source-over"; ctx.strokeStyle = "rgba(160,225,245,0.45)"; ctx.lineWidth = 1; ctx.beginPath();
+  ctx.globalCompositeOperation = "source-over"; ctx.strokeStyle = "rgba(31,63,110,0.30)"; ctx.lineWidth = 1; ctx.beginPath();
   const k = 2.2 * view.s * dt * 6;
   for (const p of particles) {
     const [vx, vy] = windAt(p.x, p.y), nx = p.x + vx * k, ny = p.y + vy * k;

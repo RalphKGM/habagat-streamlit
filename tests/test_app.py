@@ -37,5 +37,5 @@ def test_custom_design_renders_everywhere(page: str) -> None:
 
 def test_day_picker_copies_match() -> None:
     # Each component serves only its own folder, so the map keeps a copy of the picker script.
-    picker = ROOT / "habagat/assets/daypicker/daypicker.js"
-    assert picker.read_bytes() == (ROOT / "habagat/assets/map/daypicker.js").read_bytes()
+    picker = ROOT / "solwind/assets/daypicker/daypicker.js"
+    assert picker.read_bytes() == (ROOT / "solwind/assets/map/daypicker.js").read_bytes()

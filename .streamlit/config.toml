@@ -1,20 +1,20 @@
 [theme]
-base = "dark"
-primaryColor = "#FFD166"
-backgroundColor = "#0C1E2B"
-secondaryBackgroundColor = "#0F2433"
-textColor = "#EAF2F6"
-linkColor = "#FFD166"
-borderColor = "#1F3A4D"
-font = "Barlow:https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap, sans-serif"
-headingFont = "Barlow Condensed:https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&display=swap, sans-serif"
-codeFont = "IBM Plex Mono:https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap, monospace"
-headingFontWeights = [600, 600, 600, 500, 500, 500]
-headingFontSizes = ["2.1rem", "1.6rem", "1.25rem", "1.1rem", "1rem", "0.95rem"]
+base = "light"
+primaryColor = "#15191C"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F4F5F3"
+textColor = "#15191C"
+linkColor = "#2F6FDE"
+borderColor = "#E1E4E0"
+font = "Archivo:https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap, sans-serif"
+headingFont = "Archivo:https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap, sans-serif"
+codeFont = "JetBrains Mono:https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap, monospace"
+headingFontWeights = [700, 700, 600, 600, 600, 600]
+headingFontSizes = ["1.9rem", "1.45rem", "1.15rem", "1rem", "0.95rem", "0.9rem"]
 baseFontSize = 15
 baseRadius = "2px"
 showWidgetBorder = true
-chartCategoricalColors = ["#FF8A5B", "#3FD0F0", "#6EE7B7", "#FF5C7A", "#C3A6FF", "#FFD166"]
+chartCategoricalColors = ["#E8A317", "#2F6FDE", "#3BA272", "#D64545", "#7C5CDB", "#15191C"]
 
 [client]
 toolbarMode = "minimal"

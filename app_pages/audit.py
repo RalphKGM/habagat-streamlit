@@ -7,8 +7,8 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from habagat import theme, ui
-from habagat.data import (
+from solwind import theme, ui
+from solwind.data import (
     DEFAULTS, MODEL_LABEL, MODELS, ROLLING, SITE_SHORT, SITES,
     load_rolling_hourly, load_rolling_metrics, load_weather, physics_args, run_generation,
 )
@@ -17,22 +17,18 @@ FOLD = "rolling_2026"
 RUN = json.loads((ROLLING / "run_2026.json").read_text())
 CHECKS = json.loads((ROLLING / "rolling_verification.json").read_text())
 
-theme.header(
-    "2026 audit",
-    "How the January–June 2026 forecasts were made, and how to check them. The model learned only from 2020–2025. "
-    "The 2026 output was computed separately from NASA POWER weather and used once, to score the forecasts.",
-)
+theme.header("2026 audit", "Trained on 2020–2025 only. Scored once on January–June 2026.")
 
 # --- 1. Chain of custody --------------------------------------------------------------------------
 weather = load_weather()
 years = weather.loc[weather["location"] == SITES[0], "timestamp_pht"].dt.year.value_counts().sort_index()
 count = RUN["counts"][0]
 steps = [
-    ("1", "Fit", "2020–2024", f"{count['fit_hours']:,} h", "Two candidate XGBoost settings learn from these hours."),
-    ("2", "Select", "2025", f"{count['validation_hours']:,} h", "The candidate with the lower 2025 error is kept."),
-    ("3", "Refit", "2020–2025", f"{count['refit_hours']:,} h", "The kept setting is retrained. Last training hour: 31 Dec 2025, 23:00."),
-    ("4", "Forecast", "Jan–Jun 2026", f"{count['test_hours']:,} h", "Issued at 00:00 each day for the next 24 hours, from the previous day only."),
-    ("5", "Score", "Jan–Jun 2026", f"{count['test_hours']:,} h", "Compared once with the output computed from 2026 weather."),
+    ("1", "Fit", "2020–2024", f"{count['fit_hours']:,} h", "Two settings learn."),
+    ("2", "Select", "2025", f"{count['validation_hours']:,} h", "The better one is kept."),
+    ("3", "Refit", "2020–2025", f"{count['refit_hours']:,} h", "Last hour: 31 Dec 2025, 23:00."),
+    ("4", "Forecast", "Jan–Jun 2026", f"{count['test_hours']:,} h", "Issued 00:00 daily, from the day before."),
+    ("5", "Score", "Jan–Jun 2026", f"{count['test_hours']:,} h", "Compared once with computed output."),
 ]
 color = {"Fit": theme.STONE, "Select": theme.VIOLET, "Refit": theme.STONE, "Forecast": theme.HI, "Score": theme.LEAF}
 theme.html(
@@ -40,7 +36,7 @@ theme.html(
     .au-steps {{ display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:3px; margin:.4rem 0 .3rem; }}
     .au-steps > div {{ background:{theme.SURFACE}; border-top:3px solid var(--c); padding:.75rem .85rem .8rem; min-width:0; }}
     .au-steps .n {{ font:500 .72rem {theme.FONT_MONO}; color:{theme.INK_SOFT}; }}
-    .au-steps .k {{ font:600 1.25rem/1.1 {theme.FONT_HEAD}; text-transform:uppercase; letter-spacing:.03em; color:{theme.INK}; margin-top:.2rem; }}
+    .au-steps .k {{ font:600 1.15rem/1.1 {theme.FONT_HEAD}; letter-spacing:-.01em; color:{theme.INK}; margin-top:.2rem; }}
     .au-steps .y {{ font:500 .85rem {theme.FONT_MONO}; color:var(--c); margin-top:.15rem; }}
     .au-steps .h {{ font:500 1.05rem {theme.FONT_MONO}; color:{theme.INK}; margin-top:.5rem; }}
     .au-steps .d {{ font-size:.82rem; color:{theme.INK_SOFT}; margin-top:.3rem; line-height:1.35; }}
@@ -48,23 +44,13 @@ theme.html(
     </style>
     <div class="au-steps">{"".join(
         f'<div style="--c:{color[k]}"><div class="n">STEP {n}</div><div class="k">{k}</div><div class="y">{y}</div>'
-        f'<div class="h">{h} <span style="font-size:.72rem;color:{theme.INK_SOFT}">per site and source</span></div><div class="d">{d}</div></div>'
+        f'<div class="h">{h} </div><div class="d">{d}</div></div>'
         for n, k, y, h, d in steps)}</div>"""
 )
-theme.note(
-    "Fit starts 24 hours after 1 Jan 2020 because the first day has no previous day to learn from. "
-    "The training script stops with an error if any training hour is not earlier than the first test hour: "
-    "<code>assert refit.target_timestamp_pht.max() &lt; test.target_timestamp_pht.min()</code> "
-    "(src/forecasting/run_rolling_evaluation.py). Weather hours per site by year: "
-    + ", ".join(f"{y} {n:,}" for y, n in years.items()) + "."
-)
+theme.note("The training script stops if any training hour overlaps the test: <code>assert refit.max() &lt; test.min()</code>.")
 
 # --- 2. Computed vs forecast ------------------------------------------------------------------------
-theme.section(
-    "Computed vs forecast",
-    "Computed is what the physical equations give from NASA POWER weather for each 2026 hour. Forecast is what each "
-    "method predicted for that hour at midnight, before the day began.",
-)
+theme.section("Computed vs forecast", "Computed from 2026 NASA weather. Forecast issued at midnight, before the day.")
 c = st.columns([1.3, 1.6], vertical_alignment="bottom")
 with c[0]:
     site = ui.site_picker()
@@ -82,7 +68,7 @@ if view == "Daily energy":
     daily = test.groupby("day")[["reference_output_mw", *pred.values()]].sum()
     fig = go.Figure()
     fig.add_scatter(x=daily.index, y=daily["reference_output_mw"], name="Computed from 2026 weather",
-                    line=dict(color=theme.INK, width=2.4), fill="tozeroy", fillcolor="rgba(234,242,246,.06)")
+                    line=dict(color=theme.INK, width=2.4), fill="tozeroy", fillcolor="rgba(21,25,28,.05)")
     for m in MODELS:
         fig.add_scatter(x=daily.index, y=daily[pred[m]], name=f"{MODEL_LABEL[m]} forecast",
                         line=dict(color=theme.MODEL_COLOR[m], width=2.2 if m == "xgboost" else 1.2),
@@ -90,13 +76,13 @@ if view == "Daily energy":
     fig.update_xaxes(dtick="M1", tickformat="%b")
     fig.update_layout(legend=dict(orientation="h", x=0, xanchor="left", y=1.0, yanchor="bottom"), margin=dict(t=80))
     theme.chart(theme.style(fig, f"{SITE_SHORT[site]} · Jan–Jun 2026 · daily energy (MWh per day)", "MWh", 380), key="audit_daily")
-    st.caption("Click a forecast name in the legend to add the two simple baselines.")
+    st.caption("Click a baseline in the legend to add it.")
 else:
     a, b = st.columns([1, 1], gap="large")
     with a:
         sc = go.Figure()
         sc.add_scatter(x=test["reference_output_mw"], y=test[pred["xgboost"]], mode="markers", name="Hours",
-                       marker=dict(color=theme.HI, size=4, opacity=.28, line=dict(width=0)),
+                       marker=dict(color=theme.MODEL_COLOR["xgboost"], size=4, opacity=.28, line=dict(width=0)),
                        hovertemplate="computed %{x:.3f} MW · forecast %{y:.3f} MW<extra></extra>")
         top = float(max(test["reference_output_mw"].max(), test[pred["xgboost"]].max())) * 1.03
         sc.add_scatter(x=[0, top], y=[0, top], mode="lines", name="Perfect forecast",
@@ -111,7 +97,7 @@ else:
         wf.add_scatter(x=week["target_timestamp_pht"], y=week["reference_output_mw"], name="Computed",
                        line=dict(color=theme.INK, width=2.4))
         wf.add_scatter(x=week["target_timestamp_pht"], y=week[pred["xgboost"]], name="XGBoost forecast",
-                       line=dict(color=theme.HI, width=2, dash="dash"))
+                       line=dict(color=theme.MODEL_COLOR["xgboost"], width=2, dash="dash"))
         wf.update_layout(legend=dict(orientation="h", x=0, xanchor="left", y=1.0, yanchor="bottom"), margin=dict(t=80))
         wf.update_xaxes(tickformat="%a %d")
         theme.chart(theme.style(wf, "First week of March 2026, hour by hour", "MW", 380), key="audit_week")
@@ -144,17 +130,10 @@ metrics = load_rolling_metrics()
 stored = metrics.loc[(metrics["fold"] == FOLD) & (metrics["location"] == site) & (metrics["source"] == "combined")
                      & (metrics["aggregation"] == "overall") & (metrics["scope"] == "all_hours")
                      & (metrics["period"] == "available_test") & (metrics["model"] == "xgboost"), "mae_mw"].iloc[0]
-theme.note(
-    f"The bottom row is recomputed here from the hourly file: XGBoost MAE {total['XGBoost MAE']:.4f} MW. "
-    f"The research team's stored result is {stored:.4f} MW, the value reported in Table IV of the paper."
-)
+theme.note(f"Recomputed MAE {total['XGBoost MAE']:.4f} MW = stored result {stored:.4f} MW (paper, Table IV).")
 
 # --- 3. Recompute the computed side -------------------------------------------------------------------
-theme.section(
-    "Check the computed side yourself",
-    "This app has its own copy of the physical equations and the NASA POWER weather. It reruns them for the standard "
-    "design and compares every 2026 hour with the values the forecasts were scored against.",
-)
+theme.section("Recompute it", "The app reruns its physics on 2026 weather and compares every hour.")
 generation = run_generation(**physics_args(DEFAULTS))
 check = hourly.loc[hourly["fold"] == FOLD, ["location", "target_timestamp_pht", "reference_output_mw"]].merge(
     generation[["location", "timestamp_pht", "combined_mw"]],
@@ -169,10 +148,7 @@ k[3].metric("Computed energy, 3 sites", f"{check['combined_mw'].sum():,.0f} MWh"
 
 # --- 4. Automated checks ------------------------------------------------------------------------------
 passed = sum(c["passed"] for c in CHECKS["checks"])
-theme.section(
-    "Automated checks",
-    f"The research pipeline ran {CHECKS['check_count']} checks on the rolling evaluation. {passed} passed. The ones about 2026 are listed here.",
-)
+theme.section("Automated checks", f"{passed} of {CHECKS['check_count']} passed. The 2026 checks:")
 plain = {
     "issue midnight": "Every forecast was issued at 00:00 of its target day",
     "horizon and target ordering": "Each target hour is 1 to 24 hours after its issue time",
@@ -204,19 +180,14 @@ for chk in CHECKS["checks"]:
     rows.append({"Check": short, "What it proves": meaning, "Result": "Passed" if chk["passed"] else "Failed"})
 st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch", height=min(38 + 35 * len(rows), 460))
 flags = RUN["pipeline_checks"]
-theme.note(
-    "Run-level flags recorded when the models were trained ("
-    + ", ".join(f"{k.replace('_', ' ')}: {'yes' if v else 'no'}" for k, v in flags.items())
-    + f"). Trained {RUN['created_at_utc'][:10]} with Python {RUN['versions']['python']}, XGBoost {RUN['versions']['xgboost']}. "
-    "Limits: " + " ".join(CHECKS["limitations"])
-)
+theme.note(f"Trained {RUN['created_at_utc'][:10]} · Python {RUN['versions']['python']} · XGBoost {RUN['versions']['xgboost']}. Output is modeled, not metered.")
 
 # --- 5. Download ---------------------------------------------------------------------------------------
-theme.section("Download the evidence", "Every 2026 hour at all three sites: computed output and the three forecasts, issued at 00:00.")
+theme.section("Download")
 out = hourly.loc[hourly["fold"] == FOLD, ["location", "target_timestamp_pht", "reference_output_mw", *pred.values()]].copy()
 out.insert(2, "issued_at_pht", out["target_timestamp_pht"].dt.normalize())
 out = out.rename(columns={"reference_output_mw": "computed_mw", **{v: f"{k}_forecast_mw" for k, v in pred.items()}})
 out["target_timestamp_pht"] = out["target_timestamp_pht"].dt.strftime("%Y-%m-%d %H:%M")
 out["issued_at_pht"] = out["issued_at_pht"].dt.strftime("%Y-%m-%d %H:%M")
 st.download_button("Download 2026 computed vs forecast (CSV)", out.to_csv(index=False, float_format="%.6f").encode(),
-                   file_name="habagat_2026_computed_vs_forecast.csv", mime="text/csv", icon=":material/download:")
+                   file_name="solwind_2026_computed_vs_forecast.csv", mime="text/csv", icon=":material/download:")

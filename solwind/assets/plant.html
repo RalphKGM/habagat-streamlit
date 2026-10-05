@@ -2,27 +2,27 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root { --paper:#0F2433; --paper2:#132D3F; --rule:#1F3A4D; --ink:#EAF2F6; --soft:#8BA6B5; --sun:#FF8A5B;
-    --sun-deep:#E06A3F; --sea:#3FD0F0; --leaf:#6EE7B7; --ember:#FF5C7A; --violet:#C3A6FF; --stone:#5E7787; }
+  :root { --paper:#F4F5F3; --paper2:#F0F2EF; --rule:#E1E4E0; --ink:#15191C; --soft:#60686E; --sun:#E8A317;
+    --sun-deep:#B57A00; --sea:#2F6FDE; --leaf:#3BA272; --ember:#D64545; --violet:#7C5CDB; --stone:#9AA1A6; }
   * { box-sizing:border-box; }
-  html, body { margin:0; background:transparent; font-family:'Barlow', sans-serif; color:var(--ink); }
+  html, body { margin:0; background:transparent; font-family:'Archivo', sans-serif; color:var(--ink); }
   .wrap { border:1px solid var(--rule); border-radius:18px; overflow:hidden; background:var(--paper); }
   .stage { position:relative; }
   svg.scene { display:block; width:100%; height:520px; }
   .hud { position:absolute; top:14px; left:16px; right:16px; display:flex; justify-content:space-between; align-items:flex-start; gap:12px; pointer-events:none; }
-  .clock { background:rgba(10,25,37,.85); backdrop-filter:blur(6px); border:1px solid var(--rule); border-radius:2px; padding:10px 14px 9px; min-width:190px; }
-  .clock .t { font-family:'IBM Plex Mono', monospace; font-size:34px; font-weight:600; letter-spacing:-.02em; line-height:1; }
+  .clock { background:rgba(255,255,255,.94); backdrop-filter:blur(6px); border:1px solid var(--rule); border-radius:2px; padding:10px 14px 9px; min-width:190px; }
+  .clock .t { font-family:'JetBrains Mono', monospace; font-size:34px; font-weight:600; letter-spacing:-.02em; line-height:1; }
   .clock .d { font-size:12px; color:var(--soft); margin-top:6px; }
-  .read { background:rgba(10,25,37,.85); backdrop-filter:blur(6px); border:1px solid var(--rule); border-radius:2px; padding:8px 12px; display:grid; grid-template-columns:auto auto; column-gap:16px; row-gap:2px; font-family:'IBM Plex Mono', monospace; font-size:12px; }
+  .read { background:rgba(255,255,255,.94); backdrop-filter:blur(6px); border:1px solid var(--rule); border-radius:2px; padding:8px 12px; display:grid; grid-template-columns:auto auto; column-gap:16px; row-gap:2px; font-family:'JetBrains Mono', monospace; font-size:12px; }
   .read span { color:var(--soft); display:flex; align-items:center; gap:6px; }
   .read span i { width:8px; height:8px; border-radius:2px; display:inline-block; }
   .read b { text-align:right; font-weight:600; font-variant-numeric:tabular-nums; }
   .bar { display:flex; align-items:center; gap:14px; padding:10px 14px 12px; border-top:1px solid var(--rule); background:var(--paper); }
-  button { font-family:'Barlow', sans-serif; font-size:12px; font-weight:500; border:1px solid var(--rule); background:#1B3547; color:var(--ink); border-radius:2px; padding:7px 14px; cursor:pointer; }
+  button { font-family:'Archivo', sans-serif; font-size:12px; font-weight:500; border:1px solid var(--rule); background:#E9ECE8; color:var(--ink); border-radius:2px; padding:7px 14px; cursor:pointer; }
   button.ghost { background:transparent; color:var(--soft); }
-  button.on { background:var(--ink); color:#0A1925; }
+  button.on { background:var(--ink); color:#FFFFFF; }
   .timeline { flex:1; position:relative; height:46px; cursor:pointer; }
   .timeline svg { width:100%; height:46px; display:block; }
   .legend { font-size:11px; color:var(--soft); white-space:nowrap; }
@@ -38,51 +38,51 @@
         <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
           <stop id="sky0" offset="0"/><stop id="sky1" offset=".75"/><stop id="sky2" offset="1"/>
         </linearGradient>
-        <radialGradient id="sunGlow"><stop offset="0" stop-color="#FFD166" stop-opacity=".7"/><stop offset="1" stop-color="#FFD166" stop-opacity="0"/></radialGradient>
+        <radialGradient id="sunGlow"><stop offset="0" stop-color="#E8A317" stop-opacity=".7"/><stop offset="1" stop-color="#E8A317" stop-opacity="0"/></radialGradient>
         <linearGradient id="panelShine" x1="0" x2="1"><stop offset="0" stop-color="#FFE8B5" stop-opacity="0"/><stop offset=".5" stop-color="#FFE8B5" stop-opacity=".9"/><stop offset="1" stop-color="#FFE8B5" stop-opacity="0"/></linearGradient>
         <clipPath id="panelClip"></clipPath>
       </defs>
       <rect width="1200" height="420" fill="url(#sky)"/>
       <g id="stars"></g>
-      <g id="sunG"><circle r="90" fill="url(#sunGlow)"/><circle r="34" fill="#FFD166" stroke="#E0B040" stroke-width="1.5"/></g>
-      <g id="moonG"><circle r="22" fill="#EAF2F6"/><circle r="22" cx="9" cy="-5" fill="#24314A" id="moonShade"/></g>
+      <g id="sunG"><circle r="90" fill="url(#sunGlow)"/><circle r="34" fill="#E8A317" stroke="#E0B040" stroke-width="1.5"/></g>
+      <g id="moonG"><circle r="22" fill="#15191C"/><circle r="22" cx="9" cy="-5" fill="#24314A" id="moonShade"/></g>
       <g id="clouds"></g>
       <g id="streaks" fill="none" stroke-linecap="round"></g>
-      <path d="M0,404 L120,372 L230,386 L340,356 L470,380 L600,362 L720,384 L850,360 L990,382 L1100,366 L1200,378 L1200,420 L0,420Z" fill="#163447" id="ridge"/>
-      <rect y="418" width="1200" height="142" fill="#10283A" id="ground"/>
-      <line x1="0" x2="1200" y1="418" y2="418" stroke="#2A4B60" stroke-width="1.2"/>
+      <path d="M0,404 L120,372 L230,386 L340,356 L470,380 L600,362 L720,384 L850,360 L990,382 L1100,366 L1200,378 L1200,420 L0,420Z" fill="#E9ECE8" id="ridge"/>
+      <rect y="418" width="1200" height="142" fill="#EEF0EE" id="ground"/>
+      <line x1="0" x2="1200" y1="418" y2="418" stroke="#C9CEC9" stroke-width="1.2"/>
 
       <!-- solar array -->
       <g id="panels"></g>
       <g clip-path="url(#panelClip)"><rect id="shine" x="0" y="380" width="120" height="80" fill="url(#panelShine)"/></g>
 
       <!-- wind turbine -->
-      <polygon points="452,430 468,430 462,170 458,170" fill="#D5E3EA"/>
-      <g transform="translate(460 166)"><g id="rotor" class="turbine-rotor" fill="#D5E3EA"></g><circle r="7" fill="#D5E3EA"/></g>
+      <polygon points="452,430 468,430 462,170 458,170" fill="#2B3135"/>
+      <g transform="translate(460 166)"><g id="rotor" class="turbine-rotor" fill="#2B3135"></g><circle r="7" fill="#2B3135"/></g>
 
       <!-- battery -->
       <g transform="translate(724 334)">
-        <rect x="18" y="-8" width="24" height="10" rx="2" fill="#D5E3EA"/>
-        <rect width="60" height="100" rx="8" fill="#0F2433" stroke="#D5E3EA" stroke-width="2"/>
+        <rect x="18" y="-8" width="24" height="10" rx="2" fill="#2B3135"/>
+        <rect width="60" height="100" rx="8" fill="#F4F5F3" stroke="#2B3135" stroke-width="2"/>
         <clipPath id="battClip"><rect x="4" y="4" width="52" height="92" rx="5"/></clipPath>
-        <rect id="battFill" x="4" y="96" width="52" height="0" fill="#C3A6FF" clip-path="url(#battClip)"/>
-        <text id="battPct" x="30" y="58" text-anchor="middle" font-family="IBM Plex Mono" font-size="15" font-weight="600" fill="#D5E3EA">0%</text>
-        <path id="battArrow" d="M30,-26 l-8,10 h16z" fill="#C3A6FF"/>
+        <rect id="battFill" x="4" y="96" width="52" height="0" fill="#7C5CDB" clip-path="url(#battClip)"/>
+        <text id="battPct" x="30" y="58" text-anchor="middle" font-family="JetBrains Mono" font-size="15" font-weight="600" fill="#2B3135">0%</text>
+        <path id="battArrow" d="M30,-26 l-8,10 h16z" fill="#7C5CDB"/>
       </g>
 
       <!-- town -->
       <g id="town" transform="translate(880 0)"></g>
 
       <!-- grid pylon -->
-      <g transform="translate(1135 0)" stroke="#D5E3EA" stroke-width="2" fill="none">
+      <g transform="translate(1135 0)" stroke="#2B3135" stroke-width="2" fill="none">
         <path d="M-22,430 L-6,250 L6,250 L22,430 M-14,340 L14,340 M-10,300 L10,300 M-17,385 L17,385 M-30,262 L30,262 M-24,282 L24,282 M-6,250 L0,232 L6,250"/>
         <path d="M-30,262 Q-120,300 -210,262" stroke-width="1" opacity=".55"/>
       </g>
 
       <!-- flow network -->
-      <g id="wires" fill="none" stroke="#2A4B60" stroke-width="2"></g>
+      <g id="wires" fill="none" stroke="#C9CEC9" stroke-width="2"></g>
       <g id="flows" fill="none" stroke-linecap="round"></g>
-      <g font-family="IBM Plex Mono" font-size="12" fill="#8BA6B5">
+      <g font-family="JetBrains Mono" font-size="12" fill="#60686E">
         <text x="190" y="548" text-anchor="middle">Solar</text>
         <text x="460" y="548" text-anchor="middle">Wind</text>
         <text x="600" y="548" text-anchor="middle">Bus</text>
@@ -90,7 +90,7 @@
         <text x="975" y="548" text-anchor="middle">Demand</text>
         <text x="1135" y="548" text-anchor="middle">Grid</text>
       </g>
-      <circle cx="600" cy="486" r="11" fill="#EAF2F6"/><circle cx="600" cy="486" r="4" fill="#FF8A5B" id="busDot"/>
+      <circle cx="600" cy="486" r="11" fill="#15191C"/><circle cx="600" cy="486" r="4" fill="#E8A317" id="busDot"/>
     </svg>
     <div class="hud">
       <div class="clock"><div class="t" id="clock">00:00</div><div class="d" id="date"></div></div>
@@ -101,7 +101,7 @@
     <button id="play">Pause</button>
     <button class="ghost" id="speed">1×</button>
     <div class="timeline" id="timeline"><svg viewBox="0 0 960 46" preserveAspectRatio="none" id="tl"></svg></div>
-    <div class="legend"><span style="color:#FF8A5B">■</span> solar <span style="color:#3FD0F0">■</span> wind <span style="color:#EAF2F6">━</span> demand</div>
+    <div class="legend"><span style="color:#E8A317">■</span> solar <span style="color:#2F6FDE">■</span> wind <span style="color:#15191C">━</span> demand</div>
   </div>
 </div>
 <script>
@@ -126,7 +126,7 @@ for (let i = 0; i < 3; i++) {
   el("path", { d: "M0,0 C9,-30 7,-96 0,-118 C-4,-96 -7,-30 0,0Z", transform: `rotate(${i*120})` }, $("rotor"));
 }
 const stars = $("stars");
-for (let i = 0; i < 46; i++) el("circle", { cx: (i * 263) % 1200, cy: (i * 97) % 330 + 8, r: (i % 3) * .5 + .7, fill: "#EAF2F6" }, stars);
+for (let i = 0; i < 46; i++) el("circle", { cx: (i * 263) % 1200, cy: (i * 97) % 330 + 8, r: (i % 3) * .5 + .7, fill: "#15191C" }, stars);
 
 const cloudShapes = [];
 [[140, 92, 1], [520, 60, .8], [860, 120, 1.15], [1120, 70, .7]].forEach(([x, y, s]) => {
@@ -137,7 +137,7 @@ const cloudShapes = [];
 
 const streakEls = [];
 for (let i = 0; i < 9; i++) {
-  const y = 70 + i * 34, p = el("path", { d: `M-200,${y} c140,-14 260,14 420,0`, stroke: "#EAF2F6", "stroke-width": 1.4, "stroke-dasharray": "70 520" }, $("streaks"));
+  const y = 70 + i * 34, p = el("path", { d: `M-200,${y} c140,-14 260,14 420,0`, stroke: "#15191C", "stroke-width": 1.4, "stroke-dasharray": "70 520" }, $("streaks"));
   streakEls.push({ p, off: i * 97 });
 }
 
@@ -145,21 +145,21 @@ const town = $("town");
 const buildings = [[0, 70, 92], [62, 54, 132], [124, 64, 76], [196, 44, 110]];
 const windows = [];
 buildings.forEach(([x, w, h]) => {
-  el("rect", { x, y: 430 - h, width: w, height: h, fill: "#132D3F", stroke: "#3A5A6E", "stroke-width": 1.4 }, town);
+  el("rect", { x, y: 430 - h, width: w, height: h, fill: "#F0F2EF", stroke: "#3A5A6E", "stroke-width": 1.4 }, town);
   for (let r = 0; r < Math.floor((h - 16) / 18); r++) for (let c = 0; c < Math.floor((w - 10) / 16); c++) {
-    windows.push(el("rect", { x: x + 8 + c * 16, y: 430 - h + 10 + r * 18, width: 8, height: 10, fill: "#FFD166", opacity: 0 }, town));
+    windows.push(el("rect", { x: x + 8 + c * 16, y: 430 - h + 10 + r * 18, width: 8, height: 10, fill: "#E8A317", opacity: 0 }, town));
   }
 });
 
 // wires & flow paths: [key, d, colour]
 const ROUTES = [
-  ["solar",     "M190,452 C260,486 480,486 589,486", "#FF8A5B"],
-  ["wind",      "M460,430 C470,470 540,486 589,486", "#3FD0F0"],
-  ["direct",    "M611,486 C760,486 860,486 975,436", "#6EE7B7"],
-  ["charge",    "M611,486 C660,486 700,470 724,420", "#C3A6FF"],
-  ["discharge", "M784,420 C830,470 900,470 975,436", "#C3A6FF"],
-  ["grid",      "M1113,262 C1080,330 1060,420 1076,434", "#FF5C7A"],
-  ["spill",     "M600,497 C600,515 600,522 600,530", "#5E7787"],
+  ["solar",     "M190,452 C260,486 480,486 589,486", "#E8A317"],
+  ["wind",      "M460,430 C470,470 540,486 589,486", "#2F6FDE"],
+  ["direct",    "M611,486 C760,486 860,486 975,436", "#3BA272"],
+  ["charge",    "M611,486 C660,486 700,470 724,420", "#7C5CDB"],
+  ["discharge", "M784,420 C830,470 900,470 975,436", "#7C5CDB"],
+  ["grid",      "M1113,262 C1080,330 1060,420 1076,434", "#D64545"],
+  ["spill",     "M600,497 C600,515 600,522 600,530", "#9AA1A6"],
 ];
 const flows = {};
 ROUTES.forEach(([k, d, c]) => {
@@ -171,11 +171,11 @@ ROUTES.forEach(([k, d, c]) => {
 const tl = $("tl"), maxGen = Math.max(...H.map(h => h.solar + h.wind), ...H.map(h => h.demand), 0.01);
 H.forEach((h, i) => {
   const x = i * 40 + 3, s = h.solar / maxGen * 38, w = h.wind / maxGen * 38;
-  el("rect", { x, y: 44 - s, width: 34, height: s, fill: "#FF8A5B" }, tl);
-  el("rect", { x, y: 44 - s - w, width: 34, height: w, fill: "#3FD0F0" }, tl);
-  el("rect", { x, y: 44 - h.demand / maxGen * 38 - 1, width: 34, height: 2, fill: "#EAF2F6" }, tl);
+  el("rect", { x, y: 44 - s, width: 34, height: s, fill: "#E8A317" }, tl);
+  el("rect", { x, y: 44 - s - w, width: 34, height: w, fill: "#2F6FDE" }, tl);
+  el("rect", { x, y: 44 - h.demand / maxGen * 38 - 1, width: 34, height: 2, fill: "#15191C" }, tl);
 });
-const playhead = el("rect", { x: 0, y: 0, width: 2, height: 46, fill: "#FF5C7A" }, tl);
+const playhead = el("rect", { x: 0, y: 0, width: 2, height: 46, fill: "#D64545" }, tl);
 $("timeline").addEventListener("click", (e) => {
   const r = e.currentTarget.getBoundingClientRect(); t = clamp((e.clientX - r.left) / r.width * 24, 0, 23.99);
 });
@@ -226,8 +226,8 @@ function frame(now) {
   $("moonG").setAttribute("transform", `translate(${600 - 520 * Math.cos(mang)} ${400 - 330 * Math.sin(mang)})`);
   $("moonG").setAttribute("opacity", night);
   $("moonShade").setAttribute("fill", mix("#1C2238", "#24314A", .5));
-  $("ridge").setAttribute("fill", mix("#163447", "#0B1C28", night));
-  $("ground").setAttribute("fill", mix("#10283A", "#081520", night));
+  $("ridge").setAttribute("fill", mix("#E9ECE8", "#FFFFFF", night));
+  $("ground").setAttribute("fill", mix("#EEF0EE", "#FFFFFF", night));
 
   // clouds follow NASA POWER cloud amount
   cloudDrift += dt * (6 + s.hub * 2.2);
@@ -281,12 +281,12 @@ function frame(now) {
   const hh = Math.floor(t), mm = Math.floor((t - hh) * 60);
   $("clock").textContent = String(hh).padStart(2, "0") + ":" + String(mm).padStart(2, "0");
   $("read").innerHTML =
-    `<span><i style="background:#FF8A5B"></i>Solar</span><b>${fmt(cur.solar)} MW</b>` +
-    `<span><i style="background:#3FD0F0"></i>Wind · ${fmt(cur.hub, 1)} m/s</span><b>${fmt(cur.wind)} MW</b>` +
-    `<span><i style="background:#EAF2F6"></i>Demand</span><b>${fmt(cur.demand)} MW</b>` +
-    `<span><i style="background:#C3A6FF"></i>Battery</span><b>${fmt(cur.soc)} MWh</b>` +
-    `<span><i style="background:#FF5C7A"></i>From grid</span><b>${fmt(cur.grid)} MWh</b>` +
-    `<span><i style="background:#5E7787"></i>Unused</span><b>${fmt(cur.spill)} MWh</b>`;
+    `<span><i style="background:#E8A317"></i>Solar</span><b>${fmt(cur.solar)} MW</b>` +
+    `<span><i style="background:#2F6FDE"></i>Wind · ${fmt(cur.hub, 1)} m/s</span><b>${fmt(cur.wind)} MW</b>` +
+    `<span><i style="background:#15191C"></i>Demand</span><b>${fmt(cur.demand)} MW</b>` +
+    `<span><i style="background:#7C5CDB"></i>Battery</span><b>${fmt(cur.soc)} MWh</b>` +
+    `<span><i style="background:#D64545"></i>From grid</span><b>${fmt(cur.grid)} MWh</b>` +
+    `<span><i style="background:#9AA1A6"></i>Unused</span><b>${fmt(cur.spill)} MWh</b>`;
   playhead.setAttribute("x", t / 24 * 960 - 1);
   requestAnimationFrame(frame);
 }

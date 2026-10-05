@@ -8,8 +8,8 @@ from pathlib import Path
 import pandas as pd
 import streamlit.components.v1 as components
 
-from habagat.dispatch import synthetic_load_mw
-from habagat.theme import MODEL_COLOR
+from solwind.dispatch import synthetic_load_mw
+from solwind.theme import MODEL_COLOR
 
 ASSETS = Path(__file__).resolve().parent / "assets"
 

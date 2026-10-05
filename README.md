@@ -1,10 +1,10 @@
-# Habagat
+# SolWind
 
 **Read tomorrow's sun and monsoon wind, then plan the grid around it.**
 
-Habagat is the interactive product for our CSS142 research project. It simulates a 1 MW solar + 1 MW wind microgrid with a battery at three Philippine sites: Laoag (Luzon), Mactan (Visayas) and General Santos (Mindanao). The simulation runs on hourly NASA POWER weather from January 2020 to June 2026 (the paper's published site tables cover 2020–2024). Habagat then tests day-ahead forecasts (XGBoost vs. two baselines) on held-out years (2024, 2025 and January–June 2026) and shows what each forecast does to a grid-purchase plan.
+SolWind is the interactive product for our CSS142 research project. It simulates a 1 MW solar + 1 MW wind microgrid with a battery at three Philippine sites: Laoag (Luzon), Mactan (Visayas) and General Santos (Mindanao). The simulation runs on hourly NASA POWER weather from January 2020 to June 2026 (the paper's published site tables cover 2020–2024). SolWind then tests day-ahead forecasts (XGBoost vs. two baselines) on held-out years (2024, 2025 and January–June 2026) and shows what each forecast does to a grid-purchase plan.
 
-> *Habagat* is the Filipino name for the southwest monsoon.
+> *SolWind* is the Filipino name for the southwest monsoon.
 
 ## What's inside
 
@@ -30,7 +30,7 @@ pip install -r requirements.txt
 streamlit run streamlit_app.py
 ```
 
-Or double-click `Run Habagat.command` (macOS) or `Run Habagat.bat` (Windows). Python 3.9–3.12 works.
+Or double-click `Run SolWind.command` (macOS) or `Run SolWind.bat` (Windows). Python 3.9–3.12 works.
 
 ## Validation
 
@@ -47,7 +47,7 @@ python -m pytest tests -q
 ```
 streamlit_app.py        entry point: theme, navigation, shared state
 app_pages/              one file per page
-habagat/
+solwind/
   physics.py            solar + wind equations (verbatim from the research code)
   dispatch.py           demand scenario + battery dispatch (verbatim)
   data.py               cached loaders and the live simulation

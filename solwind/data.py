@@ -8,8 +8,8 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-from habagat.dispatch import simulate_battery, synthetic_load_mw
-from habagat.physics import ASSUMPTIONS, load_power_curve, pv_output, wind_output
+from solwind.dispatch import simulate_battery, synthetic_load_mw
+from solwind.physics import ASSUMPTIONS, load_power_curve, pv_output, wind_output
 
 DATA = Path(__file__).resolve().parents[1] / "data"
 

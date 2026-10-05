@@ -4,10 +4,10 @@ import plotly.graph_objects as go
 import streamlit as st
 from plotly.subplots import make_subplots
 
-from habagat import theme
-from habagat.data import SITE_ISLAND, SITE_SHORT, SITES, current_generation, load_weather, settings, years_in
+from solwind import theme
+from solwind.data import SITE_ISLAND, SITE_SHORT, SITES, current_generation, load_weather, settings, years_in
 
-theme.header('Compare sites', 'The same equipment at Laoag, Mactan and General Santos, January 2020 to June 2026.')
+theme.header('Compare sites', 'Same equipment, three sites, January 2020 to June 2026.')
 
 cfg = settings()
 generation = current_generation()
@@ -33,11 +33,11 @@ with right:
     trend.update_xaxes(type="category")
     theme.chart(theme.style(trend, "Average combined output by month", "MW", 300), key="monthly")
 
-theme.section('Wind direction and speed', 'Share of hours by direction at hub height (69 m), January 2020 to June 2026.')
+theme.section('Wind direction and speed', 'Hub height, 69 m.')
 weather_all = load_weather()
 bins = [0, 3, 6, 9, 12, 40]
 bin_names = ["<3 m/s", "3–6", "6–9", "9–12", "12+"]
-shades = ["#22343D", "#2C5A6E", "#3C88AA", "#5BB5E0", "#C3E7F7"]
+shades = ["#E3EAF4", "#B6CDEE", "#7FA8E4", "#4A84DA", "#1F5FBF"]
 roses = make_subplots(rows=1, cols=3, specs=[[{"type": "polar"}] * 3],
                       subplot_titles=[f"{SITE_SHORT[s]} · {SITE_ISLAND[s]}" for s in SITES])
 for i, site in enumerate(SITES, start=1):
@@ -55,15 +55,15 @@ for i, site in enumerate(SITES, start=1):
 polar = dict(
     bgcolor="rgba(0,0,0,0)",
     angularaxis=dict(direction="clockwise", rotation=90, tickvals=[0, 90, 180, 270], ticktext=["N", "E", "S", "W"],
-                     tickfont=dict(family=theme.FONT_MONO, size=11), linecolor="#3A4249", gridcolor="#2B3137"),
-    radialaxis=dict(showticklabels=False, gridcolor="#2B3137", linecolor="rgba(0,0,0,0)"),
+                     tickfont=dict(family=theme.FONT_MONO, size=11), linecolor="#C9CEC9", gridcolor="#E6E9E5"),
+    radialaxis=dict(showticklabels=False, gridcolor="#E6E9E5", linecolor="rgba(0,0,0,0)"),
 )
 roses.update_layout(polar=polar, polar2=polar, polar3=polar, height=400, hovermode="closest",
                     margin=dict(l=30, r=30, t=60, b=10), legend=dict(y=-0.05, yanchor="top", x=.5, xanchor="center"))
 roses.update_annotations(font=dict(family=theme.FONT_HEAD, size=16, color=theme.INK), yshift=14)
 theme.chart(roses, key="roses")
 
-theme.section('Solar–wind complementarity', "Negative correlation means one source tends to produce when the other doesn't.")
+theme.section('Solar–wind complementarity', 'Below zero: one source tends to fill in for the other.')
 rows = []
 for site in SITES:
     g = generation.loc[generation["location"] == site]

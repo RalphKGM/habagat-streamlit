@@ -1,4 +1,4 @@
-from habagat import mapview, theme
+from solwind import mapview, theme
 
 theme.html(
     """<style>

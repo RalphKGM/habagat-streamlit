@@ -6,7 +6,7 @@ VOICE = os.environ.get("VOICE", "en-US-AndrewNeural")
 LINES = [
     ("open",     "Every midnight, the grid has to guess tomorrow."),
     ("ask",      "How much sun? How much wind? Hour by hour."),
-    ("brand",    "This is Habagat."),
+    ("brand",    "This is SolWind."),
     ("map",      "It replays six and a half years of NASA weather, hour by hour, at three sites across the Philippines."),
     ("picker",   "Pick any day, right up to June 2026, and watch it play out."),
     ("designer", "Change the plant, and every hour reruns. Take the wind away, and the grid has to cover it."),
@@ -14,7 +14,7 @@ LINES = [
     ("calendar", "Every day is forecast automatically, at midnight."),
     ("stat",     "Seventeen to twenty-nine percent less error than the best baseline."),
     ("planning", "And grid plans that need up to a quarter less correction."),
-    ("end",      "Habagat. Read tomorrow's sky."),
+    ("end",      "SolWind. Read tomorrow's sky."),
 ]
 FFPROBE_FREE = os.environ.get("FFMPEG", "ffmpeg")
 
