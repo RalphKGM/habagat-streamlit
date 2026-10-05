@@ -1,27 +1,26 @@
-"""Voice-over lines -> audio/vo_XX.mp3 + audio/vo.json (durations and word timings) via edge-tts (free)."""
+"""SolWind ad voice-over lines -> audio/vo_XX.mp3 + audio/vo.json (durations and word timings) via edge-tts (free)."""
 import asyncio, json, os, subprocess, sys
 import edge_tts
 
 VOICE = os.environ.get("VOICE", "en-US-AndrewNeural")
 LINES = [
-    ("open",     "Every midnight, the grid has to guess tomorrow."),
-    ("ask",      "How much sun? How much wind? Hour by hour."),
-    ("brand",    "This is SolWind."),
-    ("map",      "It replays six and a half years of NASA weather, hour by hour, at three sites across the Philippines."),
-    ("picker",   "Pick any day, right up to June 2026, and watch it play out."),
-    ("designer", "Change the plant, and every hour reruns. Take the wind away, and the grid has to cover it."),
-    ("rolling",  "Then the forecasts face a year they've never seen. 2024. 2025. And 2026."),
-    ("calendar", "Every day is forecast automatically, at midnight."),
-    ("stat",     "Seventeen to twenty-nine percent less error than the best baseline."),
-    ("planning", "And grid plans that need up to a quarter less correction."),
+    ("hook",     "Every midnight, the grid has to guess tomorrow."),
+    ("map",      "SolWind replays sun and wind, hour by hour, at three Philippine sites."),
+    ("designer", "Change the plant, and every hour reruns."),
+    ("audit",    "Its forecasts were tested on years they never saw."),
+    ("stat",     "Up to twenty-nine percent less error."),
     ("end",      "SolWind. Read tomorrow's sky."),
 ]
+SAY = {"SolWind": "Sol Wind"}  # spoken form; captions keep the written name
 FFPROBE_FREE = os.environ.get("FFMPEG", "ffmpeg")
 
 
 async def one(key, text):
     out = f"audio/vo_{key}.mp3"
-    com = edge_tts.Communicate(text, VOICE, rate="-4%", boundary="WordBoundary")
+    spoken = text
+    for written, said in SAY.items():
+        spoken = spoken.replace(written, said)
+    com = edge_tts.Communicate(spoken, VOICE, rate="+2%", boundary="WordBoundary")
     words = []
     with open(out, "wb") as fh:
         async for c in com.stream():

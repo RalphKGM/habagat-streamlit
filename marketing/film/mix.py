@@ -42,7 +42,7 @@ music = np.zeros(N)
 CHORDS = [[50, 57, 61, 64, 66], [47, 54, 57, 62, 66], [43, 50, 54, 57, 62], [45, 52, 57, 61, 64]]  # Dmaj9 Bm7 Gmaj9 A
 BAR = 3.0
 pad = np.zeros(N)
-start_pad = S["ask"]["from"] - 1.0
+start_pad = 0.2
 nb = int((TL["duration"] - start_pad) // BAR) + 2
 for b in range(nb):
     t0 = start_pad + b * BAR
@@ -60,14 +60,14 @@ music += pad
 # --- monsoon wind: filtered noise swell under the intro ---
 noise = rng.standard_normal(N)
 wind = lowpass(noise, 500) - lowpass(noise, 120)
-wind *= (0.6 + 0.4 * np.sin(2 * np.pi * 0.18 * t + 1)) * env(t, 0.0, S["brand"]["from"] + 0.4, 1.8, 1.0)
+wind *= (0.6 + 0.4 * np.sin(2 * np.pi * 0.18 * t + 1)) * env(t, 0.0, S["map"]["from"] + 0.4, 1.2, 1.0)
 wind += 0.4 * (lowpass(noise, 300) - lowpass(noise, 90)) * env(t, S["end"]["from"], TL["duration"], 1.5, 2)
 music += 0.22 * wind / (np.abs(wind).max() + 1e-9)
 
 # --- riser into the logo, then a low hit ---
-br = S["brand"]["from"]
-rise = env(t, br - 1.6, br, 1.6, 0.02) * (lowpass(noise, 3000) - lowpass(noise, 600))
-music += 0.18 * rise / (np.abs(rise).max() + 1e-9) * np.clip((t - (br - 1.6)) / 1.6, 0, 1) ** 2
+br = S["map"]["from"]
+rise = env(t, br - 1.2, br, 1.2, 0.02) * (lowpass(noise, 3000) - lowpass(noise, 600))
+music += 0.18 * rise / (np.abs(rise).max() + 1e-9) * np.clip((t - (br - 1.2)) / 1.2, 0, 1) ** 2
 hit = (t >= br) * np.exp(-np.maximum(t - br, 0) * 2.2) * np.sin(2 * np.pi * hz(38) * (t - br))
 music += 0.35 * hit
 
@@ -86,7 +86,7 @@ k = 0; tt = p0
 while tt < p1:
     b = int((tt - start_pad) // BAR); ch = CHORDS[b % 4]
     pat = [ch[1] + 12, ch[2] + 12, ch[3] + 12, ch[2] + 12, ch[4] + 12, ch[3] + 12, ch[2] + 12, ch[3] + 12]
-    build = min(1, (tt - p0) / 6) * (1.15 if S["stat"]["from"] <= tt < S["planning"]["to"] else 1)
+    build = min(1, (tt - p0) / 3) * (1.15 if S["stat"]["from"] <= tt < S["stat"]["to"] else 1)
     acc = 1.0 if k % 2 == 0 else 0.7
     pluck(tt, hz(pat[k % 8]), 0.075 * build * acc)
     k += 1; tt = p0 + k * e8

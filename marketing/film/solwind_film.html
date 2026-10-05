@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SolWind Film</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!--
+  SolWind: 27-second product film in the app's datasheet style. Every pixel is a pure function of time t,
+  so render.py captures it frame-exactly. Preview over http: Space pause, ←/→ seek.
+  URL options: ?vertical (1080×1920) · ?cap (captions) · ?t=12 · ?url=yourapp.streamlit.app
+-->
+<style>
+  :root { --paper:#FFFFFF; --surface:#F4F5F3; --rule:#E1E4E0; --ink:#15191C; --soft:#60686E;
+    --sun:#E8A317; --wind:#2F6FDE; --served:#3BA272; --grid:#D64545; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html, body { height:100%; background:#000; overflow:hidden; }
+  #stage { position:absolute; left:50%; top:50%; width:1920px; height:1080px; transform-origin:center; overflow:hidden;
+    background:var(--paper); font-family:'Archivo', Helvetica, Arial, sans-serif; color:var(--ink); }
+  body.vertical #stage { width:1080px; height:1920px; }
+  .layer { position:absolute; inset:0; }
+  #mapSvg, #wind { position:absolute; inset:0; width:100%; height:100%; }
+  .coast { fill:none; stroke:#15191C; stroke-width:1.1; }
+  .lab { font-family:'Archivo'; font-weight:600; fill:var(--ink); paint-order:stroke; stroke:#FFFFFF; }
+
+  .hook { position:absolute; left:120px; top:300px; width:820px; font:700 104px/1.0 'Archivo'; letter-spacing:-.035em; }
+  .hook .w { display:inline-block; }
+  .hook .soft { color:#9AA1A6; }
+
+  .label { position:absolute; left:210px; top:86px; font:500 20px 'JetBrains Mono'; color:var(--soft); }
+  .label b { color:var(--ink); font-weight:500; margin-right:16px; }
+  .head { position:absolute; left:210px; top:118px; font:700 62px/1.04 'Archivo'; letter-spacing:-.03em; }
+  .frame { position:absolute; left:210px; top:214px; width:1500px; height:844px; overflow:hidden; border:1px solid var(--rule); background:var(--paper); }
+  .frame video { position:absolute; left:0; top:0; width:1920px; height:1080px; transform-origin:0 0; }
+  .chip { position:absolute; background:var(--paper); border:1px solid var(--ink); padding:18px 24px 16px; }
+  .chip b { display:block; font:500 64px/1 'JetBrains Mono'; letter-spacing:-.04em; white-space:nowrap; }
+  .chip small { display:block; font:500 19px/1.35 'Archivo'; color:var(--soft); margin-top:8px; max-width:400px; }
+  .chip .arrow { color:var(--soft); margin:0 10px; }
+
+  .stat { position:absolute; left:210px; right:210px; top:230px; }
+  .stat .big { font:500 300px/0.9 'JetBrains Mono'; letter-spacing:-.07em; }
+  .stat .big span { color:var(--wind); }
+  .stat .sub { font:600 40px 'Archivo'; letter-spacing:-.02em; margin-top:22px; }
+  .rows { position:absolute; left:210px; right:210px; top:700px; display:grid; grid-template-columns:repeat(3,1fr); column-gap:40px; }
+  .rows > div { border-top:1px solid var(--ink); padding-top:16px; }
+  .rows .s { font:600 24px 'Archivo'; }
+  .rows .r { font:500 44px 'JetBrains Mono'; letter-spacing:-.04em; margin-top:10px; }
+  .foot { position:absolute; left:210px; right:210px; bottom:70px; font:400 19px 'Archivo'; color:var(--soft); }
+
+  .brand { position:absolute; display:flex; align-items:center; gap:28px; font:700 150px/1 'Archivo'; letter-spacing:-.045em; }
+  .brand svg { width:130px; height:130px; flex:none; }
+  .tag { position:absolute; left:0; right:0; text-align:center; font:500 44px 'Archivo'; color:var(--soft); letter-spacing:-.01em; }
+  .url { position:absolute; font:500 28px 'JetBrains Mono'; border:1px solid var(--ink); background:var(--paper); padding:14px 30px; white-space:nowrap; }
+  .fine { position:absolute; left:0; right:0; bottom:46px; text-align:center; font:400 18px 'Archivo'; color:var(--soft); }
+
+  #cap { position:absolute; left:0; right:0; bottom:60px; text-align:center; font:600 34px/1.35 'Archivo'; pointer-events:none; }
+  #cap span { background:var(--ink); color:#FFFFFF; padding:6px 16px; box-decoration-break:clone; -webkit-box-decoration-break:clone; }
+  #cap i { font-style:normal; opacity:.45; } #cap i.on { opacity:1; }
+
+  body.vertical .hook { left:80px; top:240px; width:920px; font-size:112px; }
+  body.vertical .label { left:60px; top:200px; font-size:24px; }
+  body.vertical .head { left:60px; top:240px; width:960px; font-size:84px; }
+  body.vertical .frame { left:40px; top:520px; width:1000px; height:1000px; }
+  body.vertical .stat { left:60px; right:60px; top:380px; }
+  body.vertical .stat .big { font-size:270px; }
+  body.vertical .stat .sub { font-size:48px; }
+  body.vertical .rows { left:60px; right:60px; top:900px; grid-template-columns:1fr; row-gap:34px; }
+  body.vertical .foot { left:60px; right:60px; bottom:360px; font-size:24px; }
+  body.vertical .brand { font-size:132px; } body.vertical .brand svg { width:112px; height:112px; }
+  body.vertical #cap { bottom:190px; font-size:44px; padding:0 60px; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="layer" id="mapLayer"><svg id="mapSvg"></svg><canvas id="wind"></canvas></div>
+
+  <section class="layer" data-s="hook">
+    <div class="hook"><span class="w">Every</span> <span class="w">midnight,</span> <span class="w">the</span> <span class="w">grid</span> <span class="w">has</span> <span class="w">to</span> <span class="w soft">guess</span> <span class="w soft">tomorrow.</span></div>
+  </section>
+
+  <section class="layer clip" data-s="map" data-src="clips/map.mp4" data-in="0.6" data-rate="1.15"
+           data-zoom16="0:1.0:.5:.5 2:1.1:.42:.5 6.5:1.12:.45:.55" data-zoom9="0:1.7:.40:.45 6.5:1.8:.44:.55">
+    <div class="label"><b>01</b>Map</div><div class="head">Sun and wind, hour by hour.</div>
+    <div class="frame"><video muted preload="auto" playsinline></video></div>
+    <div class="chip" data-chip="map"><b class="count">0</b><small>site-hours of NASA weather, 2020 – Jun 2026</small></div>
+  </section>
+
+  <section class="layer clip" data-s="designer" data-src="clips/designer.mp4" data-in="0.4" data-rate="1.0"
+           data-zoom16="0:1.0:.5:.5 1.2:1.2:.34:.40 4.4:1.2:.34:.40" data-zoom9="0:1.3:.2:.42 4.4:1.35:.2:.42">
+    <div class="label"><b>02</b>System designer</div><div class="head">Change the plant. Every hour reruns.</div>
+    <div class="frame"><video muted preload="auto" playsinline></video></div>
+    <div class="chip" data-chip="designer"><b>71%<span class="arrow">→</span>37%</b><small>demand met by renewables with wind set to 0 MW</small></div>
+  </section>
+
+  <section class="layer clip" data-s="audit" data-src="clips/audit.mp4" data-in="0.8" data-rate="1.4"
+           data-zoom16="0:1.0:.5:.3 5.4:1.05:.5:.45" data-zoom9="0:1.6:.25:.25 2.6:1.6:.7:.25 3.4:1.5:.5:.45 5.4:1.5:.6:.45">
+    <div class="label"><b>03</b>2026 audit</div><div class="head">Tested on years it never saw.</div>
+    <div class="frame"><video muted preload="auto" playsinline></video></div>
+    <div class="chip" data-chip="audit"><b>2020–25<span class="arrow">→</span>2026</b><small>trained on earlier years, scored once on Jan–Jun 2026</small></div>
+  </section>
+
+  <section class="layer" data-s="stat">
+    <div class="label"><b>04</b>Result</div>
+    <div class="stat"><div class="big">−<span id="pct">0</span>%</div><div class="sub">less forecast error than the best baseline</div></div>
+    <div class="rows">
+      <div><div class="s">Laoag</div><div class="r">24–29%</div></div>
+      <div><div class="s">Mactan</div><div class="r">18–27%</div></div>
+      <div><div class="s">General Santos</div><div class="r">17–23%</div></div>
+    </div>
+    <div class="foot">XGBoost vs. the better of two simple baselines, each test year: 2024, 2025, Jan–Jun 2026.</div>
+  </section>
+
+  <section class="layer" data-s="end">
+    <div class="brand" id="brand"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="15" r="8" fill="#E8A317"/><path d="M7 28h26M14 34h19" stroke="#2F6FDE" stroke-width="3.4" stroke-linecap="square"/></svg><span>SolWind</span></div>
+    <div class="tag" id="tag">Read tomorrow's sky.</div>
+    <div class="url" id="url">github.com/RalphKGM/habagat-streamlit</div>
+    <div class="fine">NASA POWER weather, Jan 2020 – Jun 2026 · Modeled output, not metered plant data</div>
+  </section>
+
+  <div id="cap"></div>
+</div>
+<script src="map_data.js"></script>
+<script src="timeline.js"></script>
+<script>
+const params = new URLSearchParams(location.search);
+const V = params.has("vertical"); if (V) document.body.classList.add("vertical");
+if (params.get("url")) document.getElementById("url").textContent = params.get("url");
+const CAP = params.has("cap");
+const SW = V ? 1080 : 1920, SH = V ? 1920 : 1080, stage = document.getElementById("stage");
+function fit() { const s = Math.min(innerWidth / SW, innerHeight / SH); stage.style.transform = `translate(-50%,-50%) scale(${s})`; }
+addEventListener("resize", fit); fit();
+
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const ramp = (t, a, b) => clamp((t - a) / (b - a));
+const eo = u => 1 - Math.pow(1 - u, 3);
+const eio = u => u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2;
+const $ = s => document.querySelector(s);
+const SC = Object.fromEntries(TL.scenes.map(s => [s.id, s]));
+const DUR = TL.duration;
+function rise(el, t, at, dur = .55, dist = 22) { const u = eo(ramp(t, at, at + dur)); el.style.opacity = u; el.style.transform = `translateY(${(1 - u) * dist}px)`; }
+function fadeScene(el, s, t, fin = .3, fout = .3) {
+  const a = ramp(t, s.from, s.from + fin) * (1 - ramp(t, s.to - fout, s.to));
+  el.style.opacity = a; el.style.visibility = a > .001 ? "visible" : "hidden"; return a;
+}
+const wordAt = (sid, w, n = 0) => (SC[sid].words.filter(x => x.w.replace(/[^\w-]/g, "") === w)[n] || {}).t;
+
+// ---- map: light chart, coast drawn in ink, islands tinted by the app's output scale ----
+const NS = "http://www.w3.org/2000/svg", M = window.PH, svg = $("#mapSvg");
+const mk = (tag, a, p) => { const n = document.createElementNS(NS, tag); for (const k in a) n.setAttribute(k, a[k]); p.appendChild(n); return n; };
+const mapH = V ? 1150 : 960, scale = mapH / M.height;
+const mx = V ? (SW - M.width * scale) / 2 + 40 : SW - M.width * scale - 170, my = V ? SH - mapH - 220 : (SH - mapH) / 2 + 10;
+svg.setAttribute("viewBox", `${-mx / scale} ${-my / scale} ${SW / scale} ${SH / scale}`);
+mk("rect", { x: -mx / scale, y: -my / scale, width: SW / scale, height: SH / scale, fill: "#EEF2F4" }, svg);
+mk("path", { d: M.neighbours, fill: "#E4E8E6" }, svg);
+(M.contours || []).forEach((d, i) => mk("path", { d, fill: "none", stroke: "#DCE3E6", "stroke-width": 1.2, opacity: 1 - i * .2 }, svg));
+const FILL = { Luzon: [151, 186, 232], Visayas: [94, 147, 221], Mindanao: [201, 218, 239] }, BASE = [255, 255, 255];
+const regions = {}, coasts = [];
+for (const g in M.regions) {
+  regions[g] = mk("path", { d: M.regions[g], fill: "#FFFFFF" }, svg);
+  const c = mk("path", { d: M.regions[g], class: "coast" }, svg); c.style.strokeDasharray = 7000; coasts.push(c);
+}
+const SHORT = { "Laoag, Ilocos Norte": "Laoag", "Mactan, Cebu": "Mactan", "General Santos City": "General Santos" };
+const ORDER = ["Luzon", "Visayas", "Mindanao"];
+const sites = Object.entries(M.sites).map(([name, s]) => {
+  const g = mk("g", {}, svg);
+  const d = mk("rect", { x: s.x - 7 / scale, y: s.y - 7 / scale, width: 14 / scale, height: 14 / scale, fill: "#FFFFFF", stroke: "#15191C", "stroke-width": 2 / scale, transform: `rotate(45 ${s.x} ${s.y})` }, g);
+  const l = mk("text", { x: s.x + 18 / scale, y: s.y + 9 / scale, class: "lab", "font-size": 28 / scale, "stroke-width": 6 / scale }, g);
+  l.textContent = SHORT[name];
+  return { d, l, i: ORDER.indexOf(s.group) };
+});
+
+// ---- wind: seeded, stepped at the film's fps ----
+const cv = $("#wind"), ctx = cv.getContext("2d"); cv.width = SW; cv.height = SH;
+let seed = 7; const rnd = () => ((seed = (seed * 16807) % 2147483647) - 1) / 2147483646;
+const P = Array.from({ length: 900 }, () => ({ x: rnd() * SW, y: rnd() * SH, a: rnd() * 70 }));
+let windStep = 0; const STEP = 1 / TL.fps;
+function windTick() {
+  ctx.globalCompositeOperation = "destination-out"; ctx.fillStyle = "rgba(0,0,0,.14)"; ctx.fillRect(0, 0, SW, SH);
+  ctx.globalCompositeOperation = "source-over"; ctx.strokeStyle = "rgba(31,63,110,.30)"; ctx.lineWidth = 1.2; ctx.beginPath();
+  for (const p of P) {  // southwest monsoon: toward the northeast
+    const vx = 2.6 + Math.sin(p.y / 140 + p.x / 260) * .5, vy = -1.5 + Math.cos(p.x / 200) * .4;
+    ctx.moveTo(p.x, p.y); p.x += vx * 2; p.y += vy * 2; ctx.lineTo(p.x, p.y);
+    if (++p.a > 70 || p.x > SW || p.y < 0) { p.x = rnd() * SW * .9; p.y = rnd() * SH; p.a = 0; }
+  }
+  ctx.stroke();
+}
+function windTo(t) {
+  const target = Math.floor(t / STEP);
+  if (target < windStep) { seed = 7; P.forEach(p => { p.x = rnd() * SW; p.y = rnd() * SH; p.a = rnd() * 70; }); ctx.clearRect(0, 0, SW, SH); windStep = 0; }
+  if (target - windStep > 90) windStep = target - 90;
+  while (windStep < target) { windTick(); windStep++; }
+}
+
+// ---- clips ----
+const clips = [...document.querySelectorAll("section.clip")].map(sec => {
+  const zk = sec.dataset[V ? "zoom9" : "zoom16"].split(" ").map(k => k.split(":").map(Number));
+  return { sec, v: sec.querySelector("video"), s: SC[sec.dataset.s], tin: +sec.dataset.in, rate: +sec.dataset.rate, zk, frame: sec.querySelector(".frame") };
+});
+function zoomAt(zk, lt) {
+  let a = zk[0], b = zk[zk.length - 1];
+  for (let i = 0; i < zk.length - 1; i++) if (lt >= zk[i][0] && lt <= zk[i + 1][0]) { a = zk[i]; b = zk[i + 1]; break; }
+  if (lt < zk[0][0]) b = a; if (lt > b[0]) a = b;
+  const u = a === b ? 0 : eio(clamp((lt - a[0]) / (b[0] - a[0])));
+  return a.slice(1).map((x, i) => x + (b[i + 1] - x) * u);
+}
+function placeVideo(c, lt) {
+  const FW = c.frame.clientWidth, FH = c.frame.clientHeight, [z, fx, fy] = zoomAt(c.zk, lt);
+  const s = Math.max(FW / 1920, FH / 1080) * z;
+  let x = FW / 2 - fx * 1920 * s, y = FH / 2 - fy * 1080 * s;
+  x = Math.min(0, Math.max(FW - 1920 * s, x)); y = Math.min(0, Math.max(FH - 1080 * s, y));
+  c.v.style.transform = `translate(${x}px,${y}px) scale(${s})`;
+}
+function seekVideo(v, time) {
+  return new Promise(res => {
+    time = Math.min(Math.max(time, 0), (v.duration || 1e9) - .02);
+    if (Math.abs(v.currentTime - time) < 1e-3) return res();
+    const done = () => { v.removeEventListener("seeked", done); res(); };
+    v.addEventListener("seeked", done); v.currentTime = time;
+  });
+}
+
+async function renderAt(t) {
+  // map: full in the hook, faint behind the end card
+  const mapA = t < SC.map.from ? 1 : t < SC.map.from + .35 ? 1 - ramp(t, SC.map.from, SC.map.from + .35) : t >= SC.end.from ? .35 * ramp(t, SC.end.from, SC.end.from + .8) : 0;
+  $("#mapLayer").style.opacity = mapA;
+  $("#mapLayer").style.transform = `scale(${t < SC.map.from ? 1 + t * .006 : 1.03})`;
+  if (mapA > 0) {
+    windTo(t);
+    coasts.forEach(c => c.style.strokeDashoffset = 7000 * (1 - eio(ramp(t, .05, 2.2))));
+    ORDER.forEach((g, i) => {
+      const u = eo(ramp(t, 1.4 + i * .35, 2.0 + i * .35));
+      regions[g].setAttribute("fill", `rgb(${BASE.map((b, k) => Math.round(b + (FILL[g][k] - b) * u))})`);
+    });
+    sites.forEach(s => { const u = eo(ramp(t, 1.8 + s.i * .35, 2.2 + s.i * .35)); s.d.style.opacity = s.l.style.opacity = u; });
+  }
+
+  const sH = document.querySelector('[data-s="hook"]'); fadeScene(sH, SC.hook, t, .01, .3);
+  sH.querySelectorAll(".w").forEach((w, i) => { const k = SC.hook.words[i]; rise(w, t, k ? k.t - .1 : 0, .4, 16); });
+
+  const seeks = [];
+  for (const c of clips) {
+    const a = fadeScene(c.sec, c.s, t), lt = t - c.s.from;
+    if (a <= 0) continue;
+    rise(c.sec.querySelector(".label"), t, c.s.from + .02, .4, 10);
+    rise(c.sec.querySelector(".head"), t, c.s.from + .08, .45, 14);
+    const u = eo(ramp(t, c.s.from, c.s.from + .6));
+    c.frame.style.opacity = u; c.frame.style.transform = `translateY(${(1 - u) * 30}px)`;
+    placeVideo(c, lt);
+    seeks.push(seekVideo(c.v, c.tin + Math.max(lt, 0) * c.rate + .5 / TL.fps));
+    Object.assign(c.sec.querySelector(".chip").style, V ? { left: "60px", right: "60px", top: "1270px" } : { right: "120px", bottom: "80px" });
+  }
+  const mchip = document.querySelector('[data-chip="map"]'), mt = wordAt("map", "hour");
+  rise(mchip, t, mt - .2, .5, 20);
+  mchip.querySelector(".count").textContent = Math.round(170856 * eo(ramp(t, mt, mt + 1.4))).toLocaleString("en-US");
+  rise(document.querySelector('[data-chip="designer"]'), t, SC.designer.from + 2.4, .5, 20);
+  rise(document.querySelector('[data-chip="audit"]'), t, wordAt("audit", "years") - .2, .5, 20);
+
+  const sS = document.querySelector('[data-s="stat"]'); fadeScene(sS, SC.stat, t);
+  rise(sS.querySelector(".label"), t, SC.stat.from + .02, .4, 10);
+  rise(sS.querySelector(".stat"), t, SC.stat.from + .05, .5, 20);
+  $("#pct").textContent = Math.round(29 * eo(ramp(t, SC.stat.from + .2, (wordAt("stat", "percent") || SC.stat.from + 1.4) + .2)));
+  sS.querySelectorAll(".rows > div").forEach((d, i) => rise(d, t, SC.stat.from + .9 + i * .15, .45, 14));
+  rise(sS.querySelector(".foot"), t, SC.stat.from + 1.4, .5, 6);
+
+  const sE = document.querySelector('[data-s="end"]'); fadeScene(sE, SC.end, t, .4, .01);
+  const br = $("#brand"), bw = br.offsetWidth;
+  Object.assign(br.style, { left: (SW - bw) / 2 + "px", top: (SH / 2 - (V ? 170 : 150)) + "px" });
+  rise(br, t, SC.end.from + .1, .6, 20);
+  const tag = $("#tag"); tag.style.top = (SH / 2 + (V ? 10 : 30)) + "px"; rise(tag, t, wordAt("end", "Read") - .1, .5, 12);
+  const url = $("#url"); url.style.left = (SW - url.offsetWidth) / 2 + "px"; url.style.top = (SH / 2 + (V ? 120 : 130)) + "px";
+  rise(url, t, wordAt("end", "Read") + .5, .5, 12);
+  rise(sE.querySelector(".fine"), t, wordAt("end", "Read") + .7, .5, 0);
+
+  const cap = $("#cap");
+  if (CAP) {
+    const s = TL.scenes.find(s => t >= s.voAt - .1 && t <= s.voAt + s.voDur + .25);
+    cap.innerHTML = s ? `<span>${s.words.map(w => `<i class="${t >= w.t - .02 ? "on" : ""}">${w.w}</i>`).join(" ")}</span>` : "";
+  }
+  await Promise.all(seeks);
+}
+
+window.FILM = { duration: DUR, fps: TL.fps, renderAt, ready: async () => {
+  await document.fonts.ready;
+  await Promise.all(clips.map(async c => {  // blob URLs seek reliably from any server
+    if (!c.v.src) c.v.src = URL.createObjectURL(await (await fetch(c.sec.dataset.src)).blob());
+    if (c.v.readyState < 2) await new Promise(r => c.v.addEventListener("loadeddata", r, { once: true }));
+  }));
+} };
+if (!params.has("capture")) {
+  let t = parseFloat(params.get("t") || 0), playing = true, last = performance.now(), busy = false;
+  const loop = async now => {
+    const dt = Math.min((now - last) / 1000, .1); last = now;
+    if (playing) { t += dt; if (t >= DUR) t = 0; }
+    if (!busy) { busy = true; await renderAt(t); busy = false; }
+    requestAnimationFrame(loop);
+  };
+  FILM.ready().then(() => requestAnimationFrame(loop));
+  addEventListener("keydown", e => {
+    if (e.code === "Space") playing = !playing;
+    if (e.key === "ArrowRight") t = Math.min(t + 1, DUR - .01);
+    if (e.key === "ArrowLeft") t = Math.max(t - 1, 0);
+  });
+}
+</script>
+</body>
+</html>

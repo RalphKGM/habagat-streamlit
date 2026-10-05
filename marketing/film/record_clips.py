@@ -44,6 +44,7 @@ class Recorder:
             for (p, t), nxt in zip(self.frames, self.frames[1:] + [(None, self.frames[-1][1] + 1 / 30)]):
                 fh.write(f"file '{p}'\nduration {max(nxt[1] - t, 0.001):.4f}\n")
             fh.write(f"file '{self.frames[-1][0]}'\n")
+        os.makedirs(os.path.join(HERE, "clips"), exist_ok=True)
         out = os.path.join(HERE, "clips", f"{self.name}.mp4")
         subprocess.run([FFMPEG, "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", lst,
                         "-vf", "fps=30,scale=1920:1080:flags=lanczos,format=yuv420p",
@@ -70,7 +71,7 @@ CURSOR_JS = """
 (() => { if (window.__cur) return; const c = document.createElement('div'); window.__cur = c;
   c.style.cssText = 'position:fixed;z-index:2147483647;left:0;top:0;width:22px;height:22px;pointer-events:none;'
    + 'transform:translate(-3px,-2px);transition:transform .08s';
-  c.innerHTML = '<svg viewBox="0 0 24 24" width="22" height="22"><path d="M3 2l7 19 2.6-7.4L20 11z" fill="#EAF2F6" stroke="#0C1E2B" stroke-width="1.6" stroke-linejoin="round"/></svg>';
+  c.innerHTML = '<svg viewBox="0 0 24 24" width="22" height="22"><path d="M3 2l7 19 2.6-7.4L20 11z" fill="#15191C" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"/></svg>';
   document.documentElement.appendChild(c);
   addEventListener('mousemove', e => { c.style.left = e.clientX + 'px'; c.style.top = e.clientY + 'px'; }, true);
   addEventListener('mousedown', () => c.style.transform = 'translate(-3px,-2px) scale(.82)', true);
@@ -186,7 +187,23 @@ async def planning_clip(pg):
     await r.stop()
 
 
-CLIPS = dict(map=map_clip, picker=picker_clip, designer=designer_clip, rolling=rolling_clip,
+async def audit_clip(pg):
+    await pg.goto(URL + "/audit"); await settle(pg, 3000); await cursor(pg)
+    r = Recorder(pg, "audit"); await r.start()
+    p = await move(pg, 900, 600, 200, 200, 700)
+    for x in (200, 420, 640, 860, 1080):               # walk the five steps
+        p = await move(pg, *p, x, 200, 380)
+        await pg.wait_for_timeout(200)
+    for _ in range(9):
+        await pg.mouse.wheel(0, 50); await pg.wait_for_timeout(40)
+    await pg.wait_for_timeout(600)
+    p = await move(pg, *p, 300, 430, 600)
+    p = await move(pg, *p, 1000, 430, 2400)             # sweep along the 2026 daily chart
+    await pg.wait_for_timeout(800)
+    await r.stop()
+
+
+CLIPS = dict(audit=audit_clip, map=map_clip, picker=picker_clip, designer=designer_clip, rolling=rolling_clip,
              calendar=calendar_clip, planning=planning_clip)
 
 
