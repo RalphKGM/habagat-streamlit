@@ -34,4 +34,4 @@ python voice.py && python build_timeline.py          # pip install edge-tts
 ../../.venv/bin/python mix.py && python finish.py
 ```
 
-To use your own URL on the end card, add `?url=yourapp.streamlit.app` when you preview `solwind_film.html`, or edit `#url`.
+The end card shows habagat.streamlit.app (`#url` in `solwind_film.html`).
