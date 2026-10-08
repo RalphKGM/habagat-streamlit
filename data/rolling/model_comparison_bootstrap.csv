@@ -1,0 +1,19 @@
+fold,location,other,n_days,delta_mae_mw,ci95_lower_mw,ci95_upper_mw,block_days,resamples
+rolling_2024,General Santos City,random_forest,366,0.00052022,-0.00104029,0.00222236,7,2000
+rolling_2024,General Santos City,ridge,366,-0.03111328,-0.03496021,-0.02726899,7,2000
+rolling_2024,"Laoag, Ilocos Norte",random_forest,366,0.00127024,-0.00131236,0.00392322,7,2000
+rolling_2024,"Laoag, Ilocos Norte",ridge,366,-0.02147879,-0.02725894,-0.01578014,7,2000
+rolling_2024,"Mactan, Cebu",random_forest,366,0.00151929,-0.00040686,0.00362219,7,2000
+rolling_2024,"Mactan, Cebu",ridge,366,-0.02282462,-0.02713244,-0.01815381,7,2000
+rolling_2025,General Santos City,random_forest,365,0.00127669,0.00019738,0.00241746,7,2000
+rolling_2025,General Santos City,ridge,365,-0.02696089,-0.02988640,-0.02375139,7,2000
+rolling_2025,"Laoag, Ilocos Norte",random_forest,365,0.00266951,-0.00090645,0.00653837,7,2000
+rolling_2025,"Laoag, Ilocos Norte",ridge,365,-0.01870660,-0.02596034,-0.01047968,7,2000
+rolling_2025,"Mactan, Cebu",random_forest,365,0.00006716,-0.00258307,0.00294258,7,2000
+rolling_2025,"Mactan, Cebu",ridge,365,-0.02243713,-0.02574288,-0.01874480,7,2000
+rolling_2026,General Santos City,random_forest,181,0.00163280,0.00005396,0.00346937,7,2000
+rolling_2026,General Santos City,ridge,181,-0.03117415,-0.03542343,-0.02649105,7,2000
+rolling_2026,"Laoag, Ilocos Norte",random_forest,181,0.00056808,-0.00274278,0.00373348,7,2000
+rolling_2026,"Laoag, Ilocos Norte",ridge,181,-0.03640126,-0.04604273,-0.02628985,7,2000
+rolling_2026,"Mactan, Cebu",random_forest,181,-0.00167928,-0.00466084,0.00128693,7,2000
+rolling_2026,"Mactan, Cebu",ridge,181,-0.02885249,-0.03540883,-0.02247775,7,2000

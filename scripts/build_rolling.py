@@ -30,7 +30,8 @@ def main(project: Path) -> None:
     metrics = pd.read_csv(results / "rolling_metrics.csv")
     keep = (metrics["scope"].isin(["all_hours", "daylight"])) & (metrics["aggregation"].isin(["overall", "horizon", "month"]))
     metrics.loc[keep].to_csv(OUT / "rolling_metrics.csv", index=False)
-    for name in ["rolling_planning_summary.csv", "paired_block_bootstrap.csv", "rolling_selection.csv"]:
+    for name in ["rolling_planning_summary.csv", "paired_block_bootstrap.csv", "rolling_selection.csv",
+                 "model_comparison_metrics.csv", "model_comparison_bootstrap.csv"]:
         shutil.copy2(results / name, OUT / name)
 
     frames = []

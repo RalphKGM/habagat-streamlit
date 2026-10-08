@@ -72,3 +72,5 @@ The Canva deck has to be edited by the team.
   - Paper: Fig. 6.
 - **How do you prevent leakage?** Each forecast is issued at 00:00 using only the previous day. Settings are chosen on the year before the test, and test years never train or select anything.
 - **Does it save money?** We don't claim savings. Lower grid-plan adjustment means less disagreement between the plan and what happened, which is the step before a cost study.
+
+- **Why XGBoost and not another model?** Rolling test > Other models. Random Forest and Ridge went through the same fit/select/refit/test steps on the same hours. Random Forest ties XGBoost (7 of 9 bootstrap intervals include zero; largest gap 0.0027 MW). Ridge is worse everywhere. Answer: tree-based ML is what beats the baselines; XGBoost and Random Forest are equivalent here.

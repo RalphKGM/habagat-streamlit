@@ -1,0 +1,136 @@
+fold,location,source,model,hours,mae_mw,rmse_mw
+rolling_2024,General Santos City,combined,xgboost,8784,0.06373180,0.10119442
+rolling_2024,General Santos City,combined,previous_day,8784,0.08328873,0.13067145
+rolling_2024,General Santos City,combined,training_climatology,8784,0.08260649,0.13400858
+rolling_2024,General Santos City,combined,random_forest,8784,0.06321158,0.10003587
+rolling_2024,General Santos City,combined,ridge,8784,0.09484509,0.13152174
+rolling_2024,General Santos City,solar,xgboost,8784,0.03552974,0.06888870
+rolling_2024,General Santos City,solar,previous_day,8784,0.04047197,0.08621197
+rolling_2024,General Santos City,solar,training_climatology,8784,0.03758882,0.07200043
+rolling_2024,General Santos City,solar,random_forest,8784,0.03398092,0.06755061
+rolling_2024,General Santos City,solar,ridge,8784,0.07242954,0.10150394
+rolling_2024,General Santos City,wind,xgboost,8784,0.04493389,0.07825579
+rolling_2024,General Santos City,wind,previous_day,8784,0.05650309,0.09460916
+rolling_2024,General Santos City,wind,training_climatology,8784,0.06585788,0.11691158
+rolling_2024,General Santos City,wind,random_forest,8784,0.04489098,0.07658483
+rolling_2024,General Santos City,wind,ridge,8784,0.04789622,0.08312978
+rolling_2024,"Laoag, Ilocos Norte",combined,xgboost,8784,0.10879446,0.16416227
+rolling_2024,"Laoag, Ilocos Norte",combined,previous_day,8784,0.14276567,0.21442789
+rolling_2024,"Laoag, Ilocos Norte",combined,training_climatology,8784,0.16813751,0.21770427
+rolling_2024,"Laoag, Ilocos Norte",combined,random_forest,8784,0.10752422,0.16296051
+rolling_2024,"Laoag, Ilocos Norte",combined,ridge,8784,0.13027325,0.17961316
+rolling_2024,"Laoag, Ilocos Norte",solar,xgboost,8784,0.03042507,0.06724191
+rolling_2024,"Laoag, Ilocos Norte",solar,previous_day,8784,0.03334217,0.07665897
+rolling_2024,"Laoag, Ilocos Norte",solar,training_climatology,8784,0.03553717,0.07936179
+rolling_2024,"Laoag, Ilocos Norte",solar,random_forest,8784,0.02952168,0.06700854
+rolling_2024,"Laoag, Ilocos Norte",solar,ridge,8784,0.07686444,0.10727748
+rolling_2024,"Laoag, Ilocos Norte",wind,xgboost,8784,0.10414443,0.16275131
+rolling_2024,"Laoag, Ilocos Norte",wind,previous_day,8784,0.13595443,0.21614530
+rolling_2024,"Laoag, Ilocos Norte",wind,training_climatology,8784,0.17503444,0.22839262
+rolling_2024,"Laoag, Ilocos Norte",wind,random_forest,8784,0.10339321,0.16123639
+rolling_2024,"Laoag, Ilocos Norte",wind,ridge,8784,0.10610646,0.16330500
+rolling_2024,"Mactan, Cebu",combined,xgboost,8784,0.08259665,0.11749314
+rolling_2024,"Mactan, Cebu",combined,previous_day,8784,0.10021295,0.14104440
+rolling_2024,"Mactan, Cebu",combined,training_climatology,8784,0.12569222,0.17707655
+rolling_2024,"Mactan, Cebu",combined,random_forest,8784,0.08107736,0.11480334
+rolling_2024,"Mactan, Cebu",combined,ridge,8784,0.10542127,0.13951471
+rolling_2024,"Mactan, Cebu",solar,xgboost,8784,0.03262487,0.06246683
+rolling_2024,"Mactan, Cebu",solar,previous_day,8784,0.03448642,0.07381570
+rolling_2024,"Mactan, Cebu",solar,training_climatology,8784,0.03555498,0.06725735
+rolling_2024,"Mactan, Cebu",solar,random_forest,8784,0.03143912,0.06220212
+rolling_2024,"Mactan, Cebu",solar,ridge,8784,0.07236223,0.10105817
+rolling_2024,"Mactan, Cebu",wind,xgboost,8784,0.07292545,0.10931871
+rolling_2024,"Mactan, Cebu",wind,previous_day,8784,0.08850586,0.13236588
+rolling_2024,"Mactan, Cebu",wind,training_climatology,8784,0.12149561,0.17782099
+rolling_2024,"Mactan, Cebu",wind,random_forest,8784,0.07212111,0.10703598
+rolling_2024,"Mactan, Cebu",wind,ridge,8784,0.06926402,0.10372352
+rolling_2025,General Santos City,combined,xgboost,8760,0.06004709,0.09475508
+rolling_2025,General Santos City,combined,previous_day,8760,0.07831748,0.12233739
+rolling_2025,General Santos City,combined,training_climatology,8760,0.07251276,0.10985638
+rolling_2025,General Santos City,combined,random_forest,8760,0.05877041,0.09261665
+rolling_2025,General Santos City,combined,ridge,8760,0.08700798,0.11566057
+rolling_2025,General Santos City,solar,xgboost,8760,0.03672434,0.07247958
+rolling_2025,General Santos City,solar,previous_day,8760,0.04325491,0.09010784
+rolling_2025,General Santos City,solar,training_climatology,8760,0.03640839,0.07236030
+rolling_2025,General Santos City,solar,random_forest,8760,0.03565584,0.07151643
+rolling_2025,General Santos City,solar,ridge,8760,0.06950576,0.09737232
+rolling_2025,General Santos City,wind,xgboost,8760,0.03846072,0.06371247
+rolling_2025,General Santos City,wind,previous_day,8760,0.05188542,0.08631108
+rolling_2025,General Santos City,wind,training_climatology,8760,0.05704886,0.08690394
+rolling_2025,General Santos City,wind,random_forest,8760,0.03766883,0.06189381
+rolling_2025,General Santos City,wind,ridge,8760,0.03923114,0.06216121
+rolling_2025,"Laoag, Ilocos Norte",combined,xgboost,8760,0.12195176,0.18226307
+rolling_2025,"Laoag, Ilocos Norte",combined,previous_day,8760,0.16682030,0.24517856
+rolling_2025,"Laoag, Ilocos Norte",combined,training_climatology,8760,0.19515005,0.25484984
+rolling_2025,"Laoag, Ilocos Norte",combined,random_forest,8760,0.11928226,0.17754225
+rolling_2025,"Laoag, Ilocos Norte",combined,ridge,8760,0.14065837,0.19299771
+rolling_2025,"Laoag, Ilocos Norte",solar,xgboost,8760,0.03504277,0.07593768
+rolling_2025,"Laoag, Ilocos Norte",solar,previous_day,8760,0.03900869,0.08939483
+rolling_2025,"Laoag, Ilocos Norte",solar,training_climatology,8760,0.03949899,0.08409777
+rolling_2025,"Laoag, Ilocos Norte",solar,random_forest,8760,0.03321283,0.07390377
+rolling_2025,"Laoag, Ilocos Norte",solar,ridge,8760,0.07741854,0.10912863
+rolling_2025,"Laoag, Ilocos Norte",wind,xgboost,8760,0.11297714,0.17687777
+rolling_2025,"Laoag, Ilocos Norte",wind,previous_day,8760,0.15382327,0.23886652
+rolling_2025,"Laoag, Ilocos Norte",wind,training_climatology,8760,0.20082070,0.26504488
+rolling_2025,"Laoag, Ilocos Norte",wind,random_forest,8760,0.11103245,0.17214545
+rolling_2025,"Laoag, Ilocos Norte",wind,ridge,8760,0.11362835,0.17633489
+rolling_2025,"Mactan, Cebu",combined,xgboost,8760,0.08549798,0.12541065
+rolling_2025,"Mactan, Cebu",combined,previous_day,8760,0.11513661,0.16702751
+rolling_2025,"Mactan, Cebu",combined,training_climatology,8760,0.11816281,0.16170152
+rolling_2025,"Mactan, Cebu",combined,random_forest,8760,0.08543082,0.12396414
+rolling_2025,"Mactan, Cebu",combined,ridge,8760,0.10793511,0.14465582
+rolling_2025,"Mactan, Cebu",solar,xgboost,8760,0.03561941,0.06939584
+rolling_2025,"Mactan, Cebu",solar,previous_day,8760,0.04012283,0.08380927
+rolling_2025,"Mactan, Cebu",solar,training_climatology,8760,0.03563942,0.06992723
+rolling_2025,"Mactan, Cebu",solar,random_forest,8760,0.03456579,0.06879898
+rolling_2025,"Mactan, Cebu",solar,ridge,8760,0.06980777,0.09808808
+rolling_2025,"Mactan, Cebu",wind,xgboost,8760,0.07257161,0.11168095
+rolling_2025,"Mactan, Cebu",wind,previous_day,8760,0.09742501,0.15176246
+rolling_2025,"Mactan, Cebu",wind,training_climatology,8760,0.11536771,0.16003872
+rolling_2025,"Mactan, Cebu",wind,random_forest,8760,0.07220279,0.11032630
+rolling_2025,"Mactan, Cebu",wind,ridge,8760,0.07293764,0.11148997
+rolling_2026,General Santos City,combined,xgboost,4344,0.05333473,0.08367676
+rolling_2026,General Santos City,combined,previous_day,4344,0.06465924,0.10336046
+rolling_2026,General Santos City,combined,training_climatology,4344,0.06677736,0.09597015
+rolling_2026,General Santos City,combined,random_forest,4344,0.05170193,0.08023515
+rolling_2026,General Santos City,combined,ridge,4344,0.08450888,0.11210800
+rolling_2026,General Santos City,solar,xgboost,4344,0.03178546,0.06350158
+rolling_2026,General Santos City,solar,previous_day,4344,0.03426386,0.07729670
+rolling_2026,General Santos City,solar,training_climatology,4344,0.03354862,0.06492730
+rolling_2026,General Santos City,solar,random_forest,4344,0.02989327,0.06126631
+rolling_2026,General Santos City,solar,ridge,4344,0.07159917,0.10033107
+rolling_2026,General Santos City,wind,xgboost,4344,0.03820481,0.06060935
+rolling_2026,General Santos City,wind,previous_day,4344,0.04184591,0.07214585
+rolling_2026,General Santos City,wind,training_climatology,4344,0.05911295,0.07885070
+rolling_2026,General Santos City,wind,random_forest,4344,0.03794795,0.05983966
+rolling_2026,General Santos City,wind,ridge,4344,0.03875425,0.06103177
+rolling_2026,"Laoag, Ilocos Norte",combined,xgboost,4344,0.09533432,0.14200118
+rolling_2026,"Laoag, Ilocos Norte",combined,previous_day,4344,0.13457283,0.20516486
+rolling_2026,"Laoag, Ilocos Norte",combined,training_climatology,4344,0.16077999,0.21759355
+rolling_2026,"Laoag, Ilocos Norte",combined,random_forest,4344,0.09476624,0.14110883
+rolling_2026,"Laoag, Ilocos Norte",combined,ridge,4344,0.13173558,0.17260894
+rolling_2026,"Laoag, Ilocos Norte",solar,xgboost,4344,0.02069222,0.04801477
+rolling_2026,"Laoag, Ilocos Norte",solar,previous_day,4344,0.02294157,0.05702874
+rolling_2026,"Laoag, Ilocos Norte",solar,training_climatology,4344,0.02427774,0.05227715
+rolling_2026,"Laoag, Ilocos Norte",solar,random_forest,4344,0.01970014,0.04655227
+rolling_2026,"Laoag, Ilocos Norte",solar,ridge,4344,0.07909834,0.10661293
+rolling_2026,"Laoag, Ilocos Norte",wind,xgboost,4344,0.09288030,0.14033654
+rolling_2026,"Laoag, Ilocos Norte",wind,previous_day,4344,0.13030041,0.20303942
+rolling_2026,"Laoag, Ilocos Norte",wind,training_climatology,4344,0.16518493,0.22435068
+rolling_2026,"Laoag, Ilocos Norte",wind,random_forest,4344,0.09176176,0.13890465
+rolling_2026,"Laoag, Ilocos Norte",wind,ridge,4344,0.10481447,0.15197881
+rolling_2026,"Mactan, Cebu",combined,xgboost,4344,0.08370976,0.12040288
+rolling_2026,"Mactan, Cebu",combined,previous_day,4344,0.11404556,0.16342977
+rolling_2026,"Mactan, Cebu",combined,training_climatology,4344,0.12322818,0.16419694
+rolling_2026,"Mactan, Cebu",combined,random_forest,4344,0.08538905,0.12420004
+rolling_2026,"Mactan, Cebu",combined,ridge,4344,0.11256225,0.14930396
+rolling_2026,"Mactan, Cebu",solar,xgboost,4344,0.03271400,0.06404659
+rolling_2026,"Mactan, Cebu",solar,previous_day,4344,0.03722770,0.08015622
+rolling_2026,"Mactan, Cebu",solar,training_climatology,4344,0.03564389,0.06989974
+rolling_2026,"Mactan, Cebu",solar,random_forest,4344,0.03184615,0.06477479
+rolling_2026,"Mactan, Cebu",solar,ridge,4344,0.07695407,0.10672366
+rolling_2026,"Mactan, Cebu",wind,xgboost,4344,0.07381147,0.11016597
+rolling_2026,"Mactan, Cebu",wind,previous_day,4344,0.10317854,0.15878432
+rolling_2026,"Mactan, Cebu",wind,training_climatology,4344,0.12119551,0.16056778
+rolling_2026,"Mactan, Cebu",wind,random_forest,4344,0.07582758,0.11493014
+rolling_2026,"Mactan, Cebu",wind,ridge,4344,0.07606249,0.11337057

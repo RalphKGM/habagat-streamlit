@@ -7,7 +7,7 @@ import streamlit as st
 from solwind import theme, ui
 from solwind.data import (
     FOLD_LABEL, FOLD_WINDOWS, FOLDS, MODEL_LABEL, MODELS, SITE_SHORT, SITES,
-    load_rolling_bootstrap, load_rolling_hourly, load_rolling_metrics, load_rolling_plan, rolling_daily,
+    load_model_comparison, load_rolling_bootstrap, load_rolling_hourly, load_rolling_metrics, load_rolling_plan, rolling_daily,
 )
 
 theme.header("Rolling test", "Each year predicted by a model that only saw earlier years.")
@@ -206,3 +206,34 @@ table["Change"] = (table["XGBoost 2021–2025"] / table["XGBoost 2020–2025"] -
 st.dataframe(table, hide_index=True, width="stretch",
              column_config={k: st.column_config.NumberColumn(format="%.4f MW") for k in table.columns[1:5]})
 theme.note("Dropping 2020 does not reliably help. July–September 2026 is not scored: NASA solar data was not yet released.")
+
+# --- Other models -----------------------------------------------------------------------------------
+theme.section("Other models", "Random Forest and a linear model (Ridge), same inputs, same fit · select · refit · test steps.")
+cmp_metrics, cmp_boot = load_model_comparison()
+cmp = cmp_metrics[cmp_metrics["source"] == "combined"].pivot_table(index=["fold", "location"], columns="model", values="mae_mw")
+boot = cmp_boot[cmp_boot["other"] == "random_forest"].set_index(["fold", "location"])
+
+
+def _verdict(key) -> str:
+    b = boot.loc[key]
+    if b["ci95_lower_mw"] > 0:
+        return f"RF {b['delta_mae_mw']:.4f} MW better"
+    if b["ci95_upper_mw"] < 0:
+        return f"XGBoost {-b['delta_mae_mw']:.4f} MW better"
+    return "Tie"
+
+
+rows = []
+for fold in ["rolling_2024", "rolling_2025", "rolling_2026"]:
+    for site in SITES:
+        c = cmp.loc[(fold, site)]
+        rows.append({"Test": FOLD_LABEL[fold], "Site": SITE_SHORT[site], "XGBoost": c["xgboost"],
+                     "Random Forest": c["random_forest"], "Ridge": c["ridge"], "Previous day": c["previous_day"],
+                     "Past average": c["training_climatology"], "XGBoost vs RF (95% interval)": _verdict((fold, site))})
+st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch",
+             column_config={k: st.column_config.NumberColumn(format="%.4f MW")
+                            for k in ["XGBoost", "Random Forest", "Ridge", "Previous day", "Past average"]})
+ties = sum(_verdict(k) == "Tie" for k in boot.index)
+theme.note(f"Combined solar + wind MAE. Random Forest ties XGBoost: {ties} of {len(boot)} intervals include zero, and the "
+           f"largest gap is {boot['delta_mae_mw'].abs().max():.4f} MW. Ridge is worse than both tree models everywhere. Trees win because solar depends on "
+           "the hour in a way a straight line cannot follow.")

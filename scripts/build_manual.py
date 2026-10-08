@@ -500,7 +500,10 @@ bullets("The fold grid shows which years were used to fit, select and test each 
         "forecast and red where it lost. Use <b>Test</b> to choose the year. Click a day to open its 24-hour forecast.",
         "<i>Is the gap real?</i>: 95% intervals for the error difference from a seven-day block bootstrap "
         "(2,000 resamples). An interval left of zero favors XGBoost.",
-        "<i>Shorter history?</i>: the same 2026 hours forecast with and without 2020 in training.")
+        "<i>Shorter history?</i>: the same 2026 hours forecast with and without 2020 in training.",
+        "<i>Other models</i>: Random Forest and Ridge (a linear model) put through the same steps on the same hours, "
+        "with each test year's error beside XGBoost and the two simple methods, and whether the XGBoost and Random "
+        "Forest difference is real.")
 p("A link at the top of the page opens 2026 forecast.")
 
 h2("4.8  2026 Forecast")

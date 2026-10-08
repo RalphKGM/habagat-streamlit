@@ -242,6 +242,12 @@ def load_rolling_bootstrap() -> pd.DataFrame:
 
 
 @st.cache_data(show_spinner=False)
+def load_model_comparison() -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Random Forest and Ridge added to the rolling tests, scored on the same hours as XGBoost."""
+    return pd.read_csv(ROLLING / "model_comparison_metrics.csv"), pd.read_csv(ROLLING / "model_comparison_bootstrap.csv")
+
+
+@st.cache_data(show_spinner=False)
 def load_rolling_hourly() -> pd.DataFrame:
     hourly = pd.read_parquet(ROLLING / "rolling_hourly_combined.parquet")
     hourly["fold"] = hourly["fold"].astype(str)
